@@ -94,7 +94,7 @@ class LocaleManager
      */
     private static function isValidLocale($locale): bool
     {
-        if ($locale && in_array($locale, array_keys(config('app.locales', [])), true)) {
+        if ($locale && isset(config('app.locales', [])[$locale])) {
             return true;
         }
 
