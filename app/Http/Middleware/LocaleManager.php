@@ -32,7 +32,13 @@ class LocaleManager
      */
     public static function routePrefixFromRequest(): string
     {
-        return RequestFacade::segment(self::SEGMENT_INDEX, '');
+        $locale = RequestFacade::segment(self::SEGMENT_INDEX, '');
+
+        if (self::isValidLocale($locale)) {
+            return $locale;
+        }
+
+        return '';
     }
 
     /**
@@ -49,8 +55,12 @@ class LocaleManager
      */
     public static function set($locale): string
     {
-        if (!$locale || !isset(config('app.locales', [])[$locale])) {
+        if (!self::isValidLocale($locale)) {
             $locale = config('app.fallback_locale', self::DEFAULT_LOCALE);
+        }
+
+        if (app()->getLocale() === $locale) {
+            return $locale;
         }
 
         app()->setLocale($locale);
@@ -58,13 +68,16 @@ class LocaleManager
         return $locale;
     }
 
-    public static function setInUri(string $uri, string $locale)
+    /**
+     * @param string $uri
+     * @param string $locale
+     * @return string
+     */
+    public static function addToUri(string $uri, string $locale): string
     {
         $segments = explode('/', $uri);
 
-        $locales = array_keys(config('app.locales', []));
-
-        if (isset($segments[1]) && in_array($segments[1], $locales, true)) {
+        if (self::isValidLocale($segments[1] ?? null)) {
             $segments[1] = $locale;
         } else {
             array_unshift($segments, $locale);
@@ -73,5 +86,18 @@ class LocaleManager
         $segments = array_filter($segments);
 
         return implode('/', $segments);
+    }
+
+    /**
+     * @param $locale
+     * @return bool
+     */
+    private static function isValidLocale($locale): bool
+    {
+        if ($locale && in_array($locale, array_keys(config('app.locales', [])), true)) {
+            return true;
+        }
+
+        return false;
     }
 }

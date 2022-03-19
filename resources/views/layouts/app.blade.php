@@ -38,32 +38,24 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('index') }}">{{ __('Login') }}</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('index') }}">{{ __('Register') }}</a>
-                        </li>
+                        <!-- Locale switcher -->
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ __('Dropdown') }}
+                            <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="bi bi-translate"></i> {{ Config::get('app.locales')[App::getLocale()] }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('index') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('index') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
+                                @foreach (Config::get('app.locales') as $locale => $language)
+                                    @if ($locale !== App::getLocale())
+                                        <a class="dropdown-item" href="{{ route('locale.switch', ['locale' => $locale]) }}">
+                                            {{ $language }}
+                                        </a>
+                                    @endif
+                                @endforeach
                             </div>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>

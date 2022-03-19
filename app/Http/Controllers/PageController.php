@@ -8,12 +8,22 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     /**
-     * Show the profile for a given user.
+     * Main page.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
         return view(LocaleManager::get().'.index');
+    }
+
+    /**
+     * DDoS possibilities page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function ddos()
+    {
+        return view(LocaleManager::get().'.ddos');
     }
 }
