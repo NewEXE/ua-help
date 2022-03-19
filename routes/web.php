@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\PageController;
 use App\Http\Middleware\LocaleManager;
 use Illuminate\Support\Facades\Route;
 
@@ -16,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::any('locale/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
+Route::any('locale/{locale}', [App\Http\Controllers\LocaleController::class, 'switch'])->name('locale.switch');
 
 Route::group([
     'prefix' => LocaleManager::routePrefixFromRequest(),
 ], function () {
-    Route::get('/', [PageController::class, 'index']);
+    Route::get('/', [App\Http\Controllers\PageController::class, 'index'])->name('index');
 });
