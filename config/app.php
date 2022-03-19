@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\LocaleManager;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -82,7 +83,12 @@ return [
     |
     */
 
-    'locale' => 'ua',
+    'locale' => LocaleManager::DEFAULT_LOCALE,
+
+    'locales' => [
+        'ua' => 'Українською',
+        'en' => 'English',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +101,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => LocaleManager::DEFAULT_LOCALE,
 
     /*
     |--------------------------------------------------------------------------

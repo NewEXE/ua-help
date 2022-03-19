@@ -1,11 +1,12 @@
 <html>
 <head>
-    <title>App Name - @yield('title')</title>
+    <title>@yield('title') | UA-Help.pp.ua</title>
 </head>
 <body>
-@section('sidebar')
-    This is the master sidebar.
-@show
+<form method="POST" action="{{ route('locale.switch') }}">
+
+</form>
+@yield('top-menu')
 
 <div class="container">
     *** @yield('content') ***
