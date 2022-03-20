@@ -15,13 +15,14 @@
         Do not be silent! Silence is a sign that you accept the Russian government's policy.
     </p>
     <p><b>You can choose NOT TO BE SILENT.</b></p>
-    <h4><i class="bi bi-cash-coin"></i> Financial support</h4>
-    <p>
-        Official payment details: <a href="https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi" target="_blank">bank.gov.ua</a>
-        <i class="bi bi-box-arrow-up-right"></i>
-    </p>
+
     <h4><i class="bi bi-hash"></i> Information war</h4>
     <p>
         <i class="bi bi-server"></i> <a href="{{ route('pages.ddos') }}">DDoS attack to russian propaganda</a> (easy to join)
     </p>
+    <h4><i class="bi bi-cash-coin"></i> Financial support</h4>
+    <p>
+        Official payment details: <a href="https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi" target="_blank">bank.gov.ua</a> / <a href="https://helpua.bank.gov.ua/" target="_blank">helpua.bank.gov.ua</a>
+    </p>
+
 @endsection

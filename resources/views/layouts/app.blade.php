@@ -18,12 +18,24 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        #top-navbar {
+            background-color: #009bff !important;
+        }
+        #main-content-header {
+            background-color: #ffcd00;
+        }
+        a[target="_blank"]:after {
+            content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+            margin: 0 3px 0 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="top-navbar">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -63,9 +75,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header"><h3>@yield('title')</h3></div>
+                            <div class="card-header" id="main-content-header"><h3>@yield('title')</h3></div>
                             <div class="card-body">
                                 @yield('content')
+                                @if(Route::currentRouteName() !== 'index')
+                                    <p><a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
+                                @endif
                             </div>
                         </div>
                     </div>
