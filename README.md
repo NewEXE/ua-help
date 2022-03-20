@@ -20,3 +20,8 @@ php artisan key:generate
 npm install
 npm run prod
 ```
+7) Make production-optimize things:
+```
+php artisan view:cache
+```
+DO NOT run route:cache because routes contains dynamic calculations (`LocaleManager::routePrefixFromRequest()` in `routes/web.php`)!!!

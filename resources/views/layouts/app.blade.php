@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title') | {{ config('app.name', 'Laravel') }} </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -46,11 +46,9 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
                                 @foreach (Config::get('app.locales') as $locale => $language)
-                                    @if ($locale !== App::getLocale())
-                                        <a class="dropdown-item" href="{{ route('locale.switch', ['locale' => $locale]) }}">
-                                            {{ $language }}
-                                        </a>
-                                    @endif
+                                    <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}" href="{{ route('locale.switch', ['locale' => $locale]) }}">
+                                        {{ $language }}
+                                    </a>
                                 @endforeach
                             </div>
                         </li>
@@ -61,7 +59,18 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header"><h3>@yield('title')</h3></div>
+                            <div class="card-body">
+                                @yield('content')
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
