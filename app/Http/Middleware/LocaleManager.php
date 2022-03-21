@@ -2,9 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Str;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request as RequestFacade;
+use Stevebauman\Location\Facades\Location;
 
 class LocaleManager
 {
@@ -20,9 +23,50 @@ class LocaleManager
      */
     public function handle(Request $request, Closure $next)
     {
-        self::setLocale(self::routePrefixFromRequest());
+        $locale = self::routePrefixFromRequest();
+
+        // Locale is missing in URI, try to detect country code.
+        if (!$locale) {
+            $locale = self::detectLocaleByCountryCode();
+        }
+
+        self::setLocale($locale);
 
         return $next($request);
+    }
+
+    private function detectLocaleByCountryCode(): string
+    {
+        $ip = request()->ip();
+
+        // No client IP so nothing to detect
+        if (!$ip || app()->environment() !== 'production') {
+            return '';
+        }
+
+        // Maybe we have already detected country code?
+        $cacheKey = 'detectedCountryCode_'. Str::slug($ip);
+        $countryCode = Cache::get($cacheKey);
+
+        // If nothing was cached, try to get country code
+        if (!$countryCode && $position = Location::get($ip)) {
+            // In case of success, format code and save to cache
+            $countryCode = Str::lower($position->countryCode);
+
+            Cache::put(
+                $cacheKey,
+                $countryCode,
+                now()->addWeek()
+            );
+        }
+
+        // If country code is here
+        if ($countryCode) {
+            // If code is location, set location to this code; 'en' otherwise
+            return self::isValidLocale($countryCode) ? $countryCode : 'en';
+        }
+
+        return '';
     }
 
     /**
