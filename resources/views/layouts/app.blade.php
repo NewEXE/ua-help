@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="col">
                                         @if(Route::currentRouteName() !== 'index')
-                                            <p class="text-end"><a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
+                                            <p class="text-end"><i class="bi bi-house"></i> <a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
                                         @endif
                                     </div>
                                 </div>
