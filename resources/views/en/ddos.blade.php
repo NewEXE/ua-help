@@ -5,7 +5,7 @@
 @section('content')
     <p>How can you significantly complicate the life of the aggressor? <b>Let's make their war-important sites not work</b>:</p>
     <ul>
-        <li>propaganda sites (gazeta.ru, ria.ru, smi2.ru, russian.rt.com and others)</li>
+        <li>propaganda sites (kremlin.ru, gazeta.ru, ria.ru, smi2.ru, russian.rt.com and others)</li>
         <li>sites of banks (sber.ru and others)</li>
         <li>logistics sites...</li>
         ...and others helping the Führer of the 21st century kill our citizens.
@@ -23,7 +23,7 @@
     <p>Having a computer, laptop or smartphone, <b>you can help</b>, not being an experienced user, <b>without special skills</b>.</p>
     <p>This requires:</p>
     <ul>
-        <li>device - computer or smartphone;</li>
+        <li>device - desktop, laptop or smartphone;</li>
         <li>internet-connection, preferably unlimited and stable.</li>
     </ul>
 
