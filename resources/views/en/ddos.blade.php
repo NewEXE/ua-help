@@ -48,7 +48,7 @@
             <p>
                 How does it work?
                 Attacks a certain list of sites, which is dynamically changing. using a proxy, so you're safe - <b>your IP address and location are hidden</b>.
-                <a href="https://github.com/opengs/uashield/blob/master/README-en.md">This is open-source software</a>.
+                <a href="https://github.com/opengs/uashield/blob/master/README-en.md" target="_blank">This is open-source software</a>.
             </p>
         </li>
     </ol>
@@ -71,14 +71,14 @@
 
             <h4>How to set up VPN</h4>
             <p>
-                <b>The easiest way</b> - this is <a href="https://www.torproject.org/ru/download/">Tor Browser</a> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i> <i class="bi bi-phone"></i>🐧).
+                <b>The easiest way</b> - this is <a href="https://www.torproject.org/ru/download/" target="_blank">Tor Browser</a> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i> <i class="bi bi-phone"></i>🐧).
                 After downloading, open the tab with the sites listed below ("Simple level") and enjoy the attacks on Russian sites.
                 Each time you log in to the browser, your IP will change. There is also a version for smartphones - you can open sites from the list below on your smartphone!
             </p>
             <p>
                 Other options:
                 <ul>
-                    <li><a href="https://arriven.github.io/db1000n/en/#how-to-choose-vpn">Free VPNs by request or promo code</a></li>
+                    <li><a href="https://arriven.github.io/db1000n/en/#how-to-choose-vpn" target="_blank">Free VPNs by request or promo code</a></li>
                     <li>
                         list of services with comments, list of advantages and disadvantages:
                         <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">DDOS_Tutorial_for_all.pdf</a> <em>(on Ukrainian language, pages 2-4, <a href="/files/DDOS_Tutorial_for_all-EN.pdf" target="_blank">Machine Translated by Google</a>)</em>
@@ -86,7 +86,7 @@
                 </ul>
                 Both paid and free options are available.
                 Use Russian, Belarusian locations for maximum efficiency (or any other than Ukrainian).
-                Personally, I use <a href="https://www.cyberghostvpn.com/">CyberGhost VPN</a> (paid, but it works well, there are many countries).
+                Personally, I use <a href="https://www.cyberghostvpn.com/" target="_blank">CyberGhost VPN</a> (paid, but it works well, there are many countries).
             </p>
 
             <h4>Simple level <em>(low efficiency)</em></h4>
@@ -112,7 +112,7 @@
                     <p>
                         <b><a href="https://www.lookquizru.xyz/" target="_blank">https://www.lookquizru.xyz/</a></b><br />
                         Attacks one of the sites that is relevant at the moment (the site to be attacked is changing dynamically).<br />
-                        The service was developed by the KiberBULL team. <a href="https://t.me/+NdmAn-xnANNlYjJi">Links to their Telegram channel</a>.<br />
+                        The service was developed by the KiberBULL team. <a href="https://t.me/+NdmAn-xnANNlYjJi" target="_blank">Links to their Telegram channel</a>.<br />
                         <span class="text-warning">Important!</span> Don't forget the enabled VPN, which you need to change from time to time, or Tor Browser, which you need to reopen periodically!
                     </p>
                 </li>
@@ -120,7 +120,7 @@
                     <p>
                         <b><a href="https://2022pollquizinru.xyz/" target="_blank">https://2022pollquizinru.xyz</a></b><br />
                         Attacks a certain list of Russian sites.<br />
-                        Another one service that was developed by the KiberBULL team. <a href="https://t.me/+NdmAn-xnANNlYjJi">Links to their Telegram channel</a>.<br />
+                        Another one service that was developed by the KiberBULL team. <a href="https://t.me/+NdmAn-xnANNlYjJi" target="_blank">Links to their Telegram channel</a>.<br />
                         <span class="text-danger">Warning!</span> Be careful when opening this site your laptop or computer may be slow.<br />
                         <span class="text-warning">Important!</span> Don't forget the enabled VPN, which you need to change from time to time, or Tor Browser, which you need to reopen periodically!
                     </p>
@@ -143,7 +143,8 @@
                 <li>
                     <p>
                         <b><a href="http://www.notwar.ho.ua/" target="_blank">http://www.notwar.ho.ua</a></b><br />
-                        Attacks a certain list of Russian sites. <a href="https://t.me/ddos_for_all/80?comment=931">Щодо ефективності є сумніви</a>.<br />
+                        Attacks a certain list of Russian sites.
+                        <a href="https://t.me/ddos_for_all/80?comment=931" target="_blank">May not work effectively</a>.<br />
                         <span class="text-danger">Warning!</span> Be careful when opening this site your laptop or computer may be slow.<br />
                         <span class="text-warning">Important!</span> Don't forget the enabled VPN, which you need to change from time to time, or Tor Browser, which you need to reopen periodically!
                     </p>
@@ -151,7 +152,8 @@
                 <li>
                     <p>
                         <b><a href="https://stop-russian-desinformation.near.page/" target="_blank">https://stop-russian-desinformation.near.page</a></b><br />
-                        Attacks a certain list of Russian sites. <a href="https://github.com/dustinbaer/stop-russian-disinformation">Github</a>. <a href="https://t.me/ddos_for_all/35?comment=2160">Щодо ефективності є сумніви</a>.<br />
+                        Attacks a certain list of Russian sites. <a href="https://github.com/dustinbaer/stop-russian-disinformation" target="_blank">Github</a>.
+                        <a href="https://t.me/ddos_for_all/35?comment=2160" target="_blank">May not work effectively</a>.<br />
                         <span class="text-danger">Warning!</span> Be careful when opening this site your laptop or computer may be slow.<br />
                         <span class="text-warning">Important!</span> Don't forget the enabled VPN, which you need to change from time to time, or Tor Browser, which you need to reopen periodically!
                     </p>
@@ -198,9 +200,9 @@
             </ol>
             <h4>More advanced levels of attack <em>(highest efficiency)</em></h4>
             <p>
-                Read about <b><a href="https://github.com/MHProDev/MHDDoS">MHDDoS</a>,
-                    <a href="https://hub.docker.com/r/alpine/bombardier">alpine/bombardier</a>,
-                    <a href="https://en.wikipedia.org/wiki/Low_Orbit_Ion_Cannon">LOIC</a>,
+                Read about <b><a href="https://github.com/MHProDev/MHDDoS" target="_blank">MHDDoS</a>,
+                    <a href="https://hub.docker.com/r/alpine/bombardier" target="_blank">alpine/bombardier</a>,
+                    <a href="https://en.wikipedia.org/wiki/Low_Orbit_Ion_Cannon" target="_blank">LOIC</a>,
                     cloud server attack (AWS, Azure, Digital Ocean)</b>:
             </p>
             <ul>
@@ -226,7 +228,7 @@
                 </li>
                 <li>
                     <p>
-                        Other approaches: <a href="https://github.com/opengs/uashield/blob/master/README-en.md">here</a>.
+                        Other approaches: <a href="https://github.com/opengs/uashield/blob/master/README-en.md" target="_blank">here</a>.
                     </p>
                 </li>
             </ul>

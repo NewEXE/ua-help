@@ -11,7 +11,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view(app()->getLocale().'.index');
+        return view(app()->getLocale().'.index', ['path' => 'index']);
     }
 
     /**
@@ -21,6 +21,6 @@ class PageController extends Controller
      */
     public function ddos()
     {
-        return view(app()->getLocale().'.ddos');
+        return view(app()->getLocale().'.ddos', ['path' => 'ddos']);
     }
 }

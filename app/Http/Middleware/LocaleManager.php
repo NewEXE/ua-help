@@ -40,7 +40,7 @@ class LocaleManager
         $ip = request()->ip();
 
         // No client IP so nothing to detect
-        if (!$ip || app()->environment() !== 'production') {
+        if (!$ip || !app()->isProduction()) {
             return '';
         }
 

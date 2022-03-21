@@ -98,9 +98,20 @@
                                     @endforeach
                                 </div>
                                 @yield('content')
-                                @if(Route::currentRouteName() !== 'index')
-                                    <p class="text-end"><a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
-                                @endif
+                                <br />
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            <i class="bi bi-github"></i>
+                                            <a href="{{ \App\Support\Helpers::repositoryViewPath($path) }}" target="_blank">{{ __('Improve this page') }}</a>
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        @if(Route::currentRouteName() !== 'index')
+                                            <p class="text-end"><a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

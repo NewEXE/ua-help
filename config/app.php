@@ -201,4 +201,5 @@ return [
         // ...
     ])->toArray(),
 
+    'repositoryUrl' => 'https://github.com/NewEXE/ua-help/tree/master',
 ];

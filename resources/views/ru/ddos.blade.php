@@ -49,7 +49,7 @@
             <p>
                 Как это работает?
                 Атакует определённый список сайтов, который самостоятельно динамически изменяется, с использованием прокси, так что ты в безопасности - твои <b>IP-адрес и геолокациия скрыты</b>.
-                <a href="https://github.com/opengs/uashield">This is open-source software</a>.
+                <a href="https://github.com/opengs/uashield" target="_blank">This is open-source software</a>.
             </p>
         </li>
     </ol>
