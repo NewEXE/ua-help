@@ -51,7 +51,7 @@ class LocaleManager
         // If nothing was cached, try to get country code
         if (!$countryCode && $position = Location::get($ip)) {
             // In case of success, format code and save to cache
-            $countryCode = Str::lower($position->countryCode);
+            $countryCode = Str::lower($position->countryCode ?? '');
 
             Cache::put(
                 $cacheKey,
