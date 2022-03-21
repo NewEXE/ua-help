@@ -148,7 +148,7 @@
                 <li>
                     <p>
                         <b><a href="https://stop-russian-desinformation.near.page/" target="_blank">https://stop-russian-desinformation.near.page</a></b><br />
-                        Атакує стандартний перелік російських сайтів. <a href="https://t.me/ddos_for_all/35?comment=2160">Щодо ефективності є сумніви</a>.<br />
+                        Атакує стандартний перелік російських сайтів. <a href="https://github.com/dustinbaer/stop-russian-disinformation">Github</a>. <a href="https://t.me/ddos_for_all/35?comment=2160">Щодо ефективності є сумніви</a>.<br />
                         <span class="text-danger">Увага!</span> Після відкриття цього сайту ваш ноутбук, або комп'ютер може виснути, будьте обережні.<br />
                         <span class="text-warning">Важливо!</span> Не забувайте про увімкнений VPN, який потрібно час від часу змінювати, або Tor Browser, у який потрібно час від часу перезаходити!
                     </p>
