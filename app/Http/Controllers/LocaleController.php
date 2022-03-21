@@ -8,13 +8,15 @@ use Illuminate\Http\RedirectResponse;
 class LocaleController extends Controller
 {
     /**
-     * Show the profile for a given user.
+     * Switch application locale.
      *
      * @return RedirectResponse
      */
     public function switch(string $locale)
     {
-        $locale = LocaleManager::set($locale);
+        if (!LocaleManager::isValidLocale($locale)) {
+            abort(422);
+        }
 
         $prev = url()->previous();
 

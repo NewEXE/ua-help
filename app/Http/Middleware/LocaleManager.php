@@ -20,7 +20,7 @@ class LocaleManager
      */
     public function handle(Request $request, Closure $next)
     {
-        self::set(self::routePrefixFromRequest());
+        self::setLocale(self::routePrefixFromRequest());
 
         return $next($request);
     }
@@ -42,18 +42,10 @@ class LocaleManager
     }
 
     /**
-     * @return string
-     */
-    public static function get(): string
-    {
-        return app()->getLocale();
-    }
-
-    /**
      * @param mixed $locale
      * @return string
      */
-    public static function set($locale): string
+    private static function setLocale($locale): string
     {
         if (!self::isValidLocale($locale)) {
             $locale = config('app.fallback_locale', self::DEFAULT_LOCALE);
@@ -89,12 +81,12 @@ class LocaleManager
     }
 
     /**
-     * @param $locale
+     * @param mixed $locale
      * @return bool
      */
-    private static function isValidLocale($locale): bool
+    public static function isValidLocale(mixed $locale): bool
     {
-        if ($locale && isset(config('app.locales', [])[$locale])) {
+        if ($locale && is_string($locale) && isset(config('app.locales', [])[$locale])) {
             return true;
         }
 
