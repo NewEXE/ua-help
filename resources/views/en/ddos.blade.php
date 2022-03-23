@@ -47,7 +47,7 @@
             </p>
             <p>
                 How does it work?
-                Attacks a certain list of sites, which is dynamically changing. using a proxy, so you're safe - <b>your IP address and location are hidden</b>.
+                It attacks a certain list of sites, which is dynamically changing using a proxy, so you're safe - <b>your IP address and location are hidden</b>.
                 <a href="https://github.com/opengs/uashield/blob/master/README-en.md" target="_blank">This is open-source software</a>.
             </p>
         </li>
