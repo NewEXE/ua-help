@@ -209,7 +209,7 @@
                 <li>
                     <p>
                         Python-розробникам та всім, хто може запустити Python-скрипт:
-                        просте та досить конфігураційне рішення: <a href="https://gist.github.com/NewEXE/a284a7ca0c3a2ddd2894907bb1787c63" target="_blank">gist.github.com </a>.
+                        просте та досить конфігураційне рішення: <a href="https://gist.github.com/NewEXE/a284a7ca0c3a2ddd2894907bb1787c63" target="_blank">gist.github.com</a>.
                         Потрібен Docker та Python 2.7 або 3.
                     </p>
                 </li>

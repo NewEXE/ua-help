@@ -7,7 +7,7 @@ namespace App\Support;
  */
 class Helpers
 {
-    public static function repositoryViewPath(string $path)
+    public static function getViewUrlInRepository(string $path)
     {
         return
             Str::finish(config('app.repositoryUrl'), '/') .

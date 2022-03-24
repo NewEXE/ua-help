@@ -23,6 +23,7 @@
         #top-navbar {
             background-color: #009bff !important;
         }
+
         #main-content-header {
             background-color: #ffcd00;
         }
@@ -34,9 +35,10 @@
         }
 
         /* Spoiler */
-        .spoiler input, .spoiler div  {
+        .spoiler input, .spoiler div {
             display: none;
         }
+
         .spoiler :checked ~ div {
             display: block;
             /*padding: 10px;*/
@@ -44,80 +46,91 @@
     </style>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="top-navbar">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('index') }}">
-                    <b>{{ config('app.name', 'Laravel') }}</b>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<div id="app">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="top-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <b>{{ config('app.name', 'Laravel') }}</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav me-auto">
 
-                    </ul>
+                </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Locale switcher -->
-                        <li class="nav-item dropdown">
-                            <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="bi bi-translate"></i> <b>{{ Config::get('app.locales')[App::getLocale()] }}</b>
-                            </a>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ms-auto">
+                    <!-- Locale switcher -->
+                    <li class="nav-item dropdown">
+                        <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                        >
+                            <i class="bi bi-translate"></i> <b>{{ Config::get('app.locales')[App::getLocale()] }}</b>
+                        </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
+                            @foreach (Config::get('app.locales') as $locale => $language)
+                                <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}"
+                                   href="{{ route('locale.switch', ['locale' => $locale]) }}">
+                                    {{ $language }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header" id="main-content-header"><h3>@yield('title')</h3></div>
+                        <div class="card-body">
+                            <div class="alert alert-primary" role="alert">
+                                You can read this page in:
                                 @foreach (Config::get('app.locales') as $locale => $language)
-                                    <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}" href="{{ route('locale.switch', ['locale' => $locale]) }}">
-                                        {{ $language }}
-                                    </a>
+                                    @if($locale !== App::getLocale())
+                                        <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last)
+                                            ,
+                                        @else
+                                            .
+                                        @endif
+                                    @endif
                                 @endforeach
                             </div>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header" id="main-content-header"><h3>@yield('title')</h3></div>
-                            <div class="card-body">
-                                <div class="alert alert-primary" role="alert">
-                                    You can read this page in:
-                                    @foreach (Config::get('app.locales') as $locale => $language)
-                                        @if($locale !== App::getLocale())
-                                            <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
-                                        @endif
-                                    @endforeach
+                            @yield('content')
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+                                    <p>
+                                        <i class="bi bi-github"></i>
+                                        <a href="{{ \App\Support\Helpers::getViewUrlInRepository($path) }}"
+                                           target="_blank">{{ __('Improve this page') }}</a>
+                                    </p>
                                 </div>
-                                @yield('content')
-                                <br />
-                                <div class="row">
-                                    <div class="col">
-                                        <p>
-                                            <i class="bi bi-github"></i>
-                                            <a href="{{ \App\Support\Helpers::repositoryViewPath($path) }}" target="_blank">{{ __('Improve this page') }}</a>
-                                        </p>
-                                    </div>
-                                    <div class="col">
-                                        @if(Route::currentRouteName() !== 'index')
-                                            <p class="text-end"><i class="bi bi-house"></i> <a href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
-                                        @endif
-                                    </div>
+                                <div class="col">
+                                    @if(Route::currentRouteName() !== 'index')
+                                        <p class="text-end"><i class="bi bi-house"></i> <a
+                                                href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
