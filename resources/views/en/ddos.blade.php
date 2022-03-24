@@ -47,7 +47,7 @@
             </p>
             <p>
                 How does it work?
-                Attacks a certain list of sites, which is dynamically changing. using a proxy, so you're safe - <b>your IP address and location are hidden</b>.
+                It attacks a certain list of sites, which is dynamically changing using a proxy, so you're safe - <b>your IP address and location are hidden</b>.
                 <a href="https://github.com/opengs/uashield/blob/master/README-en.md" target="_blank">This is open-source software</a>.
             </p>
         </li>
@@ -71,7 +71,7 @@
 
             <h4>How to set up VPN</h4>
             <p>
-                <b>The easiest way</b> - this is <a href="https://www.torproject.org/ru/download/" target="_blank">Tor Browser</a> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i> <i class="bi bi-phone"></i>🐧).
+                <b>The easiest way</b> - this is <a href="https://www.torproject.org/en/download/" target="_blank">Tor Browser</a> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i> <i class="bi bi-phone"></i>🐧).
                 After downloading, open the tab with the sites listed below ("Simple level") and enjoy the attacks on Russian sites.
                 Each time you log in to the browser, your IP will change. There is also a version for smartphones - you can open sites from the list below on your smartphone!
             </p>
