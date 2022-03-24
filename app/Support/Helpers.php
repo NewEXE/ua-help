@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use App\Http\Middleware\LocaleManager;
+
 /**
  * Misc helpers class.
  */
@@ -12,7 +14,7 @@ class Helpers
         return
             Str::finish(config('app.repositoryUrl'), '/') .
             'resources/views/' .
-            app()->getLocale() .
+            LocaleManager::getLocale() .
             Str::start($path, '/') .
             '.blade.php'
         ;

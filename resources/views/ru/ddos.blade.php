@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', __('DDoS attack'))
-
 @section('content')
     <p>Как можно помочь Украине в войне? <b>Сделаем, чтобы важные для ведения войны сайты не работали</b>:</p>
     <ul>

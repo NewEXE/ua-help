@@ -27,7 +27,11 @@ class LocaleManager
 
         // Locale is missing in URI, try to detect country code.
         if (!$locale) {
-            $locale = self::detectLocaleByCountryCode();
+            $locale = self::tryDetectLocaleByCountryCode();
+        }
+
+        if (!self::isValidLocale($locale)) {
+            $locale = config('app.fallback_locale', self::DEFAULT_LOCALE);
         }
 
         self::setLocale($locale);
@@ -35,7 +39,10 @@ class LocaleManager
         return $next($request);
     }
 
-    private function detectLocaleByCountryCode(): string
+    /**
+     * @return string
+     */
+    private function tryDetectLocaleByCountryCode(): string
     {
         $ip = request()->ip();
 
@@ -86,25 +93,21 @@ class LocaleManager
     }
 
     /**
-     * @param mixed $locale
-     * @return string
+     * @param string $locale
+     * @return void
      */
-    private static function setLocale($locale): string
+    private static function setLocale(string $locale): void
     {
-        if (!self::isValidLocale($locale)) {
-            $locale = config('app.fallback_locale', self::DEFAULT_LOCALE);
-        }
-
         if (app()->getLocale() === $locale) {
-            return $locale;
+            return;
         }
 
         app()->setLocale($locale);
-
-        return $locale;
     }
 
     /**
+     * Build URI in passed locale.
+     *
      * @param string $uri
      * @param string $locale
      * @return string
@@ -130,10 +133,60 @@ class LocaleManager
      */
     public static function isValidLocale(mixed $locale): bool
     {
-        if ($locale && is_string($locale) && isset(config('app.locales', [])[$locale])) {
+        if ($locale && is_string($locale) && isset(self::getLocalesList()[$locale])) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Build full URL in passed locale.
+     *
+     * @param string $locale
+     * @param string|null $url Current by default
+     * @return string
+     */
+    public static function addToUrl(string $locale, string $url = null): string
+    {
+        if ($url === null) {
+            $url = url()->current();
+        }
+
+        $urlParts = parse_url($url);
+        $urlParts['path'] = $urlParts['path'] ?? '/';
+
+        $urlParts['path'] = '/' . LocaleManager::addToUri($urlParts['path'], $locale);
+
+        return Str::httpBuildUrl('', $urlParts);
+    }
+
+    /**
+     * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     */
+    public static function getLocalesList(): array
+    {
+        return config('app.locales', []);
+    }
+
+    public static function getLocale(): string
+    {
+        // Sometimes actual app()->getLocale()
+        // inconsistent with locale in URL.
+
+        $locale = app()->getLocale();
+        if ($locale !== self::DEFAULT_LOCALE) {
+            // App locale is not default, so is taken from URL.
+            return $locale;
+        }
+
+        $locale = self::routePrefixFromRequest();
+
+        if (!$locale) {
+            // Locale in URL is not valid or empty, so fallback to default.
+            $locale = self::DEFAULT_LOCALE;
+        }
+
+        return $locale;
     }
 }

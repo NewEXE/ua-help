@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', __('DDoS attack'))
-
 @section('content')
     <p>How can you significantly complicate the life of the aggressor? <b>Let's make their war-important websites not work</b>:</p>
     <ul>

@@ -1,13 +1,15 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ \App\Http\Middleware\LocaleManager::getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- SEO -->
+    {!! SEOMeta::generate() !!}
+    <!-- // SEO -->
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>@yield('title') | {{ config('app.name', 'Laravel') }} </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -71,11 +73,11 @@
                         <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
                         >
-                            <i class="bi bi-translate"></i> <b>{{ Config::get('app.locales')[App::getLocale()] }}</b>
+                            <i class="bi bi-translate"></i> <b>{{ \App\Http\Middleware\LocaleManager::getLocalesList()[App::getLocale()] }}</b>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
-                            @foreach (Config::get('app.locales') as $locale => $language)
+                            @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
                                 <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}"
                                    href="{{ route('locale.switch', ['locale' => $locale]) }}">
                                     {{ $language }}
@@ -94,11 +96,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header" id="main-content-header"><h3>@yield('title')</h3></div>
+                        <div class="card-header" id="main-content-header"><h3>{{ SEOMeta::getTitleSession() }}</h3></div>
                         <div class="card-body">
                             <div class="alert alert-primary" role="alert">
                                 You can read this page in:
-                                @foreach (Config::get('app.locales') as $locale => $language)
+                                @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
                                     @if($locale !== App::getLocale())
                                         <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last)
                                             ,

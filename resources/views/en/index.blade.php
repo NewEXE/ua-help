@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', __('How to help Ukraine?'))
-
 @section('content')
     <p>There is a war in Ukraine right now.</p>
     <p>

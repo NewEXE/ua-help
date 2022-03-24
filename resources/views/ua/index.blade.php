@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', __('How to help Ukraine?'))
-
 @section('content')
     <h4><i class="bi bi-hash"></i> Інформаційна боротьба</h4>
     <p>
