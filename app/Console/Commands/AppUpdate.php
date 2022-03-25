@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Support\Str;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
@@ -31,13 +32,26 @@ class AppUpdate extends Command
         $this->info("Running updates...");
 
         $process = new Process(['git', 'pull']);
-        $process->run(function($type, $buffer) {
-            dump($buffer);
+
+        $alreadyUpToDate = false;
+        $process->run(function($type, $buffer) use(&$alreadyUpToDate) {
+            if (Str::contains($buffer, 'Already up to date')) {
+                $alreadyUpToDate = true;
+            }
+            $this->info($buffer);
         });
+
+        if ($alreadyUpToDate) {
+            return true;
+        }
 
         $process = new Process(['composer', 'install', '--optimize-autoloader', '--no-dev']);
         $process->run(function($type, $buffer) {
-            dump($buffer);
+            if ($type === Process::ERR) {
+                $this->error($buffer);
+            } else {
+                $this->info($buffer);
+            }
         });
 
         $this->call('config:cache');
