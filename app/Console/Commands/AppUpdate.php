@@ -31,9 +31,14 @@ class AppUpdate extends Command
         $this->info("Running updates...");
 
         $process = new Process(['git', 'pull']);
-        $process->run();
+        $process->run(function($type, $buffer) {
+            dump($buffer);
+        });
+
         $process = new Process(['composer', 'install', '--optimize-autoloader', '--no-dev']);
-        $process->run();
+        $process->run(function($type, $buffer) {
+            dump($buffer);
+        });
 
         $this->call('config:cache');
         $this->call('view:cache');
