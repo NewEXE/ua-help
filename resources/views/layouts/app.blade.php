@@ -100,10 +100,8 @@
                         <div class="card-body">
                             <div class="alert alert-primary" role="alert">
                                 You can read this page in:
-                                @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
-                                    @if($locale !== App::getLocale())
-                                        <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
-                                    @endif
+                                @foreach (\App\Http\Middleware\LocaleManager::getLocalesList(true) as $locale => $language)
+                                    <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
                                 @endforeach
                             </div>
                             @yield('content')

@@ -15,9 +15,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $currentLocale = LocaleManager::getLocale();
-        foreach (LocaleManager::getLocalesList() as $locale => $language) {
-            if ($currentLocale === $locale) continue;
+        foreach (LocaleManager::getLocalesList(true) as $locale => $language) {
             SEOMeta::addAlternateLanguage($locale, LocaleManager::addToUrl($locale));
         }
     }

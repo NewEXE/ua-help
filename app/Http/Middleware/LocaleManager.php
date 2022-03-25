@@ -164,9 +164,15 @@ class LocaleManager
     /**
      * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
      */
-    public static function getLocalesList(): array
+    public static function getLocalesList(bool $withoutCurrent = false): array
     {
-        return config('app.locales', []);
+        $locales = config('app.locales', []);
+
+        if ($withoutCurrent) {
+            unset($locales[self::getLocale()]);
+        }
+
+        return $locales;
     }
 
     public static function getLocale(): string
