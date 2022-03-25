@@ -175,6 +175,9 @@ class LocaleManager
         return $locales;
     }
 
+    /**
+     * @return string
+     */
     public static function getLocale(): string
     {
         // Sometimes actual app()->getLocale()

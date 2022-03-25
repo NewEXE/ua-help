@@ -15,6 +15,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
+        // Add <link rel="alternate"> tags
         foreach (LocaleManager::getLocalesList(true) as $locale => $language) {
             SEOMeta::addAlternateLanguage($locale, LocaleManager::addToUrl($locale));
         }
