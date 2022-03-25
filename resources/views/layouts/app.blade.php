@@ -102,11 +102,7 @@
                                 You can read this page in:
                                 @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
                                     @if($locale !== App::getLocale())
-                                        <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last)
-                                            ,
-                                        @else
-                                            .
-                                        @endif
+                                        <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
                                     @endif
                                 @endforeach
                             </div>
