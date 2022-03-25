@@ -19,7 +19,7 @@ class AppUpdate extends Command
      *
      * @var string
      */
-    protected $description = 'Update application';
+    protected $description = 'Update application in production';
 
     /**
      * Execute the console command.
@@ -28,12 +28,69 @@ class AppUpdate extends Command
      */
     public function handle()
     {
-        $process = new Process(['git', 'pull']);
+        $this->info("Running updates...");
 
-        $this->info("Running 'git pull'");
+        $process = new Process(['git', 'pull']);
         $process->run();
-        $this->info('Done');
+        $process = new Process(['composer', 'install', '--optimize-autoloader', '--no-dev']);
+        $process->run();
+
+        $this->call('config:cache');
+        $this->call('view:cache');
+
+        $this->prepareEnvFileForProduction();
+
+        $this->info('All done');
 
         return $process->isSuccessful();
+    }
+
+    /**
+     * Write a new environment file with the production-ready rules.
+     *
+     * @return void
+     */
+    protected function prepareEnvFileForProduction()
+    {
+        $rules = [
+            [
+                'envKey' => 'DEBUG',
+                'envValue' => 'FALSE',
+                'configPath' => 'app.debug',
+            ],
+            [
+                'envKey' => 'APP_ENV',
+                'envValue' => 'production',
+                'configPath' => 'app.env',
+            ],
+        ];
+
+        $envFilePath = $this->laravel->environmentFilePath();
+
+        if (!file_exists($envFilePath)) {
+            return;
+        }
+
+        foreach ($rules as $rule) {
+            file_put_contents($envFilePath, preg_replace(
+                $this->replacementPattern($rule['envKey'], $rule['configPath']),
+                $rule['envKey'].'='.$rule['envValue'],
+                file_get_contents($envFilePath)
+            ));
+
+            $this->laravel['config'][$rule['configPath']] = $rule['envValue'];
+        }
+    }
+
+    /**
+     * Get a regex pattern that will match env key with value.
+     *
+     * @return string
+     */
+    protected function replacementPattern(string $envKey, string $configPath)
+    {
+        $escaped = preg_quote('='.$this->laravel['config'][$configPath], '/');
+
+        return "/^$envKey{$escaped}/m";
     }
 }
