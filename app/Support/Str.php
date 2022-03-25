@@ -40,7 +40,7 @@ class Str extends \Illuminate\Support\Str
      *                       composed url like parse_url() would return
      * @return string
      */
-    public static function httpBuildUrl(string|array $url, string|array $parts = [], int $flags = self::HTTP_URL_REPLACE, array &$new_url = [])
+    public static function httpBuildUrl(string|array $url, string|array $parts = [], int $flags = self::HTTP_URL_REPLACE, array &$new_url = []): string
     {
         static $builtInExists = null;
 
@@ -69,7 +69,7 @@ class Str extends \Illuminate\Support\Str
             $flags |= self::HTTP_URL_STRIP_USER | self::HTTP_URL_STRIP_PASS;
         }
 
-        // Schema and host are alwasy replaced
+        // Schema and host are always replaced
         foreach (['scheme', 'host'] as $part) {
             if (isset($parts[$part])) {
                 $url[$part] = $parts[$part];

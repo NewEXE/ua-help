@@ -79,7 +79,7 @@
                     <li><a href="https://arriven.github.io/db1000n/en/#how-to-choose-vpn" target="_blank">Free VPNs by request or promo code</a></li>
                     <li>
                         list of services with comments, list of advantages and disadvantages:
-                        <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">DDOS_Tutorial_for_all.pdf</a> <em>(on Ukrainian language, pages 2-4, <a href="/files/DDOS_Tutorial_for_all-EN.pdf" target="_blank">Machine Translated by Google</a>)</em>
+                        <a href="/files/DDOS_Tutorial_for_all-EN.pdf" target="_blank">DDOS_Tutorial_for_all-EN.pdf</a> <em>(pages 2-4)</em>
                     </li>
                 </ul>
                 Both paid and free options are available.
