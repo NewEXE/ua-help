@@ -27,7 +27,7 @@
                         надіслати гроші
                     </h6>
                     <p class="card-text">
-                        Офіційні реквізити: <a href="https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi" target="_blank">bank.gov.ua</a> /
+                        Офіційні реквізити української армії: <a href="https://bank.gov.ua/en/news/all/natsionalniy-bank-vidkriv-spetsrahunok-dlya-zboru-koshtiv-na-potrebi-armiyi" target="_blank">bank.gov.ua</a> /
                         <a href="https://helpua.bank.gov.ua/" target="_blank">helpua.bank.gov.ua</a>
                     </p>
                 </div>
