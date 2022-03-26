@@ -17,25 +17,34 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        /*
-         * Set basic SEO
-         */
+        $this->setBasicSeo();
+    }
 
+    /**
+     * Set basic SEO.
+     *
+     * @return void
+     */
+    private function setBasicSeo(): void
+    {
         // Add <link rel="alternate"> tags
         foreach (LocaleManager::getLocalesList(true) as $locale => $language) {
             SEOMeta::addAlternateLanguage($locale, LocaleManager::addToUrl($locale));
         }
 
+        // Add <meta property="og:locale" /> tag
         OpenGraph::addProperty('locale', LocaleManager::getLocale());
     }
 
     /**
+     * Set advanced SEO.
+     *
      * @param string $title
      * @param string $description
      * @param array|string $keywords
      * @return void
      */
-    protected function setSeo(string $title = '', string $description = '', array|string $keywords = [])
+    protected function setSeo(string $title = '', string $description = '', array|string $keywords = []): void
     {
         $title          = __($title);
         $description    = __($description);

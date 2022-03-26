@@ -12,7 +12,7 @@ class LocaleController extends Controller
      *
      * @return RedirectResponse
      */
-    public function switch(string $locale)
+    public function __invoke(string $locale)
     {
         if (!LocaleManager::isValidLocale($locale)) {
             abort(422);
