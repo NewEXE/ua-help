@@ -25,7 +25,7 @@
                         web assisting
                     </h6>
                     <p class="card-text">
-                        <i class="bi bi-server"></i> <a href="{{ route('pages.ddos') }}">DDoS attack to russian propaganda</a> (easy to join)
+                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS attack to russian propaganda</a> (easy to join)
                     </p>
                 </div>
             </div>
