@@ -47,6 +47,7 @@
     </style>
 
     <!-- Favicon -->
+    <!-- Created via https://realfavicongenerator.net/ -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -101,7 +102,7 @@
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" id="main-content-header"><h3>{{ SEOMeta::getTitleSession() }}</h3></div>
                         <div class="card-body">
