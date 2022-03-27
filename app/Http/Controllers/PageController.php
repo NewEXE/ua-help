@@ -38,7 +38,7 @@ class PageController extends Controller
     public function ddos()
     {
         $this->setSeo(
-            'DDoS attack',
+            'How to DDoS Russian propaganda sites',
             'How to protect Ukraine from Russian forces in the Internet', [
                 'it army',
                 'it-army',

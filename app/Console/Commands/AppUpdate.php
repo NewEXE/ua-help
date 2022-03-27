@@ -50,6 +50,7 @@ class AppUpdate extends Command
         }
 
         if ($force) {
+            // Remove Composer's dir.
             $filesystem = new Filesystem();
 
             $vendorDirPath = base_path() . '/vendor';
