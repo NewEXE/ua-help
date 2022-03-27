@@ -29,6 +29,9 @@
                     <p class="card-text">
                         <ul style="padding-left: 10px">
                             <li>
+                                <i class="bi-exclamation-circle"></i> <a href="{{ route('pages.network')  }}">Якщо пропав мобільний зв'язок та як дивитися телебачення</a>
+                            </li>
+                            <li>
                                 <a href="https://viyna.net/" target="_blank">Платформа для швидкого пошуку інформації під час війни</a>
                             </li>
                             <li>

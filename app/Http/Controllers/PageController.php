@@ -16,14 +16,10 @@ class PageController extends Controller
         $this->setSeo(
             'How to help Ukraine?',
             'How can I help Ukraine in war with Russia?', [
-                'russian invasion of ukraine',
                 'putin',
                 'aggression',
                 'stand with ukraine',
                 'financial support',
-                'stop war',
-                'war',
-                '2022',
             ]
         );
 
@@ -45,12 +41,32 @@ class PageController extends Controller
                 'ukraine',
                 'ddos',
                 'russian propaganda',
-                'stop war',
-                'war',
-                '2022',
             ]
         );
 
         return view(LocaleManager::getLocale().'.ddos', ['path' => 'ddos']);
+    }
+
+    /**
+     * Resolve network issues page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function network()
+    {
+        $this->setSeo(
+            "Якщо пропав мобільний зв'язок та як дивитися телебачення",
+            'Що робити, якщо пропав мобільний звязок чи інтернет? ' .
+            'Де дивитися новини шодо війни Росії з Україною? ' .
+            'Які джерела достовірні та перевірені? ',
+            [
+                "як відновити зв'язок",
+                'достовірні джерела інформації',
+                'дивитися українське тв онлайн',
+                'тв онлайн',
+            ]
+        );
+
+        return view('ua.network', ['path' => 'network', 'onlyUaVersion' => true]);
     }
 }

@@ -23,4 +23,5 @@ Route::group([
 ], function () {
     Route::get('/', [PageController::class, 'index'])->name('index');
     Route::get('/ddos', [PageController::class, 'ddos'])->name('pages.ddos');
+    Route::get('/network', [PageController::class, 'network'])->name('pages.network');
 });

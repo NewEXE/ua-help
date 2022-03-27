@@ -34,6 +34,14 @@ class Controller extends BaseController
 
         // Add <meta property="og:locale" /> tag
         OpenGraph::addProperty('locale', LocaleManager::getLocale());
+
+        // Add basic keywords for all pages
+        SEOMeta::addKeyword([
+            'russian invasion of ukraine',
+            'stop war',
+            'war',
+            '2022',
+        ]);
     }
 
     /**
@@ -52,7 +60,7 @@ class Controller extends BaseController
 
         SEOMeta::setTitle($title)
             ->setDescription($description)
-            ->setKeywords($keywords)
+            ->addKeyword($keywords)
         ;
 
         OpenGraph::setTitle($title)

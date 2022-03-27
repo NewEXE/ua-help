@@ -106,14 +106,16 @@
                     <div class="card">
                         <div class="card-header" id="main-content-header"><h3>{{ SEOMeta::getTitleSession() }}</h3></div>
                         <div class="card-body">
-                            <div class="alert alert-primary" role="alert">
-                                You can read this page in:
-                                @foreach (\App\Http\Middleware\LocaleManager::getLocalesList(true) as $locale => $language)
-                                    <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
-                                @endforeach
-                            </div>
+                            @if(empty($onlyUaVersion))
+                                <div class="alert alert-primary" role="alert">
+                                    You can read this page in:
+                                    @foreach (\App\Http\Middleware\LocaleManager::getLocalesList(true) as $locale => $language)
+                                        <a href="{{ route('locale.switch', ['locale' => $locale]) }}">{{ $language }}</a>@if(!$loop->last), @else. @endif
+                                    @endforeach
+                                </div>
+                            @endif
                             @yield('content')
-                            <br/>
+                            <br />
                             <div class="row">
                                 <div class="col">
                                     <p>
