@@ -12,7 +12,8 @@ class Helpers
     public static function getViewUrlInRepository(string $path)
     {
         return
-            Str::finish(config('app.repositoryUrl'), '/') .
+            Str::finish(config('app.repository_url'), '/') .
+            'tree/master/'.
             'resources/views/' .
             LocaleManager::getLocale() .
             Str::start($path, '/') .

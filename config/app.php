@@ -57,6 +57,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'repository_url' => 'https://github.com/NewEXE/ua-help',
+
     'asset_url' => env('ASSET_URL'),
 
     /*
@@ -179,6 +181,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
+        App\Providers\ConfigServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -201,6 +204,4 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
     ])->toArray(),
-
-    'repositoryUrl' => 'https://github.com/NewEXE/ua-help/tree/master',
 ];

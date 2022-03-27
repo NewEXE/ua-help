@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-hash"></i> <b>Information war</b>
+                        <i class="bi bi-laptop"></i> <b>Information war</b>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         web assisting

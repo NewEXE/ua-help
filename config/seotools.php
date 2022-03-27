@@ -41,9 +41,11 @@ return [
             'url'         => null, // Set null for using Url::current(), set false to total remove
             'type'        => 'website',
             'site_name'   => config('app.name'),
-            'images'      => [
+
+            // Applied in App\Providers\ConfigServiceProvider
+            /*'images'      => [
                 url('/img/bg.jpg'), ['alt' => config('app.name')]
-            ],
+            ],*/
         ],
     ],
     'twitter' => [
@@ -63,8 +65,8 @@ return [
             'title'       => config('app.name'), // set false to total remove
             'description' => config('app.name'), // set false to total remove
             'url'         => 'full', // Set to null or 'full' to use Url::full(), set to 'current' to use Url::current(), set false to total remove
-            'type'        => 'Article', // WebPage
-            'images'      => [url('/img/bg.jpg')],
+            'type'        => 'Article', // default: WebPage
+            //'images'      => [url('/img/bg.jpg')], // Applied in App\Providers\ConfigServiceProvider
         ],
     ],
 ];

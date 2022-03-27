@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-hash"></i> <b>Інформаційна боротьба</b>
+                        <i class="bi bi-laptop"></i> <b>Інформаційна боротьба</b>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         допомогти в мережі
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-life-preserver"></i> <b class="text-success">Мені потрібна допомога!</b>
+                        <i class="bi bi-life-preserver"></i> <b class="text-warning">Мені потрібна допомога!</b>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         тобі потрібно (або ти можеш) допомогти?
