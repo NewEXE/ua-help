@@ -27,11 +27,6 @@ class Controller extends BaseController
      */
     private function setBasicSeo(): void
     {
-        // Add <link rel="alternate"> tags
-        foreach (LocaleManager::getLocalesList(true) as $locale => $language) {
-            SEOMeta::addAlternateLanguage($locale, LocaleManager::addToUrl($locale));
-        }
-
         // Add <meta property="og:locale" /> tag
         OpenGraph::addProperty('locale', LocaleManager::getLocale());
 
@@ -52,7 +47,7 @@ class Controller extends BaseController
      * @param array|string $keywords
      * @return void
      */
-    protected function setSeo(string $title = '', string $description = '', array|string $keywords = []): void
+    protected function setSeo(string $title = '', string $description = '', array|string $keywords = [], bool $addAlternateLanguages = true): void
     {
         $title          = __($title);
         $description    = __($description);
@@ -70,5 +65,12 @@ class Controller extends BaseController
         JsonLd::setTitle($title)
             ->setDescription($description)
         ;
+
+        if ($addAlternateLanguages) {
+            // Add <link rel="alternate"> tags
+            foreach (LocaleManager::getLocalesList(true) as $locale => $language) {
+                SEOMeta::addAlternateLanguage($locale, LocaleManager::addToUrl($locale));
+            }
+        }
     }
 }

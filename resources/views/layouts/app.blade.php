@@ -76,23 +76,25 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
-                    <!-- Locale switcher -->
-                    <li class="nav-item dropdown">
-                        <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                           data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
-                        >
-                            <i class="bi bi-translate"></i> <b>{{ \App\Http\Middleware\LocaleManager::getLocalesList()[App::getLocale()] }}</b>
-                        </a>
+                    @if(empty($onlyOneLangVersion))
+                        <!-- Locale switcher -->
+                        <li class="nav-item dropdown">
+                            <a id="switchLocaleDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre
+                            >
+                                <i class="bi bi-translate"></i> <b>{{ \App\Http\Middleware\LocaleManager::getLocalesList()[App::getLocale()] }}</b>
+                            </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
-                            @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
-                                <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}"
-                                   href="{{ route('locale.switch', ['locale' => $locale]) }}">
-                                    {{ $language }}
-                                </a>
-                            @endforeach
-                        </div>
-                    </li>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="switchLocaleDropdown">
+                                @foreach (\App\Http\Middleware\LocaleManager::getLocalesList() as $locale => $language)
+                                    <a class="dropdown-item {{ $locale === App::getLocale() ? 'disabled' : '' }}"
+                                       href="{{ route('locale.switch', ['locale' => $locale]) }}">
+                                        {{ $language }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </li>
+                    @endif
                 </ul>
 
             </div>
@@ -106,7 +108,7 @@
                     <div class="card">
                         <div class="card-header" id="main-content-header"><h3>{{ SEOMeta::getTitleSession() }}</h3></div>
                         <div class="card-body">
-                            @if(empty($onlyUaVersion))
+                            @if(empty($onlyOneLangVersion))
                                 <div class="alert alert-primary" role="alert">
                                     You can read this page in:
                                     @foreach (\App\Http\Middleware\LocaleManager::getLocalesList(true) as $locale => $language)

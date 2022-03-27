@@ -54,6 +54,8 @@ class PageController extends Controller
      */
     public function network()
     {
+        $onlyOneLangVersion = true;
+
         $this->setSeo(
             "Якщо пропав мобільний зв'язок та як дивитися телебачення",
             'Що робити, якщо пропав мобільний звязок чи інтернет? ' .
@@ -64,9 +66,10 @@ class PageController extends Controller
                 'достовірні джерела інформації',
                 'дивитися українське тв онлайн',
                 'тв онлайн',
-            ]
+            ],
+            !$onlyOneLangVersion
         );
 
-        return view('ua.network', ['path' => 'network', 'onlyUaVersion' => true]);
+        return view('ua.network', ['path' => 'network', 'onlyOneLangVersion' => $onlyOneLangVersion]);
     }
 }
