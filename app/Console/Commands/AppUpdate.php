@@ -46,7 +46,7 @@ class AppUpdate extends Command
 
         if (!$force && $alreadyUpToDate) {
             $this->info('Exit without updating.');
-            return true;
+            return 0;
         }
 
         if ($force) {
@@ -74,7 +74,7 @@ class AppUpdate extends Command
 
         $this->info('*** All done.');
 
-        return true;
+        return 0;
     }
 
     /**
