@@ -29,13 +29,13 @@
                     <p class="card-text">
                         <ul style="padding-left: 10px">
                             <li>
-                                <i class="bi-exclamation-circle"></i> <a href="{{ route('pages.network')  }}">Якщо пропав мобільний зв'язок та як дивитися телебачення</a>
+                                <i class="bi-exclamation-circle"></i> <a href="{{ route('pages.network')  }}">Якщо пропав мобільний зв'язок та як дивитися телебачення / де читати новини</a>
                             </li>
                             <li>
                                 <a href="https://viyna.net/" target="_blank">Платформа для швидкого пошуку інформації під час війни</a>
                             </li>
                             <li>
-                                <a href="https://www.google.com/maps/d/u/0/viewer?mid=10_NljhEirUHL7BK5ndGovi-3vUorrXjY&ll=49.99162209999801%2C36.30752944638234&z=12" target="_blank">Харків: карта магазинів, АЗС, аптек що працюють</a>
+                                <a href="https://www.google.com/maps/d/viewer?mid=10_NljhEirUHL7BK5ndGovi-3vUorrXjY&fbclid=IwAR2uqrei-A4cpk8tkSl6WAbBXAs09kLUz8RT4W5MCVksnLIhz9RtW_orJEA&ll=49.40792967535675%2C36.82931744999999&z=8" target="_blank">Харків: карта магазинів, АЗС, аптек що працюють</a>
                             </li>
                         </ul>
                     </p>

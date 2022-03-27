@@ -17,7 +17,8 @@
 
     <h4><i class="bi bi-laptop"></i> <b>Информационная борьба</b></h4>
     <p>
-        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">Атака на пропагандистские сайты</a> (доступно каждому)
+        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">Атака на пропагандистские сайты</a> (доступно каждому)<br />
+        <i class="bi bi-youtube"></i> <a href="https://www.youtube.com/watch?v=ATjlRUA3tsY" target="_blank">Новости Украины на русском языке в прямом эфире - Марафон #UA_вместе</a> (правдивые новости)
     </p>
     <h4><i class="bi bi-cash-coin"></i> <b>Финансовая поддержка</b></h4>
     <p>
