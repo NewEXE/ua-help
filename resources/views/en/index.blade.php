@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-hash"></i> Information war
+                        <i class="bi bi-hash"></i> <b>Information war</b>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         web assisting
@@ -34,7 +34,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="bi bi-cash-coin"></i> Financial support
+                        <i class="bi bi-cash-coin"></i> <b>Financial support</b>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-muted">
                         send money
@@ -48,5 +48,4 @@
             </div>
         </div>
     </div>
-
 @endsection
