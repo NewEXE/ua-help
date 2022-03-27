@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Support\Str;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
+use Illuminate\Filesystem\Filesystem;
 
 class AppUpdate extends Command
 {
@@ -13,7 +14,7 @@ class AppUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'app:update';
+    protected $signature = 'app:update {--force}';
 
     /**
      * The console command description.
@@ -29,39 +30,51 @@ class AppUpdate extends Command
      */
     public function handle()
     {
-        $this->info("Running updates...");
+        $force = $this->hasOption('force') && $this->option('force');
+
+        $this->info("*** Running updates...");
 
         $process = new Process(['git', 'pull']);
 
         $alreadyUpToDate = false;
         $process->run(function($type, $buffer) use(&$alreadyUpToDate) {
-            if (Str::contains($buffer, 'Already up to date')) {
+            if (!$alreadyUpToDate && Str::contains(Str::slug($buffer), 'already-up-to-date')) {
                 $alreadyUpToDate = true;
             }
             $this->info($buffer);
         });
 
-        if ($alreadyUpToDate) {
+        if (!$force && $alreadyUpToDate) {
+            $this->info('Exit without updating.');
             return true;
         }
 
-        $process = new Process(['composer', 'install', '--optimize-autoloader', '--no-dev']);
-        $process->run(function($type, $buffer) {
-            if ($type === Process::ERR) {
-                $this->error($buffer);
-            } else {
-                $this->info($buffer);
+        if ($force) {
+            $filesystem = new Filesystem();
+
+            $vendorDirPath = base_path() . '/vendor';
+            if ($filesystem->isDirectory($vendorDirPath)) {
+                $filesystem->deleteDirectory($vendorDirPath);
+                $this->info('"vendor" directory is removed.');
             }
+        }
+
+        $process = new Process(['composer', 'install', '--classmap-authoritative', '--no-dev']);
+        $process->run(function($type, $buffer) {
+            $this->info($buffer);
         });
 
-        $this->call('config:cache');
-        $this->call('view:cache');
+        $this->call('optimize:clear');
 
         $this->prepareEnvFileForProduction();
 
-        $this->info('All done');
+        $this->call('config:cache');
+        $this->call('view:cache');
+        $this->call('event:cache');
 
-        return $process->isSuccessful();
+        $this->info('*** All done.');
+
+        return true;
     }
 
     /**
@@ -87,6 +100,7 @@ class AppUpdate extends Command
         $envFilePath = $this->laravel->environmentFilePath();
 
         if (!file_exists($envFilePath)) {
+            $this->warn('".env" file not exists, nothing to update.');
             return;
         }
 
@@ -99,6 +113,8 @@ class AppUpdate extends Command
 
             $this->laravel['config'][$rule['configPath']] = $rule['envValue'];
         }
+
+        $this->info('".env" file is production-ready for now.');
     }
 
     /**
