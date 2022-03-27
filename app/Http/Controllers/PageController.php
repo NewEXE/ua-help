@@ -48,21 +48,24 @@ class PageController extends Controller
     }
 
     /**
-     * Resolve network issues page.
+     * News channels page.
      *
      * @return \Illuminate\View\View
      */
-    public function network()
+    public function newsChannels()
     {
         $onlyOneLangVersion = true;
 
         $this->setSeo(
-            "Якщо пропав мобільний зв'язок та як дивитися телебачення",
-            'Що робити, якщо пропав мобільний звязок чи інтернет? ' .
+            'Де дізнаватися про новини?',
             'Де дивитися новини шодо війни Росії з Україною? ' .
-            'Які джерела достовірні та перевірені? ',
+            'Де читати про стан війни? ' .
+            'Які джерела достовірні та перевірені? ' .
+            'Що робити, якщо немає українського ефірного мовлення?',
             [
-                "як відновити зв'язок",
+                'війна',
+                'новини',
+                'інформація про війну',
                 'достовірні джерела інформації',
                 'дивитися українське тв онлайн',
                 'тв онлайн',
@@ -70,6 +73,29 @@ class PageController extends Controller
             !$onlyOneLangVersion
         );
 
-        return view('ua.network', ['path' => 'network', 'onlyOneLangVersion' => $onlyOneLangVersion]);
+        return view('ua.news-channels', ['path' => 'news-channels', 'onlyOneLangVersion' => $onlyOneLangVersion]);
+    }
+
+    /**
+     * "Resolve no mobile connection issue" page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function noConnection()
+    {
+        $onlyOneLangVersion = true;
+
+        $this->setSeo(
+            "Якщо пропав мобільний зв'язок чи інтернет",
+            'Що робити, якщо пропав мобільний звязок чи інтернет?',
+            [
+                "як відновити зв'язок",
+                "немає зв'язку",
+                "немає мобільного інтернету",
+            ],
+            !$onlyOneLangVersion
+        );
+
+        return view('ua.no-connection', ['path' => 'no-connection', 'onlyOneLangVersion' => $onlyOneLangVersion]);
     }
 }

@@ -12,7 +12,8 @@
                         допомогти в мережі
                     </h6>
                     <p class="card-text">
-                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS-атака на пропагандисьтскі сайти</a> (доступно кожному)
+                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS-атака на пропагандисьтскі сайти</a> (доступно кожному)<br>
+                        <i class="bi bi-youtube"></i> <a href="{{ route('pages.news-channels') }}">Де дивитися телебачення та читати новини?</a>
                     </p>
                 </div>
             </div>
@@ -29,7 +30,7 @@
                     <p class="card-text">
                         <ul style="padding-left: 10px">
                             <li>
-                                <i class="bi-exclamation-circle"></i> <a href="{{ route('pages.network')  }}">Якщо пропав мобільний зв'язок та як дивитися телебачення / де читати новини</a>
+                                <i class="bi-exclamation-circle"></i> <a href="{{ route('pages.no-connection')  }}">Якщо пропав мобільний зв'язок чи інтернет</a>
                             </li>
                             <li>
                                 <a href="https://viyna.net/" target="_blank">Платформа для швидкого пошуку інформації під час війни</a>

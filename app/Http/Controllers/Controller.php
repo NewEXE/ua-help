@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Arr;
 
 class Controller extends BaseController
 {
@@ -32,9 +33,9 @@ class Controller extends BaseController
 
         // Add basic keywords for all pages
         SEOMeta::addKeyword([
-            'russian invasion of ukraine',
-            'stop war',
-            'war',
+            __('russian invasion of ukraine'),
+            __('stop war'),
+            __('war'),
             '2022',
         ]);
     }
@@ -51,12 +52,16 @@ class Controller extends BaseController
     {
         $title          = __($title);
         $description    = __($description);
-        $keywords       = is_string($keywords) ? __($keywords) : array_map('__', $keywords);
+
+        $keywords = Arr::wrap($keywords);
+        $keywords = array_map('__', $keywords);
 
         SEOMeta::setTitle($title)
             ->setDescription($description)
             ->addKeyword($keywords)
         ;
+
+        SEOMeta::setKeywords(array_unique(SEOMeta::getKeywords()));
 
         OpenGraph::setTitle($title)
             ->setDescription($description)
