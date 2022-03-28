@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\LocaleManager;
 use Illuminate\Support\ServiceProvider;
 
 class ConfigServiceProvider extends ServiceProvider
@@ -13,6 +14,9 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Set actual locale (from request)
+        config(['app.locale' => LocaleManager::getLocale()]);
+
         config([
             /*
              * SEOTools config post-processing
