@@ -15,7 +15,7 @@ class PageController extends Controller
     {
         $this->setSeo(
             'How to help Ukraine?',
-            'How can I help Ukraine in war with Russia?', [
+            'How can I help Ukraine in war with Russia? Ukrainian Help Hub Ukrainian Help Hub', [
                 'putin',
                 'aggression',
                 'stand with ukraine',
