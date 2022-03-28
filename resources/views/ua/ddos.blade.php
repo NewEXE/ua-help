@@ -79,6 +79,7 @@
                     <a href="https://viyna.net/203a9165b61042b7ae5efe6446dbfb76" target="_blank">Перелік безплатних VPN-сервісів для українців</a></li>
                     <li><a href="https://arriven.github.io/db1000n/uk/#як-обрати-vpn" target="_blank">Ще один перелік безплатних VPN-сервісів</a></li>
                     <li><a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">DDOS_Tutorial_for_all.pdf</a> <em>(сторінки 2-4)</em> - список сервісів з коментарями, переліком переваг та недоліків.</li>
+                    <li><a href="/files/VPN-advanced.txt" target="_blank">Незвичні, "продвинуті" варіанти VPN-сервісів</a></li>
                 </ul>
                 Наявні як платні, так і безплатні варіанти.
                 Використовуйте російські, білоруські локації для найбільшої ефективності (або будь-які інші окрім української).

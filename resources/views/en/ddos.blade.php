@@ -81,6 +81,9 @@
                         list of services with comments, list of advantages and disadvantages:
                         <a href="/files/DDOS_Tutorial_for_all-EN.pdf" target="_blank">DDOS_Tutorial_for_all-EN.pdf</a> <em>(pages 2-4)</em>
                     </li>
+                    <li>
+                        <a href="/files/VPN-advanced.txt" target="_blank">Tricky VPN-options</a> (in Russian)
+                    </li>
                 </ul>
                 Both paid and free options are available.
                 Use Russian, Belarusian locations for maximum efficiency (or any other than Ukrainian).
