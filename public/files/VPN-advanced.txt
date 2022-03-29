@@ -1,17 +1,17 @@
-1. PSIPHON (https://www.psiphon3.com/) — комплексный инструмент обхода интернет-цензуры с открытым исходным кодом. 
+1. PSIPHON (https://www.psiphon3.com/) — комплексный инструмент обхода интернет-цензуры с открытым исходным кодом.
 
-2. Orchid (https://www.orchid.com/ , https://t.me/KladovkaPavlu/429) — VPN-сервис нового поколения, использующий блокчейн технологию и смарт контракты. 
+2. Orchid (https://www.orchid.com/ , https://t.me/KladovkaPavlu/429) — VPN-сервис нового поколения, использующий блокчейн технологию и смарт контракты.
 
-3. Lantern (https://getlantern.org/ru_RU/index.html) — еще один мощный инструмент обхода интернет цензуры, пул различных прокси. 
+3. Lantern (https://getlantern.org/ru_RU/index.html) — еще один мощный инструмент обхода интернет цензуры, пул различных прокси.
 
 4. RedShieldVPN  (https://redshieldvpn.com/ru)— VPN-сервис небезызвестного Владислава Здольникова, администратора IT и СОРМ.
 
- (https://t.me/itsorm)5. Censor Tracker (https://t.me/KladovkaPavlu/511) — это расширение для браузера Google Chrome которое позволяет обходить интернет-цензуру в РФ. 
+ (https://t.me/itsorm)5. Censor Tracker (https://t.me/KladovkaPavlu/511) — это расширение для браузера Google Chrome которое позволяет обходить интернет-цензуру в РФ.
 
 6. SnowFlake  (https://t.me/KladovkaPavlu/211)— позволяет поднять Tor-мост и запустить его прямо в браузере.
 
-7. FireChat (https://firechat.en.uptodown.com/android) — оффлайн мессенджер с Е2Е сообщений. Внимательно читаем этот (https://t.me/KladovkaPavlu/861) и этот (https://t.me/KladovkaPavlu/886) пост. 
+7. FireChat (https://firechat.en.uptodown.com/android) — оффлайн мессенджер с Е2Е сообщений. Внимательно читаем этот (https://t.me/KladovkaPavlu/861) и этот (https://t.me/KladovkaPavlu/886) пост.
 
 8. Magic Wormhole (https://magic-wormhole.readthedocs.io/en/latest/) — бесплатная утилита, которая помогает отправлять файлы с одного устройства на другое напрямую.
 
-9. OnionCat (https://www.onioncat.org/) — анонимный VPN адаптер, позволяющих подключать два и более девайса через VPN-туннели. 
+9. OnionCat (https://www.onioncat.org/) — анонимный VPN адаптер, позволяющих подключать два и более девайса через VPN-туннели.
