@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\TextFileDownloadController;
+use App\Http\Controllers\SwitchLocaleController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ViewFileController;
 use App\Http\Middleware\LocaleManager;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('locale/{locale}', LocaleController::class)->name('locale.switch');
+Route::get('locale/{locale}', SwitchLocaleController::class)->name('locale.switch');
 
 Route::group([
     'prefix' => LocaleManager::routePrefixFromRequest(),
@@ -26,3 +28,5 @@ Route::group([
     Route::get('/news-channels', [PageController::class, 'newsChannels'])->name('pages.news-channels');
     Route::get('/no-connection', [PageController::class, 'noConnection'])->name('pages.no-connection');
 });
+
+Route::get('/view-file', ViewFileController::class)->name('view.file');

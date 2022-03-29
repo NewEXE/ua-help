@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\LocaleManager;
 use Illuminate\Http\RedirectResponse;
 
-class LocaleController extends Controller
+class SwitchLocaleController extends Controller
 {
     /**
      * Switch application locale.

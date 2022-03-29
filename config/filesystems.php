@@ -36,6 +36,11 @@ return [
             'throw' => false,
         ],
 
+        'resources_files' => [
+            'driver' => 'local',
+            'root' => base_path('resources/files'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

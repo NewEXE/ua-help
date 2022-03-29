@@ -82,7 +82,7 @@
                         <a href="/files/DDOS_Tutorial_for_all-EN.pdf" target="_blank">DDOS_Tutorial_for_all-EN.pdf</a> <em>(pages 2-4)</em>
                     </li>
                     <li>
-                        <a href="/files/VPN-advanced.txt" target="_blank">Tricky VPN-options</a> (in Russian)
+                        <a href="{{ route('view.file', ['f' => 'VPN-advanced.txt']) }}" target="_blank">Tricky VPN-options</a> (in Russian)
                     </li>
                 </ul>
                 Both paid and free options are available.

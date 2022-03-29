@@ -6,7 +6,7 @@
 
 4. RedShieldVPN  (https://redshieldvpn.com/ru)— VPN-сервис небезызвестного Владислава Здольникова, администратора IT и СОРМ.
 
- (https://t.me/itsorm)5. Censor Tracker (https://t.me/KladovkaPavlu/511) — это расширение для браузера Google Chrome которое позволяет обходить интернет-цензуру в РФ.
+ (https://t.me/itsorm)5. Censor Tracker (https://t.me/KladovkaPavlu/511) — это расширение для браузера Google Chrome которое позволяет обходить интернет-цензуру.
 
 6. SnowFlake  (https://t.me/KladovkaPavlu/211)— позволяет поднять Tor-мост и запустить его прямо в браузере.
 
