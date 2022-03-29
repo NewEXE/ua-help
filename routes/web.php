@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\TextFileDownloadController;
 use App\Http\Controllers\SwitchLocaleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ViewFileController;
