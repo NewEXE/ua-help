@@ -1,3 +1,4 @@
+@include('parts.social-buttons')
 <!doctype html>
 <html lang="{{ \App\Http\Middleware\LocaleManager::getLocale() }}">
 <head>
@@ -45,6 +46,7 @@
             /*padding: 10px;*/
         }
     </style>
+    @yield('social-buttons-styles')
 
     <!-- Favicon -->
     <!-- Created via https://realfavicongenerator.net/ -->
@@ -119,12 +121,29 @@
                             @yield('content')
                             <br />
                             <div class="row">
+                                <div class="col text-center">
+                                    <div class="collapse" id="social-buttons">
+                                        @yield('social-buttons')
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col">
                                     <p>
                                         <i class="bi bi-github"></i>
                                         <a href="{{ \App\Support\Helpers::getViewUrlInRepository($path) }}"
                                            target="_blank">{{ __('Improve this page') }}</a>
                                     </p>
+                                </div>
+                                <div class="col text-center">
+                                    <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#social-buttons" aria-expanded="false" aria-controls="social-buttons">
+                                        <i class="bi bi-share-fill"></i> {{ __('Share') }} |
+                                        <i class="bi bi-telegram"></i>
+                                        <i class="bi bi-whatsapp"></i>
+                                        <i class="bi bi-facebook"></i>
+                                        <i class="bi bi-twitter"></i>
+                                        <i class="bi bi-envelope"></i>
+                                    </button>
                                 </div>
                                 <div class="col">
                                     @if(Route::currentRouteName() !== 'index')
