@@ -98,7 +98,6 @@
                         </li>
                     @endif
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -135,7 +134,7 @@
                                            target="_blank">{{ __('Improve this page') }}</a>
                                     </p>
                                 </div>
-                                {{--<div class="col text-center">
+                                <div class="col text-center">
                                     <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#social-buttons" aria-expanded="false" aria-controls="social-buttons">
                                         <i class="bi bi-share-fill"></i> {{ __('Share') }} |
                                         <i class="bi bi-telegram"></i>
@@ -144,11 +143,12 @@
                                         <i class="bi bi-twitter"></i>
                                         <i class="bi bi-envelope"></i>
                                     </button>
-                                </div>--}}
+                                </div>
                                 <div class="col">
                                     @if(Route::currentRouteName() !== 'index')
-                                        <p class="text-end"><i class="bi bi-house"></i> <a
-                                                href="{{ route('index') }}">{{ __('Go to main page')  }}</a></p>
+                                        <p class="text-end"><i class="bi bi-house"></i>
+                                            <a href="{{ route('index') }}">{{ __('Go to main page')  }}</a>
+                                        </p>
                                     @endif
                                 </div>
                             </div>

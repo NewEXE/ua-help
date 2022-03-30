@@ -15,6 +15,11 @@
     </p>
     <p><b>Не молчите! Молчание - знак вашего согласия с политикой российского правительства.</b></p>
 
+    <h5>
+        <a href="https://supportukrainenow.org/translate-and-share-this/ru" target="_blank"><b>Официальные фонды и запросы</b></a>
+    </h5>
+    <br />
+
     <h4><i class="bi bi-laptop"></i> <b>Информационная борьба</b></h4>
     <p>
         <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">Атака на пропагандистские сайты</a> (доступно каждому)<br />

@@ -41,6 +41,9 @@
                             <li>
                                 <a href="https://www.google.com/maps/d/viewer?mid=10_NljhEirUHL7BK5ndGovi-3vUorrXjY&fbclid=IwAR2uqrei-A4cpk8tkSl6WAbBXAs09kLUz8RT4W5MCVksnLIhz9RtW_orJEA&ll=49.40792967535675%2C36.82931744999999&z=8" target="_blank">Харків: карта магазинів, АЗС, аптек що працюють</a>
                             </li>
+                            <li>
+                                <a href="https://bit.ly/3txFhc0" target="_blank">Українцям за кордоном</a>
+                            </li>
                         </ul>
                     </p>
                 </div>

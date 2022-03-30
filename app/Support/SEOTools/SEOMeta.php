@@ -35,4 +35,12 @@ class SEOMeta extends \Artesaos\SEOTools\SEOMeta
 
         return $generated;
     }
+
+    /**
+     * @return string
+     */
+    public function getTitleEncoded(): string
+    {
+        return rawurlencode(parent::getTitle());
+    }
 }

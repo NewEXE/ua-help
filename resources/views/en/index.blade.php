@@ -13,7 +13,23 @@
         Do not be silent! Silence is a sign that you accept the Russian government's policy.
     </p>
     <p><b>You can choose NOT TO BE SILENT.</b></p>
-
+    <div class="card text-center">
+        <div class="card-header">
+            The preferred way:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><b>Real ways you can help Ukraine as a foreigner</b></h5>
+            <p class="card-text">
+                Hello, we are a crowdsourced information platform with the most comprehensive list: official funds, requests, materials (doc updated live, hourly).
+                Please be aware that it’s a crowdsourced effort, we have limited capacity for quality assurance and can make mistakes. If you see one – let us know and we’ll resolve that.
+            </p>
+            <a href="https://supportukrainenow.org/" class="btn btn-primary">Support Ukraine NOW</a>
+        </div>
+        <div class="card-footer text-muted">
+            Other ways:
+        </div>
+    </div>
+    <br />
     <div class="row">
         <div class="col-md-4">
             <div class="card">
