@@ -20,8 +20,10 @@
         <div class="card-body">
             <h5 class="card-title"><b>Real ways you can help Ukraine as a foreigner</b></h5>
             <p class="card-text">
-                Hello, we are a crowdsourced information platform with the most comprehensive list: official funds, requests, materials (doc updated live, hourly).
+                <blockquote class="blockquote">
+                    👋 Hello, we are a crowdsourced information platform with the most comprehensive list: official funds, requests, materials (doc updated live, hourly).
                 Please be aware that it’s a crowdsourced effort, we have limited capacity for quality assurance and can make mistakes. If you see one – let us know and we’ll resolve that.
+                </blockquote>
             </p>
             <a href="https://supportukrainenow.org/" class="btn btn-primary">Support Ukraine NOW</a>
         </div>
