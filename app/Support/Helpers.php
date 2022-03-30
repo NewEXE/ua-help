@@ -13,7 +13,7 @@ class Helpers
     {
         return
             Str::finish(config('app.repository_url'), '/') .
-            'tree/master/'.
+            'edit/master/'.
             'resources/views/' .
             LocaleManager::getLocale() .
             Str::start($path, '/') .
