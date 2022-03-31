@@ -21,11 +21,11 @@
             <h5 class="card-title"><b>Real ways you can help Ukraine as a foreigner</b></h5>
             <p class="card-text">
                 <blockquote class="blockquote">
-                    👋 Hello, we are a crowdsourced information platform with the most comprehensive list: official funds, requests, materials (doc updated live, hourly).
-                Please be aware that it’s a crowdsourced effort, we have limited capacity for quality assurance and can make mistakes. If you see one – let us know and we’ll resolve that.
-                </blockquote>
+                    "👋 Hello, we are a crowdsourced information platform with the most comprehensive list: official funds, requests, materials (doc updated live, hourly).
+                Please be aware that it’s a crowdsourced effort, we have limited capacity for quality assurance and can make mistakes. If you see one – let us know and we’ll resolve that."
+                <em>(c) Support Ukraine NOW team</em></blockquote>
             </p>
-            <a href="https://supportukrainenow.org/" class="btn btn-primary">Support Ukraine NOW</a>
+            <a href="https://supportukrainenow.org/" class="btn btn-primary">Go to "Support Ukraine NOW" website</a>
         </div>
         <div class="card-footer text-muted">
             Other ways:
@@ -43,7 +43,8 @@
                         web assisting
                     </h6>
                     <p class="card-text">
-                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS attack to russian propaganda</a> (easy to join)
+                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS attack to russian propaganda</a> (easy to join)<br />
+                        <a href="https://www.hackers-arise.com/" target="_blank">Become a Cyberwarrior! Stop Putin Now! Hackers-arise blog</a>
                     </p>
                 </div>
             </div>

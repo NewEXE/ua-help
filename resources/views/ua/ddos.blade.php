@@ -202,27 +202,31 @@
             </p>
             <ul>
                 <li>
-                    <p>
-                        Для найбільш ефективних атак через програми та скрипти й задля координування атак дивися документ: <a href="https://t.me/ddos_for_all/35" target="_blank">Telegram-повідомлення</a> <em>(починаючи з 9 сторінки)</em>.<br />
-                        <span class="text-muted">Якщо телеграм-група недоступна: <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">остання збережена версія</a></span>
-                    </p>
+                    Для найбільш ефективних атак через програми та скрипти й задля координування атак дивися документ: <a href="https://t.me/ddos_for_all/35" target="_blank">Telegram-повідомлення</a> <em>(починаючи з 9 сторінки)</em>.<br />
+                    <span class="text-muted">Якщо телеграм-група недоступна: <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">остання збережена версія</a></span>
                 </li>
                 <li>
-                    <p>
-                        Python-розробникам та всім, хто може запустити Python-скрипт:
-                        просте та досить конфігураційне рішення: <a href="https://gist.github.com/NewEXE/a284a7ca0c3a2ddd2894907bb1787c63" target="_blank">gist.github.com</a>.
-                        Потрібен Docker та Python 2.7 або 3.
-                    </p>
+                    Python-розробникам та всім, хто може запустити Python-скрипт:
+                    просте та досить конфігураційне рішення: <a href="https://gist.github.com/NewEXE/a284a7ca0c3a2ddd2894907bb1787c63" target="_blank">gist.github.com</a>.
+                    Потрібен Docker та Python 2.7 або 3.
                 </li>
                 <li>
-                    <p>
-                        <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/3" target="_blank">Детально про реєстрацію на Microsoft Azure</a>. Також на сайті обширне FAQ.
-                    </p>
+                    <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/3" target="_blank">Детально про реєстрацію на Microsoft Azure</a>. Також на сайті обширне FAQ.
                 </li>
                 <li>
-                    <p>
-                        Інші способи атаки: <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua" target="_blank">тут</a> та <a href="https://github.com/SlavaUkraineSince1991/DDoS-for-all" target="_blank">тут</a>
-                    </p>
+                    <a href="https://telegra.ph/Kak-zapustit-MHDDoS-v-Google-Cloud-Shell-03-20" target="_blank">Як запустити MHDDoS у Google Cloud Shell</a> (рус мова)
+                </li>
+                <li>
+                    <a href="https://telegra.ph/Vstanovlennya-mhddos-proxy-napryamu-na-vash-komp-03-27" target="_blank">Встановлення mhddos_proxy напряму на ваш комп</a>
+                </li>
+                <li>
+                    <a href="https://github.com/porthole-ascend-cinnamon/mhddos_proxy" target="_blank">Скрипт-обгортка для запуску потужного DDoS інструмента MHDDoS</a>
+                </li>
+                <li>
+                    <a href="https://github.com/palahsu/DDoS-Ripper" target="_blank">DDoS-Ripper</a>
+                </li>
+                <li>
+                    Інші способи атаки: <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua" target="_blank">тут</a> та <a href="https://github.com/SlavaUkraineSince1991/DDoS-for-all" target="_blank">тут</a>
                 </li>
             </ul>
         </div>
