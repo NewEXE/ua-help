@@ -203,7 +203,7 @@
             <ul>
                 <li>
                     Для найбільш ефективних атак через програми та скрипти й задля координування атак дивися документ: <a href="https://t.me/ddos_for_all/35" target="_blank">Telegram-повідомлення</a> <em>(починаючи з 9 сторінки)</em>.<br />
-                    <span class="text-muted">Якщо телеграм-група недоступна: <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">остання збережена версія</a></span>
+                    <span class="text-muted">Якщо телеграм-група недоступна: <a href="/files/DDOS_Tutorial_for_all.pdf" target="_blank">остання збережена версія тут</a></span>
                 </li>
                 <li>
                     Python-розробникам та всім, хто може запустити Python-скрипт:
@@ -214,7 +214,7 @@
                     <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/3" target="_blank">Детально про реєстрацію на Microsoft Azure</a>. Також на сайті обширне FAQ.
                 </li>
                 <li>
-                    <a href="https://telegra.ph/Kak-zapustit-MHDDoS-v-Google-Cloud-Shell-03-20" target="_blank">Як запустити MHDDoS у Google Cloud Shell</a> (рус мова)
+                    <a href="https://telegra.ph/Kak-zapustit-MHDDoS-v-Google-Cloud-Shell-03-20" target="_blank">Як запустити MHDDoS у Google Cloud Shell</a> (рос мовою)
                 </li>
                 <li>
                     <a href="https://telegra.ph/Vstanovlennya-mhddos-proxy-napryamu-na-vash-komp-03-27" target="_blank">Встановлення mhddos_proxy напряму на ваш комп</a>
