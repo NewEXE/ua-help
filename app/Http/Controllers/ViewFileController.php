@@ -13,7 +13,7 @@ class ViewFileController extends Controller
     ];
 
     /**
-     * Download file.
+     * Open file content.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return string
@@ -21,7 +21,11 @@ class ViewFileController extends Controller
     public function __invoke(Request $request)
     {
         $validatedData = $request->validate([
-            'f' => ['required', Rule::in(self::$allowedFiles)],
+            'f' => [
+                'required',
+                'string',
+                Rule::in(self::$allowedFiles)
+            ],
         ]);
 
         $file = $validatedData['f'];

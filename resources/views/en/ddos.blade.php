@@ -13,6 +13,10 @@
         Web-servers will not withstand the load and will stop working, especially when you connect.
         This is called a <b>DDoS attack</b>.
     </p>
+    <p>
+        DDoS attack generates a lot of requests to the target enemy server.
+        Target server will start to lag and stop working properly.
+    </p>
     <p>So <b>how can I join the IT army?</b> Don't worry, you don't need to reload the page a million times, just:</p>
     <ul>
         <li>run a special software <span class="text-muted">or even</span></li>
@@ -38,9 +42,11 @@
             </p>
             <p>
                 <ul>
-                    <li><a target="_blank" href="https://help-ukraine-win.com.ua/help-ukraine-win-en/the-easiest">Installation manual</a></li>
+                    <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Download for Windows</a> (latest version)</li>
+                    <li>
+                        Need help or other platform version? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Full installation manual</a>
+                    </li>
                     <li><a href="https://t.me/uashield" target="_blank">Telegram-channel</a></li>
-                    <li><a href="https://github.com/opengs/uashield/releases/latest" target="_blank">Github releases</a></li>
                 </ul>
             </p>
             <p>
@@ -176,6 +182,7 @@
                             <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Installation manual (2)</a></li>
                             <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
                             <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
+                            <li><i class="bi bi-download"></i> <a href="/files/db1000n_windows_amd64.zip" target="_blank">Direct download for Windows x64</a> (last saved version)</li>
                         </ul>
                     </p>
                 </li>
@@ -190,11 +197,14 @@
                     <p>
                         <ul>
                             <li>
-                                <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/using-vpn" target="_blank">Installation manual</a>
+                                <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/using-vpn" target="_blank">Installation manual (with VPN)</a>
                             </li>
                             <li>
                                 <a href="https://help-ukraine-win.com.ua/6357ead3ce304a47a21fe1ffcd71e472" target="_blank">How do I switch from proxy to VPN?</a>
                             </li>
+                            <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
+                            <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
+                            <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Direct download for Windows</a> (last saved version)</li>
                         </ul>
                     </p>
                 </li>
@@ -226,6 +236,9 @@
                     <p>
                         Simple and configurable Python solution: <a href="https://gist.github.com/NewEXE/a284a7ca0c3a2ddd2894907bb1787c63" target="_blank">gist.github.com </a>.
                     </p>
+                </li>
+                <li>
+                    <p><a href="https://github.com/palahsu/DDoS-Ripper" target="_blank">DDoS-Ripper</a></p>
                 </li>
                 <li>
                     <p>

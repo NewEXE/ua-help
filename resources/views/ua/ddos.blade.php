@@ -12,6 +12,10 @@
         Для цього не потрібно бути IT-фахівцем, достатньо "заходити" на ці сайти багато разів (робити на них запити).
         Сервери сайтів не витримають навантаження та перестануть працювати, особливо коли ти доєднаєшся. Це називають <b>DDoS-атакою</b>.
     </p>
+    <p>
+        Атака DDoS робить величезну кількість запитів на ворожі сайти та спричиняє їх надмірну завантаженість.
+        Як наслідок, сервери не встигають обробляти всі запити, тому не можуть працювати в штатному режимі, лагають або взагалі не працюють
+    </p>
     <p>Тож <b>як я можу долучитися до IT-армії?</b> Не переймайся, тобі не потрібно перезавантажувати сторінку мільйон разів, достатньо:</p>
     <ul>
         <li>запустити спеціальну програму <span class="text-muted">або навіть</span></li>
@@ -37,9 +41,11 @@
             </p>
             <p>
                 <ul>
-                    <li><a target="_blank" href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1">Інструкції по встановленню</a></li>
+                    <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Завантажити для Windows</a> (остання версія)</li>
+                    <li>
+                        Потрібна допомога чи інша версія? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Докладна інструкція по встановленню</a>
+                    </li>
                     <li><a href="https://t.me/uashield" target="_blank">Телеграм-канал</a></li>
-                    <li><a href="https://github.com/opengs/uashield/releases/latest" target="_blank">Github releases</a></li>
                 </ul>
             </p>
             <p>
@@ -174,6 +180,7 @@
                         <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Інструкції по встановленню (2)</a></li>
                         <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
                         <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
+                        <li><i class="bi bi-download"></i> <a href="/files/db1000n_windows_amd64.zip" target="_blank">Пряме завантаження для Windows x64</a> (остання збережена версія)</li>
                     </ul>
                     </p>
                 </li>
@@ -187,11 +194,14 @@
                     <p>
                     <ul>
                         <li>
-                            <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/2-vpn" target="_blank">Інструкції по встановленню</a>
+                            <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/2-vpn" target="_blank">Інструкції по встановленню з VPN</a>
                         </li>
                         <li>
                             <a href="https://help-ukraine-win.com.ua/639463cfe94541578431034bac9da90a" target="_blank">Як перейти із використання проксі на VPN?</a>
                         </li>
+                        <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
+                        <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
+                        <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Пряме завантаження для Windows</a> (остання збережена версія)</li>
                     </ul>
                     </p>
                 </li>
