@@ -180,7 +180,7 @@
                         <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Інструкції по встановленню (2)</a></li>
                         <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
                         <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
-                        <li><i class="bi bi-download"></i> <a href="/files/db1000n_windows_amd64.zip" target="_blank">Пряме завантаження для Windows x64</a> (остання збережена версія)</li>
+                        <li><i class="bi bi-download"></i> <a href="/files/db1000n.exe" target="_blank">Пряме завантаження для Windows x64</a> (остання збережена версія)</li>
                     </ul>
                     </p>
                 </li>
