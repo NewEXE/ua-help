@@ -96,8 +96,56 @@
                 Personally, I use <a href="https://www.cyberghostvpn.com/" target="_blank">CyberGhost VPN</a> (paid, but it works well, there are many countries).
             </p>
 
-            <h4>Simple level <em>(low efficiency)</em></h4>
-            <p>Once the VPN is enabled, you can enter to next websites:</p>
+            <h4>Simple level <em>(middle efficiency)</em></h4>
+            <p>Once the VPN is enabled, you can use next instruments:</p>
+
+            <h5>Software (the preferred way)</h5>
+            <ol>
+                <li>
+                    <p>
+                        <b>DB1000N</b> (Death by 1000 needles) ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i>🐧)
+                    </p>
+                    <p>
+                        <b>Don't forget about VPN enabled! It is not advisable to use Tor Browser here,</b> because it only works on the sites listed above (does not work for programs)!
+                    </p>
+                    <p>
+                        Attacks a certain list of sites, which is dynamically changing.
+                        Made "DDOS по країні СЕПАРІВ (Кібер-Козаки)" Ukrainian team. Download and use:
+                    </p>
+                    <p>
+                    <ul>
+                        <li><a href="https://arriven.github.io/db1000n/en/" target="_blank">Installation manual</a></li>
+                        <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Installation manual (2)</a></li>
+                        <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
+                        <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
+                        <li><i class="bi bi-download"></i> <a href="/files/db1000n.exe" target="_blank">Direct download for Windows x64</a> (last saved version)</li>
+                    </ul>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <b>UA Cyber SHIELD</b> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i>🐧)
+                    </p>
+                    <p>
+                        Described in the "Very easy level" section, but you can increase its efficiency by enabling VPN instead of proxy.
+                        <b>It is not advisable to use Tor Browser here,</b> because it only works on the sites listed above (does not work for programs)!
+                    </p>
+                    <p>
+                    <ul>
+                        <li>
+                            <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/using-vpn" target="_blank">Installation manual (with VPN)</a>
+                        </li>
+                        <li>
+                            <a href="https://help-ukraine-win.com.ua/6357ead3ce304a47a21fe1ffcd71e472" target="_blank">How do I switch from proxy to VPN?</a>
+                        </li>
+                        <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
+                        <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
+                        <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Direct download for Windows</a> (last saved version)</li>
+                    </ul>
+                    </p>
+                </li>
+            </ol>
+            <h5>Websites</h5>
             <ol>
                 <li>
                     <p>
@@ -163,49 +211,6 @@
                         <a href="https://t.me/ddos_for_all/35?comment=2160" target="_blank">May not work effectively</a>.<br />
                         <span class="text-danger">Warning!</span> Be careful when opening this site your laptop or computer may be slow.<br />
                         <span class="text-warning">Important!</span> Don't forget the enabled VPN, which you need to change from time to time, or Tor Browser, which you need to reopen periodically!
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <b>DB1000N</b> (Death by 1000 needles) ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i>🐧)
-                    </p>
-                    <p>
-                        <b>Don't forget about VPN enabled! It is not advisable to use Tor Browser here,</b> because it only works on the sites listed above (does not work for programs)!
-                    </p>
-                    <p>
-                        Attacks a certain list of sites, which is dynamically changing.
-                        Made "DDOS по країні СЕПАРІВ (Кібер-Козаки)" Ukrainian team. Download and use:
-                    </p>
-                    <p>
-                        <ul>
-                            <li><a href="https://arriven.github.io/db1000n/en/" target="_blank">Installation manual</a></li>
-                            <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Installation manual (2)</a></li>
-                            <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
-                            <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
-                            <li><i class="bi bi-download"></i> <a href="/files/db1000n.exe" target="_blank">Direct download for Windows x64</a> (last saved version)</li>
-                        </ul>
-                    </p>
-                </li>
-                <li>
-                    <p>
-                        <b>UA Cyber SHIELD</b> ( <i class="bi bi-windows"></i> <i class="bi bi-apple"></i>🐧)
-                    </p>
-                    <p>
-                        Described in the "Very easy level" section, but you can increase its efficiency by enabling VPN instead of proxy.
-                        <b>It is not advisable to use Tor Browser here,</b> because it only works on the sites listed above (does not work for programs)!
-                    </p>
-                    <p>
-                        <ul>
-                            <li>
-                                <a href="https://help-ukraine-win.com.ua/help-ukraine-win-en/using-vpn" target="_blank">Installation manual (with VPN)</a>
-                            </li>
-                            <li>
-                                <a href="https://help-ukraine-win.com.ua/6357ead3ce304a47a21fe1ffcd71e472" target="_blank">How do I switch from proxy to VPN?</a>
-                            </li>
-                            <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
-                            <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
-                            <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Direct download for Windows</a> (last saved version)</li>
-                        </ul>
                     </p>
                 </li>
             </ol>
