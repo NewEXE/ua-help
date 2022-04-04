@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
-use App\Support\Helpers;
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Agent;
 
 class DdosWizard extends Controller
 {
@@ -15,7 +15,7 @@ class DdosWizard extends Controller
 
     public function detectDevice(Request $request)
     {
-        $device = Helpers::detectClientDevice($request);
+        $device = (new Agent())->platform($request->userAgent());
 
         return view(LocaleManager::getLocale().'.ddos.detect-device', [
             'path' => 'ddos/detect-device',
