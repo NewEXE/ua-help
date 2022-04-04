@@ -8,11 +8,11 @@
         "php": "^8.0.2",
         "artesaos/seotools": "^0.22.0",
         "guzzlehttp/guzzle": "^7.2",
-        "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
+        "sinergi/browser-detector": "^6.1",
         "stevebauman/location": "^6.3"
     },
     "require-dev": {
