@@ -44,7 +44,7 @@ class PageController extends Controller
             ]
         );
 
-        return view(LocaleManager::getLocale().'.ddos', ['path' => 'ddos']);
+        return view(LocaleManager::getLocale().'.ddos-full', ['path' => 'ddos-full']);
     }
 
     /**

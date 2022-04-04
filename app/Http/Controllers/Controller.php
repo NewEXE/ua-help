@@ -46,9 +46,15 @@ class Controller extends BaseController
      * @param string $title
      * @param string $description
      * @param array|string $keywords
+     * @param bool $addAlternateLanguages
      * @return void
      */
-    protected function setSeo(string $title = '', string $description = '', array|string $keywords = [], bool $addAlternateLanguages = true): void
+    protected function setSeo(
+        string $title = '',
+        string $description = '',
+        array|string $keywords = [],
+        bool $addAlternateLanguages = true
+    ): void
     {
         $title          = __($title);
         $description    = __($description);

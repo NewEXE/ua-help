@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DdosWizard;
 use App\Http\Controllers\SwitchLocaleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ViewFileController;
@@ -22,10 +23,15 @@ Route::get('locale/{locale}', SwitchLocaleController::class)->name('locale.switc
 Route::group([
     'prefix' => LocaleManager::routePrefixFromRequest(),
 ], function () {
+    /* Pages */
     Route::get('/', [PageController::class, 'index'])->name('index');
     Route::get('/ddos', [PageController::class, 'ddos'])->name('pages.ddos');
     Route::get('/news-channels', [PageController::class, 'newsChannels'])->name('pages.news-channels');
     Route::get('/no-connection', [PageController::class, 'noConnection'])->name('pages.no-connection');
+
+    /* DDoS Wizard */
+    //Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
+    Route::get('/ddos/detect-device', [DdosWizard::class, 'detectDevice'])->name('ddos.detect-device');
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');
