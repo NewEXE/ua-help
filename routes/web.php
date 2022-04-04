@@ -31,7 +31,7 @@ Route::group([
 
     /* DDoS Wizard */
     //Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
-    Route::get('/ddos/detect-device', [DdosWizard::class, 'detectDevice'])->name('ddos.detect-device');
+    //Route::get('/ddos/detect-device', [DdosWizard::class, 'detectDevice'])->name('ddos.detect-device');
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');
