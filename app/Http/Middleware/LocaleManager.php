@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Helpers;
 use App\Support\Str;
 use Closure;
 use Illuminate\Http\Request;
@@ -27,14 +28,16 @@ class LocaleManager
 
         // Locale is missing in URI, try to detect country code.
         if (!$locale) {
-            $locale = self::tryDetectLocaleByCountryCode();
+            $locale = self::tryDetectLocale();
         }
 
         if (!self::isValidLocale($locale)) {
             $locale = config('app.fallback_locale', self::DEFAULT_LOCALE);
         }
 
-        self::setLocale($locale);
+        if (app()->getLocale() !== $locale) {
+            self::setLocale($locale);
+        }
 
         return $next($request);
     }
@@ -42,8 +45,13 @@ class LocaleManager
     /**
      * @return string
      */
-    private function tryDetectLocaleByCountryCode(): string
+    private function tryDetectLocale(): string
     {
+        $clientLang = Helpers::detectClientLanguage();
+        if (self::isValidLocale($clientLang)) {
+            return $clientLang;
+        }
+
         $ip = request()->ip();
 
         // No client IP so nothing to detect
@@ -98,10 +106,6 @@ class LocaleManager
      */
     private static function setLocale(string $locale): void
     {
-        if (app()->getLocale() === $locale) {
-            return;
-        }
-
         app()->setLocale($locale);
     }
 
@@ -180,7 +184,7 @@ class LocaleManager
      */
     public static function getLocale(): string
     {
-        // Sometimes actual app()->getLocale()
+        // Sometimes app()->getLocale() result
         // inconsistent with locale in URL.
 
         $locale = app()->getLocale();

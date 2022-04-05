@@ -4,6 +4,7 @@ namespace App\Support;
 
 use App\Http\Middleware\LocaleManager;
 use Illuminate\Http\Request;
+use Sinergi\BrowserDetector\Language;
 
 /**
  * Misc helpers class.
@@ -14,7 +15,7 @@ class Helpers
     {
         return
             Str::finish(config('app.repository_url'), '/') .
-            'edit/master/'.
+            'tree/master/'.
             'resources/views/' .
             LocaleManager::getLocale() .
             Str::start($path, '/') .
@@ -44,5 +45,13 @@ class Helpers
         }
 
         return null;
+    }
+
+    /**
+     * @return string
+     */
+    public static function detectClientLanguage(): string
+    {
+        return (new Language())->getLanguage();
     }
 }
