@@ -48,7 +48,7 @@ class LocaleManager
     private function tryDetectLocale(): string
     {
         $clientLang = Helpers::detectClientLanguage();
-        if (self::isValidLocale($clientLang)) {
+        if (self::isValidLocale($clientLang) && $clientLang !== 'ru') {
             return $clientLang;
         }
 
@@ -79,6 +79,10 @@ class LocaleManager
         if ($countryCode) {
             // If code is location, set location to this code; 'en' otherwise
             return self::isValidLocale($countryCode) ? $countryCode : 'en';
+        }
+
+        if (self::isValidLocale($clientLang)) {
+            return $clientLang;
         }
 
         return '';
