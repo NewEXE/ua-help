@@ -30,8 +30,9 @@ Route::group([
     Route::get('/no-connection', [PageController::class, 'noConnection'])->name('pages.no-connection');
 
     /* DDoS Wizard */
-    //Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
-    Route::get('/ddos/detect-device', [DdosWizard::class, 'detectDevice'])->name('ddos.detect-device');
+//    Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
+//    Route::get('/ddos/select-device', [DdosWizard::class, 'selectDevice'])->name('ddos.select-device');
+//    Route::get('/ddos/software', [DdosWizard::class, 'software'])->name('ddos.software');
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');

@@ -16,7 +16,7 @@ class DdosWizard extends Controller
         return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro']);
     }
 
-    public function detectDevice(Request $request)
+    public function selectDevice(Request $request)
     {
         $userAgent = $request->userAgent();
         $os = (new Os($userAgent))->getName();
@@ -30,8 +30,8 @@ class DdosWizard extends Controller
         $browser = (new Browser($userAgent))->getName();
         $lang = (new Language())->getLanguage();
 
-        return view(LocaleManager::getLocale().'.ddos.detect-device', [
-            'path' => 'ddos/detect-device',
+        return view(LocaleManager::getLocale().'.ddos.select-device', [
+            'path' => 'ddos/select-device',
             'detectedDevice' => $detectedDevice,
 
             'userAgent' => $userAgent,
@@ -40,5 +40,10 @@ class DdosWizard extends Controller
             'browser' => $browser,
             'lang' => $lang,
         ]);
+    }
+
+    public function software(Request $request)
+    {
+        dump($request->all());
     }
 }
