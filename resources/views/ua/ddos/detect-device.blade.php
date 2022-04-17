@@ -6,7 +6,7 @@
 
         </div>
         <div class="card-body">
-            <h5 class="card-title text-center"><b></b></h5>
+            <h5 class="card-title text-center"><b>{{ $ua }}</b></h5>
             <p class="card-text">
                 Device: {{ $device->getName() }}<br />
                 OS: {{ $os->getName() }}<br />

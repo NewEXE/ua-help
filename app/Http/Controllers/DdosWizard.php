@@ -26,6 +26,7 @@ class DdosWizard extends Controller
 
         return view(LocaleManager::getLocale().'.ddos.detect-device', [
             'path' => 'ddos/detect-device',
+            'ua' => $request->userAgent(),
             'device' => $device,
             'os' => $os,
             'browser' => $browser,
