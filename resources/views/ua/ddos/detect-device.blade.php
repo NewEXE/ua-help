@@ -6,12 +6,13 @@
 
         </div>
         <div class="card-body">
-            <h5 class="card-title text-center"><b>{{ $ua }}</b></h5>
+            <h5 class="card-title text-center"><b>{{ $detectedDevice }}</b></h5>
             <p class="card-text">
-                Device: {{ $device->getName() }}<br />
-                OS: {{ $os->getName() }}<br />
-                Browser: {{ $browser->getName() }}<br />
-                Language: {{ $lang->getLanguage() }}<br />
+                User-agent: {{ $userAgent }}<br />
+                Device: {{ $device }}<br />
+                OS: {{ $os }}<br />
+                Browser: {{ $browser }}<br />
+                Language: {{ $lang }}<br />
             </p>
         </div>
         <div class="card-footer text-muted text-center">

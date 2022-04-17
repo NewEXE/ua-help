@@ -19,14 +19,23 @@ class DdosWizard extends Controller
     public function detectDevice(Request $request)
     {
         $userAgent = $request->userAgent();
-        $os = new Os($userAgent);
-        $device = new Device($userAgent);
-        $browser = new Browser($userAgent);
-        $lang = new Language();
+        $os = (new Os($userAgent))->getName();
+        $device = (new Device($userAgent))->getName();
+
+        $detectedDevice = $os;
+        if ($device && (!$detectedDevice || $detectedDevice === Os::OSX)) {
+            $detectedDevice = $device;
+        }
+        $detectedDevice = (string) $detectedDevice;
+
+        $browser = (new Browser($userAgent))->getName();
+        $lang = (new Language())->getLanguage();
 
         return view(LocaleManager::getLocale().'.ddos.detect-device', [
             'path' => 'ddos/detect-device',
-            'ua' => $request->userAgent(),
+            'detectedDevice' => $detectedDevice,
+
+            'userAgent' => $userAgent,
             'device' => $device,
             'os' => $os,
             'browser' => $browser,
