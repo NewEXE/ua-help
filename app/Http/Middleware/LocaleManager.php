@@ -12,7 +12,12 @@ use Stevebauman\Location\Facades\Location;
 
 class LocaleManager
 {
-    public const DEFAULT_LOCALE = 'ua';
+    /* Locales */
+    public const RU = 'ru';
+    public const UA = 'ua';
+    public const EN = 'en';
+
+    public const DEFAULT_LOCALE = self::UA;
     private const SEGMENT_INDEX = 1;
 
     /**
@@ -28,7 +33,7 @@ class LocaleManager
 
         // Locale is missing in URI, try to detect country code.
         if (!$locale) {
-            $locale = self::tryDetectLocale();
+            $locale = $this->tryDetectLocale();
         }
 
         if (!self::isValidLocale($locale)) {
@@ -48,7 +53,7 @@ class LocaleManager
     private function tryDetectLocale(): string
     {
         $clientLang = Helpers::detectClientLanguage();
-        if (self::isValidLocale($clientLang) && $clientLang !== 'ru') {
+        if ($clientLang !== self::RU && self::isValidLocale($clientLang)) {
             return $clientLang;
         }
 
@@ -78,7 +83,7 @@ class LocaleManager
         // If country code is here
         if ($countryCode) {
             // If code is location, set location to this code; 'en' otherwise
-            return self::isValidLocale($countryCode) ? $countryCode : 'en';
+            return self::isValidLocale($countryCode) ? $countryCode : self::EN;
         }
 
         if (self::isValidLocale($clientLang)) {
@@ -141,11 +146,7 @@ class LocaleManager
      */
     public static function isValidLocale(mixed $locale): bool
     {
-        if ($locale && is_string($locale) && isset(self::getLocalesList()[$locale])) {
-            return true;
-        }
-
-        return false;
+        return $locale && is_string($locale) && isset(self::getLocalesList()[$locale]);
     }
 
     /**
@@ -164,7 +165,7 @@ class LocaleManager
         $urlParts = parse_url($url);
         $urlParts['path'] = $urlParts['path'] ?? '/';
 
-        $urlParts['path'] = '/' . LocaleManager::addToUri($urlParts['path'], $locale);
+        $urlParts['path'] = '/' . self::addToUri($urlParts['path'], $locale);
 
         return Str::httpBuildUrl('', $urlParts);
     }
