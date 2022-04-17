@@ -23,10 +23,9 @@ class DdosWizard extends Controller
         $device = (new Device($userAgent))->getName();
 
         $detectedDevice = $os;
-        if ($device && (!$detectedDevice || $detectedDevice === Os::OSX)) {
+        if ($device !== Device::UNKNOWN && in_array($detectedDevice, [Os::OSX, Os::UNKNOWN], true)) {
             $detectedDevice = $device;
         }
-        $detectedDevice = (string) $detectedDevice;
 
         $browser = (new Browser($userAgent))->getName();
         $lang = (new Language())->getLanguage();
