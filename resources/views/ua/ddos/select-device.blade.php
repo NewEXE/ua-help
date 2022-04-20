@@ -1,49 +1,31 @@
 @extends('layouts.app')
 
-@php
-$icon = '';
-switch ($detectedDevice) {
-    case 'iPhone':
-    case 'iPad':
-    case 'iOS':
-    case 'OS X':
-        $icon = '<i class="bi bi-apple"></i>';
-        break;
-    case 'Windows':
-    case 'Windows Phone':
-        $icon = '<i class="bi bi-windows"></i>';
-        break;
-    case 'Android':
-        $icon = '<i class="bi bi-phone"></i>';
-        break;
-    case 'Linux':
-        $icon = '🐧';
-        break;
-}
-@endphp
-
 @section('content')
     <div class="card text-center">
         <div class="card-header">
             Крок 2/3. Обрати девайс
         </div>
 
-        @if($detectedDevice === 'OS X')
+        {{-- Ambigous device (OS X or iOS) --}}
+        @if(in_array($detectedDevice, [\App\Support\ClientInfoDetector::OSX, \App\Support\ClientInfoDetector::IOS], true))
             <div class="card-body">
-                <h5 class="card-title">{!! $icon !!} Ваш девайс - пристрій на <b>Mac OS X</b></h5>
+                <h5 class="card-title">{!! $device['icon'] !!} Ваш девайс - пристрій на <b>{{ $detectedDevice }}</b></h5>
                 <p class="card-text">
                     Це може бути:<br />
-                    ноутбук (MacBook)<br />
-                    планшет (iPad)<br />
-                    смартфон (iPhone)<br />
-                    комп'ютер (Mac, Mac mini, iMac)
+                    <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::IPHONE]) }}">смартфон (iPhone)</a><br />
+                    <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::IPAD]) }}">планшет (iPad)</a><br />
+                    @if($detectedDevice === \App\Support\ClientInfoDetector::OSX)
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::OSX]) }}">ноутбук (MacBook)</a><br />
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::OSX]) }}">комп'ютер (Mac, Mac mini, iMac)</a><br />
+                    @endif
                 </p>
             </div>
             <div class="card-footer text-muted">
                 <a class="btn btn-primary" data-bs-toggle="collapse" href="#allDevices" role="button" aria-expanded="false" aria-controls="allDevices">Це помилка, оберу інший варіант</a> або
-                <a href="{{ route('ddos.software', ['device' => 'unknown']) }}">обрати універсальний варіант</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::UNKNOWN]) }}">обрати універсальний варіант</a>
             </div>
-        @elseif($detectedDevice === 'unknown')
+        {{-- Unsupported device --}}
+        @elseif($detectedDevice === \App\Support\ClientInfoDetector::UNKNOWN)
             <div class="card-body">
                 <h5 class="card-title">Визначити пристрій автоматично не вдалося</h5>
                 <p class="card-text">
@@ -51,12 +33,12 @@ switch ($detectedDevice) {
                 </p>
             </div>
             <div class="card-footer text-muted">
-                <a href="{{ route('ddos.software', ['device' => 'unknown']) }}" class="btn btn-primary">Універсальний варіант</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('ddos.software', ['device' => $detectedDevice]) }}" class="btn btn-primary">Універсальний варіант</a>&nbsp;&nbsp;&nbsp;
                 <a data-bs-toggle="collapse" href="#allDevices" role="button" aria-expanded="false" aria-controls="allDevices">Оберу самостійно</a>
             </div>
         @else
             <div class="card-body">
-                <h5 class="card-title">{!! $icon !!} Ваш пристрій - <b>{{$detectedDevice}}</b>?</h5>
+                <h5 class="card-title">{!! $device['icon'] !!} Ваш пристрій - <b>{{ $detectedDevice }}</b>?</h5>
                 <p class="card-text">
                     Чи правильно ми визначили ваш девайс?
                 </p>
@@ -77,7 +59,7 @@ switch ($detectedDevice) {
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-apple"></i> OS X</h5>
                         <p class="card-text">Apple Mac, MacBook, Mac mini, iMac</p>
-                        <a href="{{ route('ddos.software', ['device' => 'OS X']) }}" class="btn btn-outline-light">Обрати</a>
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::OSX]) }}" class="btn btn-outline-light">Обрати</a>
                     </div>
                 </div>
             </div>
@@ -86,7 +68,7 @@ switch ($detectedDevice) {
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-windows"></i> Windows</h5>
                         <p class="card-text">Звичайний ноутбук чи комп'ютер на Windows</p>
-                        <a href="{{ route('ddos.software', ['device' => 'Windows']) }}" class="btn btn-outline-light">Обрати</a>
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::WINDOWS]) }}" class="btn btn-outline-light">Обрати</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +77,7 @@ switch ($detectedDevice) {
                     <div class="card-body">
                         <h5 class="card-title">🐧 Linux</h5>
                         <p class="card-text">Ноутбук, комп'ютер чи інший пристрій на Linux</p>
-                        <a href="{{ route('ddos.software', ['device' => 'Linux']) }}" class="btn btn-outline-light">Обрати</a>
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::LINUX]) }}" class="btn btn-outline-light">Обрати</a>
                     </div>
                 </div>
             </div>
@@ -104,7 +86,7 @@ switch ($detectedDevice) {
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-phone"></i> Android</h5>
                         <p class="card-text">Смартфон чи планшет на Android</p>
-                        <a href="{{ route('ddos.software', ['device' => 'unknown']) }}" class="btn btn-outline-light">Обрати</a>
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::ANDROID]) }}" class="btn btn-outline-light">Обрати</a>
                     </div>
                 </div>
             </div>
@@ -113,7 +95,7 @@ switch ($detectedDevice) {
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-apple"></i> iOS</h5>
                         <p class="card-text">Смартфон чи планшет на iOS (Apple iPhone, iPad)</p>
-                        <a href="{{ route('ddos.software', ['device' => 'unknown']) }}" class="btn btn-outline-light">Обрати</a>
+                        <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::IOS]) }}" class="btn btn-outline-light">Обрати</a>
                     </div>
                 </div>
             </div>
@@ -121,7 +103,7 @@ switch ($detectedDevice) {
     </div>
     <span id="debug-data" class="visually-hidden">
         User-agent: {{ $userAgent }}<br />
-        Device: {{ $device }}<br />
+        Device: {{ $detectedDevice }}<br />
         OS: {{ $os }}<br />
         Browser: {{ $browser }}<br />
         Language: {{ $lang }}<br />

@@ -3,43 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
+use App\Support\ClientInfoDetector;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Device;
-use Sinergi\BrowserDetector\Language;
-use Sinergi\BrowserDetector\Os;
 
 class DdosWizard extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function intro()
     {
         return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro']);
     }
 
-    public function selectDevice(Request $request)
+    /**
+     * @param Request $request
+     * @return View
+     */
+    public function selectDevice(Request $request): View
     {
-        $userAgent = $request->userAgent();
-        $os = (new Os($userAgent))->getName();
-        $device = (new Device($userAgent))->getName();
-
-        $detectedDevice = $os;
-        if ($device !== Device::UNKNOWN && in_array($detectedDevice, [Os::OSX, Os::UNKNOWN], true)) {
-            $detectedDevice = $device;
-        }
-
-        $browser = (new Browser($userAgent))->getName();
-        $lang = (new Language())->getLanguage();
-
-        return view(LocaleManager::getLocale().'.ddos.select-device', [
+        $viewData = [
             'path' => 'ddos/select-device',
-            'detectedDevice' => $detectedDevice,
+            'device' => ClientInfoDetector::getDevice()
+        ] + ClientInfoDetector::get($request->userAgent());
 
-            'userAgent' => $userAgent,
-            'device' => $device,
-            'os' => $os,
-            'browser' => $browser,
-            'lang' => $lang,
-        ]);
+        return view(LocaleManager::getLocale().'.ddos.select-device', $viewData);
     }
 
     public function software(Request $request)
