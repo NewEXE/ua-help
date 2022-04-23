@@ -10,17 +10,17 @@ class Str extends \Illuminate\Support\Str
      *
      * @see http://us2.php.net/manual/en/http.constants.php#http.constants.url
      */
-    const HTTP_URL_REPLACE = 1;
-    const HTTP_URL_JOIN_PATH = 2;
-    const HTTP_URL_JOIN_QUERY = 4;
-    const HTTP_URL_STRIP_USER = 8;
-    const HTTP_URL_STRIP_PASS = 16;
-    const HTTP_URL_STRIP_AUTH = 32;
-    const HTTP_URL_STRIP_PORT = 64;
-    const HTTP_URL_STRIP_PATH = 128;
-    const HTTP_URL_STRIP_QUERY = 256;
-    const HTTP_URL_STRIP_FRAGMENT = 512;
-    const HTTP_URL_STRIP_ALL = 1024;
+    public const HTTP_URL_REPLACE = 1;
+    public const HTTP_URL_JOIN_PATH = 2;
+    public const HTTP_URL_JOIN_QUERY = 4;
+    public const HTTP_URL_STRIP_USER = 8;
+    public const HTTP_URL_STRIP_PASS = 16;
+    public const HTTP_URL_STRIP_AUTH = 32;
+    public const HTTP_URL_STRIP_PORT = 64;
+    public const HTTP_URL_STRIP_PATH = 128;
+    public const HTTP_URL_STRIP_QUERY = 256;
+    public const HTTP_URL_STRIP_FRAGMENT = 512;
+    public const HTTP_URL_STRIP_ALL = 1024;
 
     /**
      * Build a URL.

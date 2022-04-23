@@ -7,14 +7,14 @@
         </div>
 
         {{-- Ambigous device (OS X or iOS) --}}
-        @if(in_array($detectedDevice, [\App\Support\ClientInfoDetector::OSX, \App\Support\ClientInfoDetector::IOS], true))
+        @if(in_array($device['name'], [\App\Support\ClientInfoDetector::OSX, \App\Support\ClientInfoDetector::IOS], true))
             <div class="card-body">
-                <h5 class="card-title">{!! $device['icon'] !!} Ваш девайс - пристрій на <b>{{ $detectedDevice }}</b></h5>
+                <h5 class="card-title">{!! $device['icon'] !!} Ваш девайс - пристрій на <b>{{ $device['name'] }}</b></h5>
                 <p class="card-text">
                     Це може бути:<br />
                     <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::IPHONE]) }}">смартфон (iPhone)</a><br />
                     <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::IPAD]) }}">планшет (iPad)</a><br />
-                    @if($detectedDevice === \App\Support\ClientInfoDetector::OSX)
+                    @if($device['name'] === \App\Support\ClientInfoDetector::OSX)
                         <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::OSX]) }}">ноутбук (MacBook)</a><br />
                         <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::OSX]) }}">комп'ютер (Mac, Mac mini, iMac)</a><br />
                     @endif
@@ -25,27 +25,27 @@
                 <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::UNKNOWN]) }}">обрати універсальний варіант</a>
             </div>
         {{-- Unsupported device --}}
-        @elseif($detectedDevice === \App\Support\ClientInfoDetector::UNKNOWN)
+        @elseif($device['name'] === \App\Support\ClientInfoDetector::UNKNOWN)
             <div class="card-body">
-                <h5 class="card-title">Визначити пристрій автоматично не вдалося</h5>
+                <h5 class="card-title">{!! $device['icon'] !!} Визначити пристрій автоматично не вдалося</h5>
                 <p class="card-text">
                     Можна обрати девайс самостійно чи обрати універсальний варіант
                 </p>
             </div>
             <div class="card-footer text-muted">
-                <a href="{{ route('ddos.software', ['device' => $detectedDevice]) }}" class="btn btn-primary">Універсальний варіант</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('ddos.software', ['device' => $device['name']]) }}" class="btn btn-primary">Універсальний варіант</a>&nbsp;&nbsp;&nbsp;
                 <a data-bs-toggle="collapse" href="#allDevices" role="button" aria-expanded="false" aria-controls="allDevices">Оберу самостійно</a>
             </div>
         @else
             <div class="card-body">
-                <h5 class="card-title">{!! $device['icon'] !!} Ваш пристрій - <b>{{ $detectedDevice }}</b>?</h5>
+                <h5 class="card-title">{!! $device['icon'] !!} Ваш пристрій - <b>{{ $device['name'] }}</b>?</h5>
                 <p class="card-text">
-                    Чи правильно ми визначили ваш девайс?
+                    Чи правильно ми визначили ваш девайс? {{ $device['title'] }}
                 </p>
             </div>
             <div class="card-footer text-muted">
-                <a href="{{ route('ddos.software', ['device' => $detectedDevice]) }}" class="btn btn-primary">Так</a>&nbsp;&nbsp;&nbsp;
-                <a href="{{ route('ddos.software', ['device' => $detectedDevice]) }}">Не знаю</a>&nbsp;&nbsp;
+                <a href="{{ route('ddos.software', ['device' => $device['name']]) }}" class="btn btn-primary">Так</a>&nbsp;&nbsp;&nbsp;
+                <a href="{{ route('ddos.software', ['device' => $device['name']]) }}">Не знаю</a>&nbsp;&nbsp;
                 <a data-bs-toggle="collapse" href="#allDevices" role="button" aria-expanded="false" aria-controls="allDevices">Ні, оберу самостійно</a>
             </div>
         @endif
@@ -106,6 +106,6 @@
         Device: {{ $detectedDevice }}<br />
         OS: {{ $os }}<br />
         Browser: {{ $browser }}<br />
-        Language: {{ $lang }}<br />
+        Language: {{ $language }}<br />
     </span>
 @endsection

@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
+use App\Http\Requests\DdosSoftwareRequest;
 use App\Support\ClientInfoDetector;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class DdosWizard extends Controller
 {
     /**
-     * @return Application|Factory|View
+     * @return View
      */
-    public function intro()
+    public function intro(): View
     {
         return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro']);
     }
@@ -22,19 +21,30 @@ class DdosWizard extends Controller
     /**
      * @param Request $request
      * @return View
+     * @throws \Throwable
      */
     public function selectDevice(Request $request): View
     {
+        $userAgent = $request->userAgent();
+
         $viewData = [
             'path' => 'ddos/select-device',
-            'device' => ClientInfoDetector::getDevice()
-        ] + ClientInfoDetector::get($request->userAgent());
+            'device' => ClientInfoDetector::getDevice($userAgent)
+            // add debug info
+        ] + ClientInfoDetector::get($userAgent);
 
         return view(LocaleManager::getLocale().'.ddos.select-device', $viewData);
     }
 
-    public function software(Request $request)
+    /**
+     * @param DdosSoftwareRequest $request
+     * @return View
+     */
+    public function software(DdosSoftwareRequest $request): View
     {
-        dump($request->all());
+        $device = $request->validated('device');
+
+        $view = ClientInfoDetector::getViewName($device);
+        return view(LocaleManager::getLocale() . ".ddos.$view", ['path' => "ddos/$view"]);
     }
 }

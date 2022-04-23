@@ -9,20 +9,28 @@ use Sinergi\BrowserDetector\Os;
 
 class ClientInfoDetector
 {
-    public const OSX = Os::OSX;
-    public const IOS = Os::IOS;
-    public const IPHONE = Device::IPHONE;
-    public const IPAD = Device::IPAD;
-    public const ANDROID = Os::ANDROID;
-    public const WINDOWS_PHONE = Device::WINDOWS_PHONE;
-    public const WINDOWS = Os::WINDOWS;
-    public const LINUX = Os::LINUX;
-    public const UNKNOWN = 'unknown';
+    public const OSX            = Os::OSX;
+    public const IOS            = Os::IOS;
+    public const IPHONE         = Device::IPHONE;
+    public const IPAD           = Device::IPAD;
+    public const ANDROID        = Os::ANDROID;
+    public const WINDOWS_PHONE  = Device::WINDOWS_PHONE;
+    public const WINDOWS        = Os::WINDOWS;
+    public const LINUX          = Os::LINUX;
+    public const CHROME_OS      = Os::CHROME_OS;
+    public const UNKNOWN        = Os::UNKNOWN;
+
+    public const SOFTWARE_TYPES = [
+        self::OSX,      // db1000n, UA Cyber SHIELD
+        self::WINDOWS,  // db1000n, UA Cyber SHIELD
+        self::LINUX,    // db1000n, UA Cyber SHIELD, advanced tools
+        self::UNKNOWN,  // Universal software (websites for DDoS)
+    ];
 
     /**
      * @return array
      */
-    public static function supportedDevices(): array
+    private static function supportedDevices(): array
     {
         static $devices = [];
 
@@ -57,11 +65,15 @@ class ClientInfoDetector
             ],
             self::WINDOWS => [
                 'icon' => '<i class="bi bi-windows"></i>',
-                'title' => __('Regular Notebook or PC'),
+                'title' => __('Regular Notebook or PC on Windows'),
             ],
             self::LINUX => [
                 'icon' => '🐧',
                 'title' => __('Notebook, PC or other Linux-based device'),
+            ],
+            self::CHROME_OS => [
+                'icon' => '<i class="bi bi-google"></i>',
+                'title' => __('Chromebook or other Notebook/PC on Chrome OS'),
             ],
             self::UNKNOWN => [
                 'icon' => '<i class="bi bi-question"></i>',
@@ -69,67 +81,96 @@ class ClientInfoDetector
             ],
         ];
 
+        foreach ($devices as $name => &$device) {
+            $device['name'] = $name;
+        }
+        unset($device);
+
         return $devices;
     }
 
     /**
      * @param string|null $userAgent
      * @return array
+     * @throws \Throwable
      */
     public static function getDevice(string $userAgent = null): array
     {
         $userAgent = $userAgent ?? request()->userAgent();
 
-        // Return detected device by user agent
-        return self::supportedDevices()[self::get($userAgent, 'detectedDevice')]
-            // or 'unknown' device otherwise
-            ?? self::supportedDevices()[self::UNKNOWN];
+        $detectedDevice = self::get($userAgent, 'detectedDevice');
+
+        if (isset(self::supportedDevices()[$detectedDevice])) {
+            // Return detected device by user agent...
+            return self::supportedDevices()[$detectedDevice];
+        }
+
+        // ...otherwise return device based on 'unknown'
+        // but with detected device name and changed icon
+        $device = self::supportedDevices()[self::UNKNOWN];
+
+        $device['name'] = $detectedDevice;
+
+        if((new Os($userAgent))->isMobile()) {
+            $device['icon'] = '<i class="bi bi-phone"></i>';
+        } else {
+            $device['icon'] = '<i class="bi bi-info-lg"></i>';
+        }
+
+        return $device;
     }
 
     /**
-     * @param string $userAgent
+     * @param string|null $userAgent
      * @param string|null $component
      * @return array|string
+     * @throws \Throwable
      */
-    public static function get(string $userAgent, string $component = null): array|string
+    public static function get(string $userAgent = null, string $component = null): array|string
     {
-        // 1. win -> win, lin -> lin, andr -> andr, ios -> ios
-        // 2. osx -> mac/macbook/iphone/ipad
+        static $components = [
+            'detectedDevice', 'userAgent', 'device', 'os', 'browser', 'language',
+        ];
 
-        // windows -> db1000n, ua cyber shield
-        // mac/macbook -> db1000n, ua cyber shield
-        // linux -> db1000n, ua cyber shield (also refer to advanced (old /ddos))
-
-        // all others -> websites
-        $device = (new Device($userAgent))->getName();
-        $os = (new Os($userAgent))->getName();
-
-        $detectedDevice = $os;
-        if (
-            $device !== Device::UNKNOWN &&
-            in_array($os, [Os::OSX, Os::UNKNOWN], true)
-        ) {
-            $detectedDevice = $device;
-        }
-
-        if ($component === 'detectedDevice') {
-            return $detectedDevice;
-        }
-
-        $browser = (new Browser($userAgent))->getName();
-        $lang = (new Language())->getLanguage();
-
-        if ($component) {
-            return $$component;
-        }
-
-        return compact(
-            'detectedDevice',
-            'userAgent',
-            'device',
-            'os',
-            'browser',
-            'lang'
+        throw_if(
+            $component !== null && !in_array($component, $components, true),
+            'Component must be on of: ' . implode(', ', $components)
         );
+
+        $userAgent = $userAgent ?? request()->userAgent();
+
+        static $cache = [];
+        if (!isset($cache[$userAgent])) {
+            $device = (new Device($userAgent))->getName();
+            $os = (new Os($userAgent))->getName();
+
+            $detectedDevice = $os;
+            if (
+                $device !== Device::UNKNOWN &&
+                in_array($os, [Os::OSX, Os::UNKNOWN], true)
+            ) {
+                $detectedDevice = $device;
+            }
+
+            $browser = (new Browser($userAgent))->getName();
+            $language = (new Language())->getLanguage();
+
+            $cache[$userAgent] = compact(...$components);
+        }
+
+        return $component ? $cache[$userAgent][$component] : $cache[$userAgent];
+    }
+
+    /**
+     * @param string $device
+     * @return string
+     */
+    public static function getViewName(string $device): string
+    {
+        if (!in_array($device, self::SOFTWARE_TYPES, true)) {
+            $device = self::UNKNOWN;
+        }
+
+        return 'device-'.Str::slug($device);
     }
 }

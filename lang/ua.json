@@ -19,5 +19,15 @@
     "russian propaganda": "російська пропаганда",
     "war": "війна",
 
-    "Share": "Надіслати друзям"
+    "Share": "Надіслати друзям",
+
+    "Apple device (iPad, iPhone, MacBook, Mac, Mac mini, iMac)": "Пристрій Apple (iPad, iPhone, MacBook, Mac, Mac mini, iMac)",
+    "Apple iPhone or iPad": "Apple iPhone або iPad",
+    "iPhone (Apple Smartphone)": "iPhone (смартфон Apple)",
+    "iPad (Apple Tablet)": "iPad (планшет Apple)",
+    "Windows Phone (Smartphone)": "Windows Phone (смартфон)",
+    "Regular Smartphone or Tablet on Android": "Звичайний смартфон або планшет на Android",
+    "Regular Notebook or PC on Windows": "Звичайний ноутбук або комп'ютер на Windows",
+    "Notebook, PC or other Linux-based device": "Ноутбук, комп'ютер або інший девайс на Linux",
+    "Chromebook or other Notebook/PC on Chrome OS": "Chromebook або інший ноутбук/ПК на Chrome OS"
 }
