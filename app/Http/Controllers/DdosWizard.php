@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
-use App\Http\Requests\DdosSoftwareRequest;
 use App\Support\ClientInfoDetector;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -15,7 +14,21 @@ class DdosWizard extends Controller
      */
     public function intro(): View
     {
-        return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro']);
+        $onlyOneLangVersion = true;
+
+        $this->setSeo(
+            'How to DDoS Russian propaganda sites',
+            'How to protect Ukraine from Russian forces in the Internet', [
+                'it army',
+                'it-army',
+                'ukraine',
+                'ddos',
+                'russian propaganda',
+            ],
+            !$onlyOneLangVersion
+        );
+
+        return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro', 'onlyOneLangVersion' => $onlyOneLangVersion]);
     }
 
     /**
@@ -25,11 +38,14 @@ class DdosWizard extends Controller
      */
     public function selectDevice(Request $request): View
     {
+        $onlyOneLangVersion = true;
+
         $userAgent = $request->userAgent();
 
         $viewData = [
             'path' => 'ddos/select-device',
-            'device' => ClientInfoDetector::getDevice($userAgent)
+            'device' => ClientInfoDetector::getDevice($userAgent),
+            'onlyOneLangVersion' => $onlyOneLangVersion,
             // add debug info
         ] + ClientInfoDetector::get($userAgent);
 
@@ -37,14 +53,24 @@ class DdosWizard extends Controller
     }
 
     /**
-     * @param DdosSoftwareRequest $request
+     * @param string $device
      * @return View
      */
-    public function software(DdosSoftwareRequest $request): View
+    public function software(string $device): View
     {
-        $device = $request->validated('device');
+        $onlyOneLangVersion = true;
+
+        $title = __('DDoS software for ');
+        $title .= $device === ClientInfoDetector::UNKNOWN ? __('any device') : $device;
+
+        $this->setSeo(
+            $title,
+            'How to DDoS Russian propaganda sites? ' .
+            'Help Ukraine protect and win',
+            ['ddos russians', 'ddos propaganda', 'attack aggressor sites',],
+        );
 
         $view = ClientInfoDetector::getViewName($device);
-        return view(LocaleManager::getLocale() . ".ddos.$view", ['path' => "ddos/$view"]);
+        return view(LocaleManager::getLocale() . ".ddos.$view", ['path' => "ddos/$view", 'onlyOneLangVersion' => $onlyOneLangVersion]);
     }
 }

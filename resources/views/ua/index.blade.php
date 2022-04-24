@@ -12,7 +12,7 @@
                         допомогти в мережі
                     </h6>
                     <p class="card-text">
-                        <i class="bi bi-wifi-off"></i> <a href="{{ route('pages.ddos') }}">DDoS-атака на пропагандисьтскі сайти</a> (доступно кожному)<br>
+                        <i class="bi bi-wifi-off"></i> <a href="{{ route('ddos.intro') }}">DDoS-атака на пропагандисьтскі сайти</a> (доступно кожному)<br>
                         <i class="bi bi-youtube"></i> <a href="{{ route('pages.news-channels') }}">Де дивитися телебачення та читати новини?</a>
                     </p>
                 </div>

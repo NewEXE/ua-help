@@ -57,7 +57,7 @@ class ClientInfoDetector
             ],
             self::WINDOWS_PHONE => [
                 'icon' => '<i class="bi-microsoft"></i>',
-                'title' => __('Windows Phone (Smartphone)'),
+                'title' => __('Windows Phone Smartphone'),
             ],
             self::ANDROID => [
                 'icon' => '<i class="bi bi-phone"></i>',
@@ -90,14 +90,12 @@ class ClientInfoDetector
     }
 
     /**
-     * @param string|null $userAgent
+     * @param string $userAgent
      * @return array
      * @throws \Throwable
      */
-    public static function getDevice(string $userAgent = null): array
+    public static function getDevice(string $userAgent): array
     {
-        $userAgent = $userAgent ?? request()->userAgent();
-
         $detectedDevice = self::get($userAgent, 'detectedDevice');
 
         if (isset(self::supportedDevices()[$detectedDevice])) {
@@ -114,19 +112,19 @@ class ClientInfoDetector
         if((new Os($userAgent))->isMobile()) {
             $device['icon'] = '<i class="bi bi-phone"></i>';
         } else {
-            $device['icon'] = '<i class="bi bi-info-lg"></i>';
+            $device['icon'] = '<i class="bi bi-aspect-ratio"></i>';
         }
 
         return $device;
     }
 
     /**
-     * @param string|null $userAgent
+     * @param string $userAgent
      * @param string|null $component
      * @return array|string
      * @throws \Throwable
      */
-    public static function get(string $userAgent = null, string $component = null): array|string
+    public static function get(string $userAgent, string $component = null): array|string
     {
         static $components = [
             'detectedDevice', 'userAgent', 'device', 'os', 'browser', 'language',
@@ -136,8 +134,6 @@ class ClientInfoDetector
             $component !== null && !in_array($component, $components, true),
             'Component must be on of: ' . implode(', ', $components)
         );
-
-        $userAgent = $userAgent ?? request()->userAgent();
 
         static $cache = [];
         if (!isset($cache[$userAgent])) {

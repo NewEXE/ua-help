@@ -25,9 +25,21 @@
     "Apple iPhone or iPad": "Apple iPhone або iPad",
     "iPhone (Apple Smartphone)": "iPhone (смартфон Apple)",
     "iPad (Apple Tablet)": "iPad (планшет Apple)",
-    "Windows Phone (Smartphone)": "Windows Phone (смартфон)",
+    "Windows Phone Smartphone": "Смартфон на Windows Phone",
     "Regular Smartphone or Tablet on Android": "Звичайний смартфон або планшет на Android",
     "Regular Notebook or PC on Windows": "Звичайний ноутбук або комп'ютер на Windows",
     "Notebook, PC or other Linux-based device": "Ноутбук, комп'ютер або інший девайс на Linux",
-    "Chromebook or other Notebook/PC on Chrome OS": "Chromebook або інший ноутбук/ПК на Chrome OS"
+    "Chromebook or other Notebook/PC on Chrome OS": "Chromebook або інший ноутбук/ПК на Chrome OS",
+
+    "How to install and use VPN": "Як встановити та використовувати VPN",
+    "How to install and use VPN? Best Free and Paid VPNs for support Ukraine, VPN with Russian country": "Як встановити та використовувати VPN, кращі платні та безплатні VPN-сервіси для підтримки України, російський VPN",
+    "vpn": "vpn",
+    "free vpn": "безкоштовний впн",
+    "best vpn": "кращий впн",
+    "russian vpn": "російський впн",
+    "belarus vpn": "білоруський впн",
+    "DDoS software for ": "DDoS-інструменти для ",
+    "any device": "будь-якого девайсу",
+
+    "How to DDoS Russian propaganda sites? Help Ukraine protect and win": "Як атакувати сайти російської пропаганди? Допоможи Україні захиститися та виграти війну"
 }

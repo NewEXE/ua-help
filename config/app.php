@@ -88,9 +88,9 @@ return [
     'locale' => LocaleManager::DEFAULT_LOCALE,
 
     'locales' => [
-        'ua' => 'Українською',
-        'en' => 'English',
-        'ru' => 'Русский',
+        LocaleManager::UA => 'Українською',
+        LocaleManager::EN => 'English',
+        LocaleManager::RU => 'Русский',
     ],
 
     /*

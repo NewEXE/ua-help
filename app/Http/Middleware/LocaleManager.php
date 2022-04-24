@@ -159,7 +159,7 @@ class LocaleManager
     public static function addToUrl(string $locale, string $url = null): string
     {
         if ($url === null) {
-            $url = url()->current();
+            $url = \request()->fullUrl();
         }
 
         $urlParts = parse_url($url);
@@ -171,7 +171,8 @@ class LocaleManager
     }
 
     /**
-     * @return \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     * @param bool $withoutCurrent
+     * @return array
      */
     public static function getLocalesList(bool $withoutCurrent = false): array
     {

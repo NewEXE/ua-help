@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
+use Illuminate\View\View;
 
 class PageController extends Controller
 {
     /**
      * Main page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $this->setSeo(
             'How to help Ukraine?',
@@ -29,9 +30,9 @@ class PageController extends Controller
     /**
      * DDoS possibilities page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function ddos()
+    public function ddos(): View
     {
         $this->setSeo(
             'How to DDoS Russian propaganda sites',
@@ -50,9 +51,9 @@ class PageController extends Controller
     /**
      * News channels page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function newsChannels()
+    public function newsChannels(): View
     {
         $onlyOneLangVersion = true;
 
@@ -79,9 +80,9 @@ class PageController extends Controller
     /**
      * "Resolve no mobile connection issue" page.
      *
-     * @return \Illuminate\View\View
+     * @return View
      */
-    public function noConnection()
+    public function noConnection(): View
     {
         $onlyOneLangVersion = true;
 
@@ -97,5 +98,23 @@ class PageController extends Controller
         );
 
         return view('ua.no-connection', ['path' => 'no-connection', 'onlyOneLangVersion' => $onlyOneLangVersion]);
+    }
+
+    /**
+     * VPN variants page.
+     *
+     * @return View
+     */
+    public function vpn(): View
+    {
+        $this->setSeo(
+            'How to install and use VPN',
+            'How to install and use VPN? ' .
+            'Best Free and Paid VPNs for support Ukraine, ' .
+            'VPN with Russian country',
+            ['vpn', 'free vpn', 'best vpn', 'russian vpn', 'belarus vpn'],
+        );
+
+        return view(LocaleManager::getLocale().'.ddos/vpn', ['path' => 'ddos/vpn']);
     }
 }

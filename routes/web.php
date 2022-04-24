@@ -22,17 +22,18 @@ Route::get('locale/{locale}', SwitchLocaleController::class)->name('locale.switc
 
 Route::group([
     'prefix' => LocaleManager::routePrefixFromRequest(),
-], function () {
+], static function () {
     /* Pages */
     Route::get('/', [PageController::class, 'index'])->name('index');
     Route::get('/ddos', [PageController::class, 'ddos'])->name('pages.ddos');
     Route::get('/news-channels', [PageController::class, 'newsChannels'])->name('pages.news-channels');
     Route::get('/no-connection', [PageController::class, 'noConnection'])->name('pages.no-connection');
+    Route::get('/vpn', [PageController::class, 'vpn'])->name('pages.vpn');
 
     /* DDoS Wizard */
-//    Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
-//    Route::get('/ddos/select-device', [DdosWizard::class, 'selectDevice'])->name('ddos.select-device');
-//    Route::get('/ddos/software', [DdosWizard::class, 'software'])->name('ddos.software');
+    Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
+    Route::get('/ddos/select-device', [DdosWizard::class, 'selectDevice'])->name('ddos.select-device');
+    Route::get('/ddos/software/{device}', [DdosWizard::class, 'software'])->name('ddos.software');
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');

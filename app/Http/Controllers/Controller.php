@@ -36,6 +36,7 @@ class Controller extends BaseController
             __('russian invasion of ukraine'),
             __('stop war'),
             __('war'),
+            __('help ukraine'),
             '2022',
         ]);
     }
