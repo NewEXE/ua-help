@@ -49,11 +49,11 @@ class ClientInfoDetector
             ],
             self::IPHONE => [
                 'icon' => '<i class="bi bi-apple"></i>',
-                'title' => __('iPhone (Apple Smartphone)'),
+                'title' => __('Apple Smartphone'),
             ],
             self::IPAD => [
                 'icon' => '<i class="bi bi-apple"></i>',
-                'title' => __('iPad (Apple Tablet)'),
+                'title' => __('Apple Tablet'),
             ],
             self::WINDOWS_PHONE => [
                 'icon' => '<i class="bi-microsoft"></i>',
@@ -141,10 +141,9 @@ class ClientInfoDetector
             $os = (new Os($userAgent))->getName();
 
             $detectedDevice = $os;
-            if (
-                $device !== Device::UNKNOWN &&
-                in_array($os, [Os::OSX, Os::UNKNOWN], true)
-            ) {
+
+            // Try assign most accurate device first
+            if ($device !== Device::UNKNOWN) {
                 $detectedDevice = $device;
             }
 
