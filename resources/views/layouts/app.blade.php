@@ -128,11 +128,11 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <p>
-                                        <i class="bi bi-github"></i>
-                                        <a href="{{ \App\Support\Helpers::getViewUrlInRepository($path) }}"
-                                           target="_blank">{{ __('Improve this page') }}</a>
-                                    </p>
+{{--                                    <p>--}}
+{{--                                        <i class="bi bi-github"></i>--}}
+{{--                                        <a href="{{ \App\Support\Helpers::getViewUrlInRepository($path) }}"--}}
+{{--                                           target="_blank">{{ __('Improve this page') }}</a>--}}
+{{--                                    </p>--}}
                                 </div>
                                 <div class="col text-center">
                                     <button class="btn btn-sm btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#social-buttons" aria-expanded="false" aria-controls="social-buttons">
