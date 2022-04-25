@@ -47,7 +47,7 @@ class DdosWizard extends Controller
             'device' => ClientInfoDetector::getDevice($userAgent),
             'onlyOneLangVersion' => $onlyOneLangVersion,
             // add debug info
-        ] + ClientInfoDetector::get($userAgent);
+        ] + ClientInfoDetector::getAllDetected($userAgent);
 
         return view(LocaleManager::getLocale().'.ddos.select-device', $viewData);
     }
@@ -70,7 +70,25 @@ class DdosWizard extends Controller
             ['ddos russians', 'ddos propaganda', 'attack aggressor sites',],
         );
 
+        $torData = [
+            'name' => 'Tor Browser',
+            'link' => 'https://www.torproject.org/ru/download/',
+        ];
+
+        // For iPhone, iPad and any other iOS device
+        // there is an Onion Browser instead of Tor
+        if (ClientInfoDetector::isApplePhone($device)) {
+            $torData = [
+                'name' => 'Onion Browser',
+                'link' => 'https://apps.apple.com/ru/app/onion-browser/id519296448',
+            ];
+        }
+
         $view = ClientInfoDetector::getViewName($device);
-        return view(LocaleManager::getLocale() . ".ddos.$view", ['path' => "ddos/$view", 'onlyOneLangVersion' => $onlyOneLangVersion]);
+        return view(LocaleManager::getLocale() . ".ddos.$view", [
+            'path' => "ddos/$view",
+            'onlyOneLangVersion' => $onlyOneLangVersion,
+            'torData' => $torData,
+        ]);
     }
 }

@@ -63,6 +63,8 @@
                 <a href="{{ route('ddos.software', ['device' => $device['name']]) }}" class="btn btn-outline-primary">Так</a>&nbsp;&nbsp;&nbsp;
                 <a href="{{ route('ddos.software', ['device' => $device['name']]) }}">Не знаю</a>&nbsp;&nbsp;
                 <a data-bs-toggle="collapse" href="#allDevices" role="button" aria-expanded="false" aria-controls="allDevices">Ні, оберу самостійно</a>
+                {{-- show debug data on click --}}
+                <span class="float-end small" onclick="document.getElementById('debug-data').classList.remove('visually-hidden')">i</span>
             </div>
         @endif
     </div>
@@ -122,6 +124,8 @@
         Device: {{ $detectedDevice }}<br />
         OS: {{ $os }}<br />
         Browser: {{ $browser }}<br />
+        Browser version: {{ $browserVersion }}<br />
         Language: {{ $language }}<br />
+        Is mobile: {{ $isMobile ? 'true' : 'false' }}<br />
     </span>
 @endsection

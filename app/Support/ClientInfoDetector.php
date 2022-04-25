@@ -96,7 +96,7 @@ class ClientInfoDetector
      */
     public static function getDevice(string $userAgent): array
     {
-        $detectedDevice = self::get($userAgent, 'detectedDevice');
+        $detectedDevice = self::getDetectedDevice($userAgent);
 
         if (isset(self::supportedDevices()[$detectedDevice])) {
             // Return detected device by user agent...
@@ -109,7 +109,7 @@ class ClientInfoDetector
 
         $device['name'] = $detectedDevice;
 
-        if((new Os($userAgent))->isMobile()) {
+        if(self::getDetectedIsMobile($userAgent)) {
             $device['icon'] = '<i class="bi bi-phone"></i>';
         } else {
             $device['icon'] = '<i class="bi bi-aspect-ratio"></i>';
@@ -120,25 +120,31 @@ class ClientInfoDetector
 
     /**
      * @param string $userAgent
-     * @param string|null $component
-     * @return array|string
+     * @return array
      * @throws \Throwable
      */
-    public static function get(string $userAgent, string $component = null): array|string
+    public static function getAllDetected(string $userAgent): array
     {
         static $components = [
-            'detectedDevice', 'userAgent', 'device', 'os', 'browser', 'language',
+            'detectedDevice',
+            'userAgent',
+            'device',
+            'os',
+            'browser',
+            'language',
+            'isMobile',
+            'browserVersion',
         ];
 
-        throw_if(
-            $component !== null && !in_array($component, $components, true),
-            'Component must be on of: ' . implode(', ', $components)
-        );
-
         static $cache = [];
-        if (!isset($cache[$userAgent])) {
+        $cacheKey = Str::slug($userAgent);
+
+        if (!isset($cache[$cacheKey])) {
             $device = (new Device($userAgent))->getName();
-            $os = (new Os($userAgent))->getName();
+
+            $osDetector = new Os($userAgent);
+            $os = $osDetector->getName();
+            $isMobile = $osDetector->isMobile();
 
             $detectedDevice = $os;
 
@@ -147,13 +153,36 @@ class ClientInfoDetector
                 $detectedDevice = $device;
             }
 
-            $browser = (new Browser($userAgent))->getName();
+            $browserDetector = new Browser($userAgent);
+            $browser = $browserDetector->getName();
+            $browserVersion = $browserDetector->getVersion();
+
             $language = (new Language())->getLanguage();
 
-            $cache[$userAgent] = compact(...$components);
+            $cache[$cacheKey] = compact(...$components);
         }
 
-        return $component ? $cache[$userAgent][$component] : $cache[$userAgent];
+        return $cache[$cacheKey];
+    }
+
+    /**
+     * @param string $userAgent
+     * @return string
+     * @throws \Throwable
+     */
+    public static function getDetectedDevice(string $userAgent): string
+    {
+        return self::getAllDetected($userAgent)['detectedDevice'];
+    }
+
+    /**
+     * @param string $userAgent
+     * @return string
+     * @throws \Throwable
+     */
+    public static function getDetectedIsMobile(string $userAgent): string
+    {
+        return self::getAllDetected($userAgent)['isMobile'];
     }
 
     /**
@@ -167,5 +196,14 @@ class ClientInfoDetector
         }
 
         return 'device-'.Str::slug($device);
+    }
+
+    /**
+     * @param string $device
+     * @return bool
+     */
+    public static function isApplePhone(string $device): bool
+    {
+        return in_array($device, [self::IPHONE, self::IPAD, self::IOS], true);
     }
 }
