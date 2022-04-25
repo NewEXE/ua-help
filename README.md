@@ -25,3 +25,13 @@ npm run prod
 php artisan view:cache
 ```
 DO NOT run route:cache because routes contains dynamic calculations (`LocaleManager::routePrefixFromRequest()` in `routes/web.php`)!!!
+
+## Update dependencies
+### PHP
+```
+composer update -W
+```
+### JS
+```
+npm audit fix
+```
