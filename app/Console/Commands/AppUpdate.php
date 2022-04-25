@@ -34,6 +34,14 @@ class AppUpdate extends Command
 
         $this->info("*** Running updates...");
 
+        if ($force) {
+            // Clear any local changes in git.
+            $process = new Process(['git', 'reset', '--hard']);
+            $process->run(function($type, $buffer) {
+                $this->info($buffer);
+            });
+        }
+
         $process = new Process(['git', 'pull']);
 
         $alreadyUpToDate = false;
