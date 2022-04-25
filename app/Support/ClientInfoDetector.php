@@ -134,6 +134,7 @@ class ClientInfoDetector
             'language',
             'isMobile',
             'browserVersion',
+            'acceptLanguage',
         ];
 
         static $cache = [];
@@ -157,7 +158,9 @@ class ClientInfoDetector
             $browser = $browserDetector->getName();
             $browserVersion = $browserDetector->getVersion();
 
-            $language = (new Language())->getLanguage();
+            $languageDetector = new Language();
+            $language = $languageDetector->getLanguage();
+            $acceptLanguage = $languageDetector->getAcceptLanguage()->getAcceptLanguageString();
 
             $cache[$cacheKey] = compact(...$components);
         }
