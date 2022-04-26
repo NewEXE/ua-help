@@ -173,7 +173,7 @@ class ClientInfoDetector
      * @return string
      * @throws \Throwable
      */
-    public static function getDetectedDevice(string $userAgent): string
+    private static function getDetectedDevice(string $userAgent): string
     {
         return self::getAllDetected($userAgent)['detectedDevice'];
     }
@@ -183,7 +183,7 @@ class ClientInfoDetector
      * @return string
      * @throws \Throwable
      */
-    public static function getDetectedIsMobile(string $userAgent): string
+    private static function getDetectedIsMobile(string $userAgent): string
     {
         return self::getAllDetected($userAgent)['isMobile'];
     }
