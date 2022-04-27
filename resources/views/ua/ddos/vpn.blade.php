@@ -23,7 +23,7 @@
     <p class="lead">Якщо ви використовуєте веб-сайти для атаки (ban-dera.com, stop-russian-propaganda.pp.ua та інші)</p>
     <p>
         <b>Найпростіший варіант</b> - це <a href="https://www.torproject.org/ru/download/" target="_blank">Tor Browser</a> (для iPhone/iPad використовуйте <a href="https://apps.apple.com/ru/app/onion-browser/id519296448" target="_blank">Onion Browser</a>).
-        Після завантаження в ньому ж відкрити вкладку з сайтом, який призводить атаку на російські сайти (<a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfoDetector::UNKNOWN]) }}">перелік цих сайтів тут</a>).
+        Після завантаження в ньому ж відкрити вкладку з сайтом, який призводить атаку на російські сайти (<a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfo\Detector::UNKNOWN]) }}">перелік цих сайтів тут</a>).
         При кожному новому входженні в браузер IP-адреса буде змінюватися. Є версія браузеру для будь-якого девайсу.
         <b>Важливо!</b> Перевірте, чи змінилася ваше місцеположення: зайдіть на <a href="https://2ip.ru" target="_blank">2ip.ru</a> заходячи з Tor Browser (чи Onion Browser).
     </p>

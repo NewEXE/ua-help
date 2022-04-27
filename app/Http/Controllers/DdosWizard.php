@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\LocaleManager;
-use App\Support\ClientInfoDetector;
+use App\Support\ClientInfo\Detector;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -44,10 +44,10 @@ class DdosWizard extends Controller
 
         $viewData = [
             'path' => 'ddos/select-device',
-            'device' => ClientInfoDetector::getDevice($userAgent),
+            'device' => Detector::getDevice($userAgent),
             'onlyOneLangVersion' => $onlyOneLangVersion,
             // add debug info
-        ] + ClientInfoDetector::getAllDetected($userAgent);
+        ] + Detector::getAllDetected($userAgent);
 
         return view(LocaleManager::getLocale().'.ddos.select-device', $viewData);
     }
@@ -61,7 +61,7 @@ class DdosWizard extends Controller
         $onlyOneLangVersion = true;
 
         $title = __('DDoS software for ');
-        $title .= $device === ClientInfoDetector::UNKNOWN ? __('any device') : $device;
+        $title .= $device === Detector::UNKNOWN ? __('any device') : $device;
 
         $this->setSeo(
             $title,
@@ -77,14 +77,14 @@ class DdosWizard extends Controller
 
         // For iPhone, iPad and any other iOS device
         // there is an Onion Browser instead of Tor
-        if (ClientInfoDetector::isApplePhone($device)) {
+        if (Detector::isApplePhone($device)) {
             $torData = [
                 'name' => 'Onion Browser',
                 'link' => 'https://apps.apple.com/ru/app/onion-browser/id519296448',
             ];
         }
 
-        $view = ClientInfoDetector::getViewName($device);
+        $view = Detector::getViewName($device);
         return view(LocaleManager::getLocale() . ".ddos.$view", [
             'path' => "ddos/$view",
             'onlyOneLangVersion' => $onlyOneLangVersion,

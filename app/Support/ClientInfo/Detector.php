@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Support;
+namespace App\Support\ClientInfo;
 
+use App\Support\Str;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Device;
 use Sinergi\BrowserDetector\Language;
 use Sinergi\BrowserDetector\Os;
 
-class ClientInfoDetector
+class Detector
 {
     public const OSX            = Os::OSX;
     public const IOS            = Os::IOS;
