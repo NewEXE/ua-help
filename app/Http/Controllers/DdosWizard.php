@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\LocaleManager;
 use App\Support\ClientInfo\Detector;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -28,7 +27,7 @@ class DdosWizard extends Controller
             !$onlyOneLangVersion
         );
 
-        return view(LocaleManager::getLocale().'.ddos.intro', ['path' => 'ddos/intro', 'onlyOneLangVersion' => $onlyOneLangVersion]);
+        return view('ua.ddos.intro', ['path' => 'ddos/intro', 'onlyOneLangVersion' => $onlyOneLangVersion]);
     }
 
     /**
@@ -49,7 +48,7 @@ class DdosWizard extends Controller
             // add debug info
         ] + Detector::getAllDetected($userAgent);
 
-        return view(LocaleManager::getLocale().'.ddos.select-device', $viewData);
+        return view('ua.ddos.select-device', $viewData);
     }
 
     /**
@@ -85,7 +84,7 @@ class DdosWizard extends Controller
         }
 
         $view = Detector::getViewName($device);
-        return view(LocaleManager::getLocale() . ".ddos.$view", [
+        return view("ua.ddos.$view", [
             'path' => "ddos/$view",
             'onlyOneLangVersion' => $onlyOneLangVersion,
             'torData' => $torData,
