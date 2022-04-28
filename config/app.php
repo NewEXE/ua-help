@@ -146,6 +146,10 @@ return [
     */
 
     'providers' => [
+        /*
+         * Important cache provider
+         */
+        \Spatie\ResponseCache\ResponseCacheServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
