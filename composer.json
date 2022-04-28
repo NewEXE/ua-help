@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-zip": "*",
         "artesaos/seotools": "^0.22.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.2",
@@ -13,9 +14,11 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "sinergi/browser-detector": "^6.1",
+        "spatie/laravel-responsecache": "^7.2",
         "stevebauman/location": "^6.3"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
