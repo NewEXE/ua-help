@@ -74,6 +74,7 @@ class AppUpdate extends Command
         });
 
         $this->call('optimize:clear');
+        $this->call('responsecache:clear');
 
         $this->prepareEnvFileForProduction();
 
