@@ -2,6 +2,7 @@
 
 namespace App\Support\ClientInfo;
 
+use App\Http\Middleware\LocaleManager;
 use App\Support\Str;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Device;
@@ -187,6 +188,23 @@ class Detector
     private static function getDetectedIsMobile(string $userAgent): string
     {
         return self::getAllDetected($userAgent)['isMobile'];
+    }
+
+    /**
+     * @param string $userAgent
+     * @return string
+     * @throws \Throwable
+     */
+    public static function getDetectedLanguage(string $userAgent): string
+    {
+        $languages = self::getAllDetected($userAgent)['acceptLanguage'];
+
+        // Try to find UA locale first
+        if (Str::contains(Str::lower($languages), LocaleManager::UA)) {
+            return LocaleManager::UA;
+        }
+
+        return self::getAllDetected($userAgent)['language'];
     }
 
     /**

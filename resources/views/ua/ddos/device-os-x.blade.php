@@ -6,7 +6,7 @@
         Все, що потрібно - просто завантажити програму та запустити її:
     </p>
     <p>
-        <a class="btn btn-outline-success" href="https://github.com/opengs/uashield/releases/latest" target="_blank"><i class="bi bi-download"></i> Інструкції по встановленню</a>
+        <a class="btn btn-outline-success" href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1/mac-os-x" target="_blank"><i class="bi bi-download"></i> Інструкції по встановленню</a>
     <ul>
         <li>
             Потрібна допомога чи інша версія? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Докладна інструкція по встановленню</a>

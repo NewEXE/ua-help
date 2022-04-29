@@ -13,9 +13,9 @@
         <div class="card-body">
             <h5 class="card-title text-center">Визначити пристрій</h5>
             <p class="card-text">
-                Для того, щоб зробити атаку найбільш ефективною, потрібно підібрати найбільш підходящий інструмент,
+                Для того, щоб зробити атаку найбільш ефективною, потрібно підібрати інструмент, що найкраще
                 сумісний з твоїм пристроєм (ноутбуком, комп'ютером, планшетом чи смартфоном).
-                Зараз ми знайдемо сумісну програму. Чи правильно ми визначили твій девайс?
+                Чи правильно ми визначили твій пристрій?
             </p>
 
         {{-- Ambigous device (OS X or iOS) --}}
@@ -32,9 +32,6 @@
                             <i class="bi bi-pc-display"></i> <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfo\Detector::OSX]) }}">комп'ютер (Mac, Mac mini, iMac)</a>
                         </li>
                     @endif
-                    <li>
-                        <i class="bi bi-phone"></i> <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfo\Detector::IPHONE]) }}">смартфон (iPhone)</a>
-                    </li>
                     <li>
                         <i class="bi bi-tablet-landscape"></i> <a href="{{ route('ddos.software', ['device' => \App\Support\ClientInfo\Detector::IPAD]) }}">планшет (iPad)</a>
                     </li>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Support\Helpers;
+use App\Support\ClientInfo\Detector;
 use App\Support\Str;
 use Closure;
 use Illuminate\Http\Request;
@@ -31,6 +31,12 @@ class LocaleManager
      */
     public function handle(Request $request, Closure $next, ...$args): Response
     {
+        if (app()->runningInConsole()) {
+            return $next($request);
+        }
+
+        $this->tryDetectLocale();
+
         $locale = self::routePrefixFromRequest();
 
         // Locale is missing in URI, try to detect country code.
@@ -51,10 +57,11 @@ class LocaleManager
 
     /**
      * @return string
+     * @throws \Throwable
      */
     private function tryDetectLocale(): string
     {
-        $clientLang = Helpers::detectClientLanguage();
+        $clientLang = Detector::getDetectedLanguage(request()->userAgent());
         if ($clientLang !== self::RU && self::isValidLocale($clientLang)) {
             return $clientLang;
         }

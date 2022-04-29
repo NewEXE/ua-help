@@ -73,8 +73,19 @@ class AppUpdate extends Command
             $this->info($buffer);
         });
 
+        $process = new Process(['composer', 'clear-cache']);
+        $process->run(function($type, $buffer) {
+            $this->info($buffer);
+        });
+
+        $process = new Process(['composer', 'dump-autoload']);
+        $process->run(function($type, $buffer) {
+            $this->info($buffer);
+        });
+
         $this->call('optimize:clear');
         $this->call('responsecache:clear');
+        $this->call('cache:clear');
 
         $this->prepareEnvFileForProduction();
 

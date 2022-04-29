@@ -9,6 +9,6 @@ class CacheProfile extends CacheAllSuccessfulGetRequests
 {
     public function useCacheNameSuffix(Request $request): string
     {
-        return Str::slug($request->userAgent());
+        return $request->userAgent();
     }
 }
