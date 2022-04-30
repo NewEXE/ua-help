@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Support\FileUpdater\Db1000nUpdater;
+use App\Support\SoftwareUpdater\Db1000n\Db1000nUpdater;
+use App\Support\SoftwareUpdater\UaCyberShield\UaCyberShieldUpdater;
 use Illuminate\Console\Command;
 
 class UpdateSoftware extends Command
@@ -19,7 +20,7 @@ class UpdateSoftware extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update DDoS software copies on the server';
 
     /**
      * Execute the console command.
@@ -28,8 +29,8 @@ class UpdateSoftware extends Command
      */
     public function handle()
     {
-        $u = new Db1000nUpdater();
-        $u->update();
+        (new Db1000nUpdater())->update();
+        (new UaCyberShieldUpdater())->update();
         return 0;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use App\Support\SoftwareUpdater\FileUpdaterException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,6 +36,10 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        $this->reportable(function (FileUpdaterException $e) {
+            Log::channel('software_update')->error($e);
+        })->stop();
+
         $this->reportable(function (Throwable $e) {
             //
         });

@@ -60,6 +60,11 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'software_update' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/software-update.log'),
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
