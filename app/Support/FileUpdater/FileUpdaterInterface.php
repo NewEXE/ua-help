@@ -4,5 +4,5 @@ namespace App\Support\FileUpdater;
 
 interface FileUpdaterInterface
 {
-    public function update(): void;
+    public function update(): bool;
 }

@@ -4,20 +4,24 @@ namespace App\Support\FileUpdater;
 
 class Db1000nUpdater implements FileUpdaterInterface
 {
-    public function update(): void
+    private string $repoLink = 'https://github.com/Arriven/db1000n';
+    private string $fileName = 'db1000n_windows_amd64.zip';
+    private string $savedFilePath = 'files/db1000n.exe';
+
+    public function __construct()
     {
-        $crawler = new GithubLatestRealiseCrawler(
-            'https://github.com/Arriven/db1000n',
-            'db1000n_windows_amd64.zip'
-        );
+        $this->savedFilePath = public_path($this->savedFilePath);
+    }
+
+    /**
+     * @return bool
+     * @throws FileUpdaterException
+     */
+    public function update(): bool
+    {
+        $crawler = new GithubLatestRealiseCrawler($this->repoLink, $this->fileName);
         $link = $crawler->getDownloadLink();
 
-        $zip = new \ZipArchive();
-
-        if ($zip->open($link) !== true) {
-            exit("Невозможно открыть <$link>\n");
-        }
-
-
+        return (new Db1000nSaver($link, $this->savedFilePath))->save();
     }
 }

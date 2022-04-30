@@ -22,15 +22,35 @@ class GithubLatestRealiseCrawler
     }
 
     /**
-     * @throws \JsonException
+     * @return string
+     * @throws FileUpdaterException
      */
-    public function getDownloadLink(): ?string
+    public function getDownloadLink(): string
     {
         $response = Http::get($this->latestRealiseApiLink);
-        $json = json_decode($response->body(), true, 512, JSON_THROW_ON_ERROR);
+
+        if (!$response->ok()) {
+            throw new FileUpdaterException(
+                sprintf('Response from "%s" is not OK', $this->latestRealiseApiLink)
+            );
+        }
+
+        try {
+            $json = json_decode($response->body(), true, 512, JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            throw new FileUpdaterException('Response has invalid JSON');
+        }
+
+        if (!is_array($json['assets'] ?? null)) {
+            throw new FileUpdaterException('Unsupported JSON format');
+        }
 
         foreach ($json['assets'] as $item) {
-            $downloadUrl = $item['browser_download_url'];
+            $downloadUrl = $item['browser_download_url'] ?? null;
+            if (!is_string($downloadUrl)) {
+                throw new FileUpdaterException('Unsupported JSON format');
+            }
+
             if (!Str::endsWith($downloadUrl, $this->fileName)) {
                 continue;
             }
@@ -38,6 +58,6 @@ class GithubLatestRealiseCrawler
             return $downloadUrl;
         }
 
-        return null;
+        throw new FileUpdaterException('Link not found');
     }
 }
