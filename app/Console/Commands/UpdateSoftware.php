@@ -31,6 +31,7 @@ class UpdateSoftware extends Command
     {
         (new Db1000nUpdater())->update();
         (new UaCyberShieldUpdater())->update();
+        $this->info('Update software done.');
         return 0;
     }
 }
