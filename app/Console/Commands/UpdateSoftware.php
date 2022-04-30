@@ -29,9 +29,10 @@ class UpdateSoftware extends Command
      */
     public function handle()
     {
+        $this->info('Start update software...');
         (new Db1000nUpdater())->update();
         (new UaCyberShieldUpdater())->update();
-        $this->info('Update software done.');
+        $this->info('...done');
         return 0;
     }
 }
