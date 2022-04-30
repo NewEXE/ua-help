@@ -36,10 +36,7 @@ class AppUpdate extends Command
 
         if ($force) {
             // Clear any local changes in git.
-            $process = new Process(['git', 'reset', '--hard']);
-            $process->run(function($type, $buffer) {
-                $this->info($buffer);
-            });
+            $this->call(['git', 'reset', '--hard']);
         }
 
         $process = new Process(['git', 'pull']);
@@ -68,25 +65,15 @@ class AppUpdate extends Command
             }
         }
 
-        $process = new Process(['composer', 'install', '--classmap-authoritative', '--no-dev']);
-        $process->run(function($type, $buffer) {
-            $this->info($buffer);
-        });
-
-        $process = new Process(['composer', 'clear-cache']);
-        $process->run(function($type, $buffer) {
-            $this->info($buffer);
-        });
-
-        $process = new Process(['composer', 'dump-autoload']);
-        $process->run(function($type, $buffer) {
-            $this->info($buffer);
-        });
+        $this->call(['composer', 'clear-cache']);
+        $this->call(['composer', 'install', '--classmap-authoritative', '--no-dev']);
+        $this->call(['composer', 'dump-autoload']);
 
         $this->call('optimize:clear');
         $this->call('responsecache:clear');
         $this->call('cache:clear');
 
+        // Run before config caching
         $this->prepareEnvFileForProduction();
 
         $this->call('config:cache');
@@ -96,6 +83,28 @@ class AppUpdate extends Command
         $this->info('*** All done.');
 
         return 0;
+    }
+
+    /**
+     * @param array|string|\Symfony\Component\Console\Command\Command $command
+     * @param array $arguments
+     * @return int
+     */
+    public function call($command, array $arguments = [])
+    {
+        // It's non-Artisan command
+        if (is_array($command)) {
+            $process = new Process($command);
+
+            $process->run(function($type, $buffer) {
+                $this->info($buffer);
+            });
+
+            return $process->getExitCode();
+        }
+
+        // It's Artisan command
+        return parent::call($command, $arguments);
     }
 
     /**
