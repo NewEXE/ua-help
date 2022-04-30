@@ -51,7 +51,7 @@
             Тоді атака буде до 10 разів ефективнішою.
             Як налаштувати VPN, <a href="{{ route('pages.vpn') }}" target="_blank">дивися тут</a>.
             Також дивися більше способів на <a href="https://help-ukraine-win.com.ua/" target="_blank">офіційному сайті програми</a>
-            та в нашому <a href="{{ route('pages.ddos') }}" target="_blank">розширенному гайді по DDoS</a>.
+            та в нашому <a href="{{ route('pages.ddos') }}" target="_blank">розширенному гайду по DDoS</a>.
         </p>
     </p>
 
