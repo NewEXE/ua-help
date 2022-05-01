@@ -60,7 +60,7 @@
         В пару до попередньої програми я використовую ще цю - також достатньо просто завантажити та запустити:
     </p>
     <p>
-        <a class="btn btn-outline-success" href="/storage/software/db1000n.exe"><i class="bi bi-download"></i> Завантажити</a>
+        <a class="btn btn-outline-success" href="/storage/software/db1000n{{$device === \App\Support\ClientInfo\Detector::WINDOWS_32 ? '-x86':'' }}.exe"><i class="bi bi-download"></i> Завантажити</a>
     <ul>
         <li>
             <b class="text-danger">Увага!</b>

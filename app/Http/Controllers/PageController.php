@@ -107,14 +107,17 @@ class PageController extends Controller
      */
     public function vpn(): View
     {
+        $onlyOneLangVersion = true;
+
         $this->setSeo(
             'How to install and use VPN',
             'How to install and use VPN? ' .
             'Best Free and Paid VPNs for support Ukraine, ' .
             'VPN with Russian country',
             ['vpn', 'free vpn', 'best vpn', 'russian vpn', 'belarus vpn'],
+            !$onlyOneLangVersion
         );
 
-        return view(LocaleManager::getLocale().'.ddos/vpn', ['path' => 'ddos/vpn']);
+        return view('ua.ddos/vpn', ['path' => 'ddos/vpn']);
     }
 }

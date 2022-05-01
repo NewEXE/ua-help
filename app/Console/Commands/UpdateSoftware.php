@@ -33,6 +33,7 @@ class UpdateSoftware extends Command
     {
         $this->info('Start update software...');
 
+        (new Db1000n\Win32Updater())->update();
         (new Db1000n\Win64Updater())->update();
         (new UaCyberShield\WinUpdater())->update();
 

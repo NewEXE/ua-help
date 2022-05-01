@@ -48,6 +48,19 @@ class FileSaver implements FileSaverInterface
     }
 
     /**
+     * @param string|null $path
+     * @return string
+     */
+    protected function cacheDirPath(string $path = null): string
+    {
+        if ($path === null) {
+            return $this->cacheDir;
+        }
+
+        return $this->cacheDir . ltrim($path, '/\\');
+    }
+
+    /**
      * @return bool
      */
     public function save(): bool

@@ -4,7 +4,7 @@ namespace App\Support\SoftwareUpdater\Db1000n;
 
 use App\Support\SoftwareUpdater\FileUpdater;
 
-class Win64Updater extends FileUpdater
+class Win32Updater extends FileUpdater
 {
     protected function getRepoLink(): string
     {
@@ -13,12 +13,12 @@ class Win64Updater extends FileUpdater
 
     protected function getRealizeFilename(): string
     {
-        return 'db1000n_windows_amd64.zip';
+        return 'db1000n_windows_386.zip';
     }
 
     protected function getSavedFilePath(): string
     {
-        return storage_path('app/public/software/db1000n.exe');
+        return storage_path('app/public/software/db1000n-x86.exe');
     }
 
     protected function getSaverClass(): string

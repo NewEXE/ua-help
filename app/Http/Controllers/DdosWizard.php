@@ -88,6 +88,7 @@ class DdosWizard extends Controller
             'path' => "ddos/$view",
             'onlyOneLangVersion' => $onlyOneLangVersion,
             'torData' => $torData,
+            'device' => $device
         ]);
     }
 }

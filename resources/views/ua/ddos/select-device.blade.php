@@ -122,6 +122,7 @@
         User-agent: {{ $userAgent }}<br />
         Device: {{ $detectedDevice }}<br />
         OS: {{ $os }}<br />
+        OS version: {{ $osVersion }}<br />
         Browser: {{ $browser }}<br />
         Browser version: {{ $browserVersion }}<br />
         Language: {{ $language }}<br />

@@ -18,6 +18,7 @@ class Detector
     public const ANDROID        = Os::ANDROID;
     public const WINDOWS_PHONE  = Device::WINDOWS_PHONE;
     public const WINDOWS        = Os::WINDOWS;
+    public const WINDOWS_32     = Os::WINDOWS.' x86';
     public const LINUX          = Os::LINUX;
     public const CHROME_OS      = Os::CHROME_OS;
     public const UNKNOWN        = Os::UNKNOWN;
@@ -68,6 +69,10 @@ class Detector
             self::WINDOWS => [
                 'icon' => '<i class="bi bi-windows"></i>',
                 'title' => __('Regular Notebook or PC on Windows'),
+            ],
+            self::WINDOWS_32 => [
+                'icon' => '<i class="bi bi-windows"></i>',
+                'title' => __('Old Notebook or PC on Windows'),
             ],
             self::LINUX => [
                 'icon' => '🐧',
@@ -132,6 +137,7 @@ class Detector
             'userAgent',
             'device',
             'os',
+            'osVersion',
             'browser',
             'language',
             'isMobile',
@@ -147,7 +153,12 @@ class Detector
 
             $osDetector = new Os($userAgent);
             $os = $osDetector->getName();
-            $isMobile = $osDetector->isMobile();
+            if ($os === self::WINDOWS && self::isWin32($userAgent)) {
+                $os = self::WINDOWS_32;
+            }
+
+            $osVersion = $osDetector->getVersion();
+            $isMobile = $osDetector->getIsMobile();
 
             $detectedDevice = $os;
 
@@ -213,6 +224,10 @@ class Detector
      */
     public static function getViewName(string $device): string
     {
+        if ($device === self::WINDOWS_32) {
+            $device = self::WINDOWS;
+        }
+
         if (!in_array($device, self::SOFTWARE_TYPES, true)) {
             $device = self::UNKNOWN;
         }
@@ -227,5 +242,10 @@ class Detector
     public static function isApplePhone(string $device): bool
     {
         return in_array($device, [self::IPHONE, self::IPAD, self::IOS], true);
+    }
+
+    private static function isWin32(string $userAgent): bool
+    {
+        return !in_array(Str::lower($userAgent), ['win64', 'wow64'], true);
     }
 }
