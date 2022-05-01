@@ -168,6 +168,8 @@ class Str extends \Illuminate\Support\Str
     }
 
     /**
+     * Convert given string to safe filename (and keep string case).
+     *
      * @param string $string
      * @return string
      */

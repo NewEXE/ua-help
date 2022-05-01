@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use App\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use Symfony\Component\Process\Process;
-use Illuminate\Filesystem\Filesystem;
 
 class AppUpdate extends Command
 {
@@ -56,12 +56,13 @@ class AppUpdate extends Command
 
         if ($force) {
             // Remove Composer's dir.
-            $filesystem = new Filesystem();
-
-            $vendorDirPath = base_path() . '/vendor';
-            if ($filesystem->isDirectory($vendorDirPath)) {
-                $filesystem->deleteDirectory($vendorDirPath);
-                $this->info('"vendor" directory is removed.');
+            $vendorDirPath = base_path('vendor');
+            if (File::isDirectory($vendorDirPath)) {
+                if (File::deleteDirectory($vendorDirPath)) {
+                    $this->info('"vendor" directory is removed.');
+                } else {
+                    $this->error('Error removing "vendor" directory!');
+                }
             }
         }
 

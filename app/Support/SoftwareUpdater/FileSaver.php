@@ -26,7 +26,7 @@ class FileSaver implements FileSaverInterface
      */
     private function createFromPathFile(): void
     {
-        $this->fromPath = $this->cacheDir . Str::toFilename($this->fromLink);
+        $this->fromPath = $this->cacheDirPath(Str::toFilename($this->fromLink));
 
         $response = Http::get($this->fromLink);
 
