@@ -15,12 +15,16 @@ cp .env.example .env
 ```shell
 php artisan key:generate
 ```
-6) Run NPM build:
+6) Link your public storage folder:
+```shell
+php artisan storage:link
+```
+7) Run NPM build:
 ```shell
 npm install
 npm run prod
 ```
-7) Make production-optimize things:
+8) Make production-optimize things:
 ```
 php artisan view:cache
 ```

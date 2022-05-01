@@ -6,16 +6,18 @@ use App\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
 
-class FileSaver
+class FileSaver implements FileSaverInterface
 {
     protected string $fromLink;
     protected string $fromPath;
     protected string $toPath;
+    private string $cacheDir;
 
     public function __construct(string $fromLink, string $toPath)
     {
         $this->fromLink = $fromLink;
         $this->toPath = $toPath;
+        $this->cacheDir = Str::finish(storage_path('app/software-saver-cache'), '/');
         $this->createFromPathFile();
     }
 
@@ -24,7 +26,8 @@ class FileSaver
      */
     private function createFromPathFile(): void
     {
-        $this->fromPath = __DIR__ . '/cache/' . Str::slug($this->fromLink);
+        $this->fromPath = $this->cacheDir . Str::toFilename($this->fromLink);
+
         $response = Http::get($this->fromLink);
 
         if (!$response->successful()) {

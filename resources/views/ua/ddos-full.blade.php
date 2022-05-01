@@ -41,7 +41,7 @@
             </p>
             <p>
                 <ul>
-                    <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Завантажити для Windows</a> (остання версія)</li>
+                    <li><i class="bi bi-download"></i> <a href="/storage/software/UA-Cyber-SHIELD-Setup.exe">Завантажити для Windows</a> (остання версія)</li>
                     <li>
                         Потрібна допомога чи інша версія? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Докладна інструкція по встановленню</a>
                     </li>
@@ -113,7 +113,7 @@
                         <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Інструкції по встановленню (2)</a></li>
                         <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
                         <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
-                        <li><i class="bi bi-download"></i> <a href="/files/db1000n.exe" target="_blank">Пряме завантаження для Windows x64</a> (остання збережена версія)</li>
+                        <li><i class="bi bi-download"></i> <a href="/storage/software/db1000n.exe" target="_blank">Пряме завантаження для Windows x64</a> (остання збережена версія)</li>
                     </ul>
                     </p>
                 </li>
@@ -134,7 +134,7 @@
                         </li>
                         <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
                         <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
-                        <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Пряме завантаження для Windows</a> (остання збережена версія)</li>
+                        <li><i class="bi bi-download"></i> <a href="/storage/software/UA-Cyber-SHIELD-Setup.exe">Пряме завантаження для Windows</a> (остання збережена версія)</li>
                     </ul>
                     </p>
                 </li>

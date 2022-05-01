@@ -39,7 +39,7 @@
             </p>
             <p>
             <ul>
-                <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Установить для Windows</a> (последняя сохранённая версия)</li>
+                <li><i class="bi bi-download"></i> <a href="/storage/software/UA-Cyber-SHIELD-Setup.exe">Установить для Windows</a> (последняя сохранённая версия)</li>
                 <li><a target="_blank" href="https://help-ukraine-win.com.ua/help-ukraine-win-en/the-easiest">Инструкция пр установке</a></li>
                 <li><a href="https://t.me/uashield" target="_blank">Telegram-канал</a></li>
                 <li><a href="https://github.com/opengs/uashield/releases/latest" target="_blank">Github releases</a></li>

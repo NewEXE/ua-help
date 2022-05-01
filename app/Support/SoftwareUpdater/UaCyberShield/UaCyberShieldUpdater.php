@@ -2,34 +2,22 @@
 
 namespace App\Support\SoftwareUpdater\UaCyberShield;
 
-use App\Support\SoftwareUpdater\FileUpdaterException;
-use App\Support\SoftwareUpdater\FileUpdaterInterface;
-use App\Support\SoftwareUpdater\GithubLatestRealiseCrawler;
+use App\Support\SoftwareUpdater\FileUpdater;
 
-class UaCyberShieldUpdater implements FileUpdaterInterface
+class UaCyberShieldUpdater extends FileUpdater
 {
-    private string $repoLink = 'https://github.com/opengs/uashield';
-    private string $fileName = 'UA-Cyber-SHIELD-Setup-*.exe';
-    private string $savedFilePath = 'files/UA-Cyber-SHIELD-Setup.exe';
-
-    public function __construct()
+    protected function getRepoLink(): string
     {
-        $this->savedFilePath = public_path($this->savedFilePath);
+        return 'https://github.com/opengs/uashield';
     }
 
-    /**
-     * @return bool
-     * @throws FileUpdaterException
-     */
-    public function update(): bool
+    protected function getRealizeFilename(): string
     {
-        try {
-            $crawler = new GithubLatestRealiseCrawler($this->repoLink, $this->fileName);
-            $link = $crawler->getDownloadLink();
+        return 'UA-Cyber-SHIELD-Setup-*.exe';
+    }
 
-            return (new UaCyberShieldSaver($link, $this->savedFilePath))->save();
-        } catch (\Throwable $e) {
-            throw FileUpdaterException::createFrom($e);
-        }
+    protected function getSavedFilePath(): string
+    {
+        return storage_path('app/public/software/UA-Cyber-SHIELD-Setup.exe');
     }
 }

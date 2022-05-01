@@ -5,7 +5,7 @@ namespace App\Support\SoftwareUpdater;
 use App\Support\Str;
 use Illuminate\Support\Facades\Http;
 
-class GithubLatestRealiseCrawler
+class GithubLatestRealiseCrawler implements CrawlerInterface
 {
     private string $latestRealiseApiLink;
     private string $fileName;

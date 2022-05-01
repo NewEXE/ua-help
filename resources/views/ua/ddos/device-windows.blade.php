@@ -6,7 +6,7 @@
         Все, що потрібно - просто завантажити програму та запустити її:
     </p>
     <p>
-        <a class="btn btn-outline-success" href="/files/UA-Cyber-SHIELD-Setup.exe"><i class="bi bi-download"></i> Завантажити</a>
+        <a class="btn btn-outline-success" href="/storage/software/UA-Cyber-SHIELD-Setup.exe"><i class="bi bi-download"></i> Завантажити</a>
         <ul>
             <li>
                 Потрібна допомога чи інша версія? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Докладна інструкція по встановленню</a>
@@ -60,7 +60,7 @@
         В пару до попередньої програми я використовую ще цю - також достатньо просто завантажити та запустити:
     </p>
     <p>
-        <a class="btn btn-outline-success" href="/files/db1000n.exe"><i class="bi bi-download"></i> Завантажити</a>
+        <a class="btn btn-outline-success" href="/storage/software/db1000n.exe"><i class="bi bi-download"></i> Завантажити</a>
     <ul>
         <li>
             <b class="text-danger">Увага!</b>

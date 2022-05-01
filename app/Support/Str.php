@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use voku\helper\ASCII;
+
 class Str extends \Illuminate\Support\Str
 {
     /**
@@ -163,5 +165,14 @@ class Str extends \Illuminate\Support\Str
         $new_url = $url;
 
         return $parsed_string;
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    public static function toFilename(string $string): string
+    {
+        return ASCII::to_filename(str_replace(['/', '\\', '_'], '-', $string));
     }
 }

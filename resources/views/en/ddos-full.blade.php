@@ -42,7 +42,7 @@
             </p>
             <p>
                 <ul>
-                    <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Download for Windows</a> (latest version)</li>
+                    <li><i class="bi bi-download"></i> <a href="/storage/software/UA-Cyber-SHIELD-Setup.exe">Download for Windows</a> (latest version)</li>
                     <li>
                         Need help or other platform version? <a href="https://help-ukraine-win.com.ua/help-ukraine-win-ua/1" target="_blank">Full installation manual</a>
                     </li>
@@ -118,7 +118,7 @@
                         <li><a href="https://telegra.ph/Death-by-1000-needles-03-17" target="_blank">Installation manual (2)</a></li>
                         <li><a href="https://t.me/ddos_separ" target="_blank">Телеграм-канал</a></li>
                         <li><a href="https://github.com/Arriven/db1000n/releases/latest" target="_blank">Github releases</a></li>
-                        <li><i class="bi bi-download"></i> <a href="/files/db1000n.exe" target="_blank">Direct download for Windows x64</a> (last saved version)</li>
+                        <li><i class="bi bi-download"></i> <a href="/storage/software/db1000n.exe" target="_blank">Direct download for Windows x64</a> (last saved version)</li>
                     </ul>
                     </p>
                 </li>
@@ -140,7 +140,7 @@
                         </li>
                         <li><a href="https://github.com/opengs/uashield/" target="_blank">Github</a></li>
                         <li><a href="https://gitlab.com/Hamsteroni/uashield" target="_blank">Gitlab</a></li>
-                        <li><i class="bi bi-download"></i> <a href="/files/UA-Cyber-SHIELD-Setup.exe">Direct download for Windows</a> (last saved version)</li>
+                        <li><i class="bi bi-download"></i> <a href="/storage/software/UA-Cyber-SHIELD-Setup.exe">Direct download for Windows</a> (last saved version)</li>
                     </ul>
                     </p>
                 </li>
