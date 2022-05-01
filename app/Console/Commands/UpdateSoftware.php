@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Support\SoftwareUpdater\Db1000n\Db1000nUpdater;
-use App\Support\SoftwareUpdater\UaCyberShield\UaCyberShieldUpdater;
+use App\Support\SoftwareUpdater\FileUpdaterException;
+use App\Support\SoftwareUpdater\UaCyberShield;
+use App\Support\SoftwareUpdater\Db1000n;
 use Illuminate\Console\Command;
 
 class UpdateSoftware extends Command
@@ -26,13 +27,14 @@ class UpdateSoftware extends Command
      * Execute the console command.
      *
      * @return int
+     * @throws FileUpdaterException
      */
     public function handle()
     {
         $this->info('Start update software...');
 
-        (new Db1000nUpdater())->update();
-        (new UaCyberShieldUpdater())->update();
+        (new Db1000n\Win64Updater())->update();
+        (new UaCyberShield\WinUpdater())->update();
 
         $this->info('...done');
         return 0;

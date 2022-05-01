@@ -4,7 +4,7 @@ namespace App\Support\SoftwareUpdater;
 
 class FileUpdaterException extends \RuntimeException
 {
-    public static function createFrom(\Throwable $throwable)
+    public static function createFrom(\Throwable $throwable): static
     {
         if ($throwable instanceof static) {
             return $throwable;

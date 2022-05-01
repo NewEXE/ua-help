@@ -5,7 +5,7 @@ use App\Support\SoftwareUpdater\FileSaver;
 use App\Support\SoftwareUpdater\FileUpdaterException;
 use Illuminate\Support\Facades\File;
 
-class Db1000nSaver extends FileSaver
+class Win64Saver extends FileSaver
 {
     protected string $filenameInZip = 'db1000n.exe';
 

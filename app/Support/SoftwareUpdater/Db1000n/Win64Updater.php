@@ -4,7 +4,7 @@ namespace App\Support\SoftwareUpdater\Db1000n;
 
 use App\Support\SoftwareUpdater\FileUpdater;
 
-class Db1000nUpdater extends FileUpdater
+class Win64Updater extends FileUpdater
 {
     protected function getRepoLink(): string
     {
@@ -23,6 +23,6 @@ class Db1000nUpdater extends FileUpdater
 
     protected function getSaverClass(): string
     {
-        return Db1000nSaver::class;
+        return Win64Saver::class;
     }
 }

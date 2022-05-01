@@ -38,15 +38,11 @@ abstract class FileUpdater
     /**
      * @return bool
      * @throws FileUpdaterException
-     * @throws \Throwable
      */
     public function update(): bool
     {
         $crawlerClass = $this->getCrawlerClass();
-        throw_if(!$crawlerClass instanceof CrawlerInterface);
-
         $saverClass = $this->getSaverClass();
-        throw_if(!$saverClass instanceof FileSaverInterface);
 
         try {
             $crawler = new $crawlerClass($this->getRepoLink(), $this->getRealizeFilename());

@@ -4,7 +4,7 @@ namespace App\Support\SoftwareUpdater\UaCyberShield;
 
 use App\Support\SoftwareUpdater\FileUpdater;
 
-class UaCyberShieldUpdater extends FileUpdater
+class WinUpdater extends FileUpdater
 {
     protected function getRepoLink(): string
     {
