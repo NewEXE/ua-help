@@ -36,8 +36,6 @@ class LocaleManager
             return $next($request);
         }
 
-        $this->tryDetectLocale();
-
         $locale = self::routePrefixFromRequest();
 
         // Locale is missing in URI, try to detect country code.
