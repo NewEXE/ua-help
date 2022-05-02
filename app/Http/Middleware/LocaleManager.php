@@ -19,6 +19,8 @@ class LocaleManager
     public const EN = 'en';
 
     public const DEFAULT_LOCALE = self::UA;
+
+    /** @var int Segment index in request */
     private const SEGMENT_INDEX = 1;
 
     /**
@@ -26,10 +28,9 @@ class LocaleManager
      *
      * @param Request $request
      * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param mixed ...$args
      * @return Response
      */
-    public function handle(Request $request, Closure $next, ...$args): Response
+    public function handle(Request $request, Closure $next): Response
     {
         if (app()->runningInConsole()) {
             return $next($request);
@@ -57,11 +58,10 @@ class LocaleManager
 
     /**
      * @return string
-     * @throws \Throwable
      */
     private function tryDetectLocale(): string
     {
-        $clientLang = Detector::getDetectedLanguage(request()->userAgent());
+        $clientLang = Detector::getDetectedLanguage(request()->userAgent() ?? '');
         if ($clientLang !== self::RU && self::isValidLocale($clientLang)) {
             return $clientLang;
         }

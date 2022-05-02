@@ -33,13 +33,12 @@ class DdosWizard extends Controller
     /**
      * @param Request $request
      * @return View
-     * @throws \Throwable
      */
     public function selectDevice(Request $request): View
     {
         $onlyOneLangVersion = true;
 
-        $userAgent = $request->userAgent();
+        $userAgent = $request->userAgent() ?? '';
 
         $viewData = [
             'path' => 'ddos/select-device',

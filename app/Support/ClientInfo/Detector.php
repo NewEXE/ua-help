@@ -99,11 +99,10 @@ class Detector
     /**
      * @param string $userAgent
      * @return array
-     * @throws \Throwable
      */
     public static function getDevice(string $userAgent): array
     {
-        $detectedDevice = self::getDetectedDevice($userAgent);
+        $detectedDevice = self::getDetectedDeviceName($userAgent);
 
         if (isset(self::supportedDevices()[$detectedDevice])) {
             // Return detected device by user agent...
@@ -128,7 +127,6 @@ class Detector
     /**
      * @param string $userAgent
      * @return array
-     * @throws \Throwable
      */
     public static function getAllDetected(string $userAgent): array
     {
@@ -147,6 +145,10 @@ class Detector
 
         static $cache = [];
         $cacheKey = Str::slug($userAgent);
+        // Trap for empty user agents
+        if ($cacheKey === '') {
+            $cacheKey = 'emptyUserAgent';
+        }
 
         if (!isset($cache[$cacheKey])) {
             $device = (new Device($userAgent))->getName();
@@ -172,8 +174,14 @@ class Detector
             $browserVersion = $browserDetector->getVersion();
 
             $languageDetector = new Language();
-            $language = $languageDetector->getLanguage();
             $acceptLanguage = $languageDetector->getAcceptLanguage()->getAcceptLanguageString();
+
+            // Try to find UA locale first
+            if (Str::contains(Str::lower($acceptLanguage), ['ua', 'uk'])) {
+                $language = LocaleManager::UA;
+            } else {
+                $language = $languageDetector->getLanguage();
+            }
 
             $cache[$cacheKey] = compact(...$components);
         }
@@ -184,9 +192,8 @@ class Detector
     /**
      * @param string $userAgent
      * @return string
-     * @throws \Throwable
      */
-    private static function getDetectedDevice(string $userAgent): string
+    public static function getDetectedDeviceName(string $userAgent): string
     {
         return self::getAllDetected($userAgent)['detectedDevice'];
     }
@@ -194,7 +201,6 @@ class Detector
     /**
      * @param string $userAgent
      * @return string
-     * @throws \Throwable
      */
     private static function getDetectedIsMobile(string $userAgent): string
     {
@@ -204,17 +210,9 @@ class Detector
     /**
      * @param string $userAgent
      * @return string
-     * @throws \Throwable
      */
     public static function getDetectedLanguage(string $userAgent): string
     {
-        $languages = self::getAllDetected($userAgent)['acceptLanguage'];
-
-        // Try to find UA locale first
-        if (Str::contains(Str::lower($languages), LocaleManager::UA)) {
-            return LocaleManager::UA;
-        }
-
         return self::getAllDetected($userAgent)['language'];
     }
 
