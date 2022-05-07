@@ -60,6 +60,8 @@ class UpdateAcfInternationalBribetakers extends Command
      */
     public function handle(): int
     {
+        $this->info('Start update files from "List of bribetakers and warmongers"...');
+
         $res = Http::get($this->url);
 
         if (!$res->successful()) {
@@ -120,9 +122,12 @@ class UpdateAcfInternationalBribetakers extends Command
                 ;
                 $fileName = Str::toFilename($fileName);
 
-                if (File::put($this->saveDir.'/'.$fileName, $res->body())) {
-                    $atLeastOneSaved = true;
+                if (!File::put($this->saveDir.'/'.$fileName, $res->body())) {
+                    continue;
                 }
+
+                $atLeastOneSaved = true;
+                $this->info('Saved: ' . $fileName);
             }
         }
 
@@ -130,6 +135,7 @@ class UpdateAcfInternationalBribetakers extends Command
             return 6;
         }
 
+        $this->info('...done');
         return 0;
     }
 }
