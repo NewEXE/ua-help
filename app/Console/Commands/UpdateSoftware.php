@@ -21,7 +21,7 @@ class UpdateSoftware extends Command
      *
      * @var string
      */
-    protected $description = 'Update DDoS software copies on the server';
+    protected $description = 'Update DDoS software copies on the public storage';
 
     /**
      * Execute the console command.
@@ -43,6 +43,7 @@ class UpdateSoftware extends Command
         $this->info('UA Cyber SHIELD updated');
 
         $this->info('...done');
+
         return 0;
     }
 }

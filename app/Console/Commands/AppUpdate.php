@@ -14,7 +14,7 @@ class AppUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'app:update {--force}';
+    protected $signature = 'update:app {--force}';
 
     /**
      * The console command description.

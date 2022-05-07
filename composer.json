@@ -16,7 +16,7 @@
         "sinergi/browser-detector": "^6.1",
         "spatie/laravel-responsecache": "^7.2",
         "stevebauman/location": "^6.3",
-        "ext-http": "*"
+        "ext-dom": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
