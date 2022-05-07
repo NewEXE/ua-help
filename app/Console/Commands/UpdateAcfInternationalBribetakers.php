@@ -117,7 +117,7 @@ class UpdateAcfInternationalBribetakers extends Command
                     $categoryName.$this->sep.
                     $fileName.$this->sep.
                     $filePersonsCount.$this->sep.
-                    now()->format('Y-m-d H').
+                    now()->toDateString().
                     ".$fileExt"
                 ;
                 $fileName = Str::toFilename($fileName);
