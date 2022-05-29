@@ -244,6 +244,6 @@ class Detector
 
     private static function isWin32(string $userAgent): bool
     {
-        return !in_array(Str::lower($userAgent), ['win64', 'wow64'], true);
+        return !Str::contains($userAgent, ['win64', 'wow64'], true);
     }
 }
