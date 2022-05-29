@@ -38,7 +38,7 @@ class GithubLatestRealiseCrawler implements CrawlerInterface
         try {
             $json = json_decode($response->body(), true, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            throw new FileUpdaterException('Response has invalid JSON');
+            throw new FileUpdaterException('Response has invalid JSON: ' . $e->getMessage());
         }
 
         if (!is_array($json['assets'] ?? null)) {
