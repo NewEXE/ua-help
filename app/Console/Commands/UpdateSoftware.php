@@ -39,8 +39,8 @@ class UpdateSoftware extends Command
         (new Db1000n\Win32Updater())->update();
         $this->info('db1000n x32 updated');
 
-        //(new UaCyberShield\WinUpdater())->update();
-        //$this->info('UA Cyber SHIELD updated');
+        (new UaCyberShield\WinUpdater())->update();
+        $this->info('UA Cyber SHIELD updated');
 
         $this->info('...done');
 
