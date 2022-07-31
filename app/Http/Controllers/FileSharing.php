@@ -7,6 +7,7 @@ use App\Support\Str;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class FileSharing extends Controller
 {
@@ -46,11 +47,7 @@ class FileSharing extends Controller
 
         abort_if(File::whereName($fileName)->exists(), 400, 'File is already uploaded.');
 
-        $filePath = $file->storeAs(
-            'file-sharing',
-            $fileName
-        );
-        $filePath = "app/$filePath";
+        $filePath = Storage::putFileAs('file-sharing', $file, $fileName);
 
         do {
             $slug = Str::lower(Str::random(3));
@@ -72,6 +69,6 @@ class FileSharing extends Controller
         /** @var File $file */
         $file = File::where('slug', $fileSlug)->firstOrFail(['path', 'name']);
 
-        return response()->download(storage_path($file->path), $file->name);
+        return Storage::download($file->path, $file->name);
     }
 }
