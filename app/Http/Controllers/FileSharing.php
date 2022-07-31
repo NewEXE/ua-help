@@ -10,6 +10,12 @@ use Illuminate\Http\UploadedFile;
 
 class FileSharing extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('doNotCacheResponse');
+        parent::__construct();
+    }
+
     private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
 
     /**

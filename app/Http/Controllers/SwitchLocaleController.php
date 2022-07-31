@@ -7,6 +7,12 @@ use Illuminate\Http\RedirectResponse;
 
 class SwitchLocaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('doNotCacheResponse');
+        parent::__construct();
+    }
+
     /**
      * Switch application locale.
      *
