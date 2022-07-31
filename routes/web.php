@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DdosWizard;
+use App\Http\Controllers\FileSharing;
 use App\Http\Controllers\SwitchLocaleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ViewFileController;
@@ -37,3 +38,8 @@ Route::group([
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');
+
+/* File Sharing  */
+Route::get('/f', [FileSharing::class, 'index'])->name('file-sharing.index');
+Route::post('/f/upload', [FileSharing::class, 'upload'])->name('file-sharing.upload');
+Route::get('/f/{fileSlug}', [FileSharing::class, 'download'])->name('file-sharing.download');
