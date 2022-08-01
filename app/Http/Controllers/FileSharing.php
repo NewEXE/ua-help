@@ -72,7 +72,7 @@ class FileSharing extends Controller
         /** @var File $file */
         $file = File::where('slug', $fileSlug)->firstOrFail(['path', 'name']);
 
-        header('Content-Type: application/octet-stream');
+        header('Content-Type: application/x-mobipocket-ebook');
         header(sprintf('Content-Disposition: attachment; filename="%s"', $file->name));
 
         return Storage::get($file->path);
