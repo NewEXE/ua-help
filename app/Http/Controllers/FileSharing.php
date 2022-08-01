@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class FileSharing extends Controller
 {
+    private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
+
     public function __construct()
     {
         $this->middleware('doNotCacheResponse');
         parent::__construct();
     }
-
-    private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
 
     /**
      * @return View
@@ -26,7 +26,10 @@ class FileSharing extends Controller
     {
         $files = File::latest()->get(['name', 'slug']);
 
-        return view('file-sharing.index', ['files' => $files, 'supportedExtensions' => self::SUPPORTED_EXTENSIONS]);
+        return view('file-sharing.index', [
+            'files' => $files,
+            'supportedExtensions' => self::SUPPORTED_EXTENSIONS
+        ]);
     }
 
     public function upload(Request $request)
@@ -50,7 +53,7 @@ class FileSharing extends Controller
         $filePath = Storage::putFileAs('file-sharing', $file, $fileName);
 
         do {
-            $slug = Str::lower(Str::random(3));
+            $slug = Str::lower(Str::random(File::SLUG_LEN));
         } while(File::whereSlug($slug)->exists());
 
         File::create([
@@ -69,6 +72,10 @@ class FileSharing extends Controller
         /** @var File $file */
         $file = File::where('slug', $fileSlug)->firstOrFail(['path', 'name']);
 
-        return Storage::download($file->path, $file->name);
+        header('Content-Type: application/octet-stream');
+        header(sprintf('Content-Disposition: attachment; filename="%s"', $file->name));
+
+        return Storage::get($file->path);
+//        return Storage::download($file->path, $file->name);
     }
 }
