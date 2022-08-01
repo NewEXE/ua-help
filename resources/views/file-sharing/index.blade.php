@@ -5,8 +5,9 @@
 </head>
 <body>
 
-<h1>Files</h1>
+<h1>Simple file sharing</h1>
 <p>Supported extensions: {{ $supportedExtensions }}</p>
+<p>Max filesize: {{ $maxFilesize }} Kilobytes</p>
 <form action="{{route('file-sharing.upload')}}" method="post" enctype="multipart/form-data">
     @csrf
     @if (!empty($errors))
@@ -23,9 +24,15 @@
 </form>
 <br />
 <table border="1">
+    <tr>
+        <td>Filename</td>
+        <td>Direct download link</td>
+        <td></td>
+    </tr>
 @foreach($files as $file)
     <tr>
         <td>{{ $file['name'] }}</td>
+        <td>{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}</td>
         <td><a href="{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}">Download</a></td>
     </tr>
 @endforeach

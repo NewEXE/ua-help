@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\File;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class DeleteOldSharedFiles extends Command
@@ -30,6 +31,8 @@ class DeleteOldSharedFiles extends Command
      */
     public function handle()
     {
+        Log::info('Debug DeleteOldSharedFiles: run');
+
         /** @var Collection $oldFiles */
         $oldFiles = File::where('created_at', '<', now()
             ->sub(1, 'day'))

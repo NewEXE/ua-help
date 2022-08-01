@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class FileSharing extends Controller
 {
     private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
+    private const MAX_FILESIZE = '16384'; // in Kilobytes
+    private const MAX_FILES = 100;
 
     public function __construct()
     {
@@ -26,10 +28,10 @@ class FileSharing extends Controller
     {
         $files = File::latest()->get(['name', 'slug']);
 
-        return view('file-sharing.index', [
-            'files' => $files,
-            'supportedExtensions' => self::SUPPORTED_EXTENSIONS
-        ]);
+        $supportedExtensions = self::SUPPORTED_EXTENSIONS;
+        $maxFilesize = self::MAX_FILESIZE;
+
+        return view('file-sharing.index', compact('files', 'supportedExtensions', 'maxFilesize'));
     }
 
     public function upload(Request $request)
@@ -39,9 +41,13 @@ class FileSharing extends Controller
                 'required',
                 'file',
                 'mimes:'.self::SUPPORTED_EXTENSIONS,
-                'max:8192'
+                'max:'.self::MAX_FILESIZE
             ],
         ]);
+
+        $totalFiles = File::count();
+
+        abort_if($totalFiles >= self::MAX_FILES, 400, 'File limit reached.');
 
         /** @var UploadedFile $file */
         $file = $validated['file'];
@@ -70,12 +76,8 @@ class FileSharing extends Controller
         $fileSlug = $request->fileSlug;
 
         /** @var File $file */
-        $file = File::where('slug', $fileSlug)->firstOrFail(['path', 'name']);
+        $file = File::whereSlug($fileSlug)->firstOrFail(['path', 'name']);
 
-        header('Content-Type: text/plain');
-        header(sprintf('Content-Disposition: attachment; filename="%s"', $file->name));
-
-        return Storage::get($file->path);
-//        return Storage::download($file->path, $file->name);
+        return Storage::download($file->path, $file->name);
     }
 }
