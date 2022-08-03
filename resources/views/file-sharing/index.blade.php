@@ -6,8 +6,11 @@
 <body>
 
 <h1>Simple file sharing</h1>
-<p>Supported extensions: {{ $supportedExtensions }}</p>
-<p>Max filesize: {{ $maxFilesize }} Kilobytes</p>
+<p>
+    Supported extensions: {{ $supportedExtensions }}.
+    Max filesize: {{ $maxFilesize }} Kilobytes.
+    Files was stored for: 24 hours.
+</p>
 <form action="{{route('file-sharing.upload')}}" method="post" enctype="multipart/form-data">
     @csrf
     @if (!empty($errors))

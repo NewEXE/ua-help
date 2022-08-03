@@ -13,9 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class File extends Model
 {
-    public const SLUG_LEN = 3;
-
     use HasFactory;
+
+    public const SLUG_LEN = 3;
 
     protected $fillable = ['name', 'slug', 'path'];
 }

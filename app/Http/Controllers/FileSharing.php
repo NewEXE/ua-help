@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Storage;
 class FileSharing extends Controller
 {
     private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
-    private const MAX_FILESIZE = '16384'; // in Kilobytes
-    private const MAX_FILES = 100;
+    private const MAX_FILESIZE = '65536'; // in Kilobytes
+    private const MAX_FILES = 50;
 
     public function __construct()
     {
