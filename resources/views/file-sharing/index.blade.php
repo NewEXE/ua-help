@@ -9,7 +9,7 @@
 <p>
     Supported extensions: {{ $supportedExtensions }}.
     Max filesize: {{ $maxFilesize }} Kilobytes.
-    Files was stored for: 24 hours.
+    Files was stored for: {{ $deleteFilesEvery }}.
 </p>
 <form action="{{route('file-sharing.upload')}}" method="post" enctype="multipart/form-data">
     @csrf

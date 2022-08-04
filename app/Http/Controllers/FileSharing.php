@@ -76,8 +76,14 @@ class FileSharing extends Controller
 
         $supportedExtensions = self::SUPPORTED_EXTENSIONS;
         $maxFilesize = self::MAX_FILESIZE;
+        $deleteFilesEvery = self::DELETE_FILES_EVERY;
 
-        return view('file-sharing.index', compact('files', 'supportedExtensions', 'maxFilesize'));
+        return view('file-sharing.index', compact(
+            'files',
+            'supportedExtensions',
+            'maxFilesize',
+            'deleteFilesEvery'
+        ));
     }
 
     /**
