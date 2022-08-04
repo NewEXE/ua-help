@@ -2,10 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\FileSharing;
 use App\Models\File;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class DeleteOldSharedFiles extends Command
@@ -31,14 +30,14 @@ class DeleteOldSharedFiles extends Command
      */
     public function handle()
     {
-        Log::info('Debug DeleteOldSharedFiles: run');
+        $ago = now()->sub(FileSharing::DELETE_FILES_EVERY);
 
-        /** @var Collection $oldFiles */
-        $oldFiles = File::where('created_at', '<', now()
-            ->sub(1, 'day'))
-            ->get(['id', 'path']);
+        $this->info('Delete shared files who are older than ' . $ago . '...');
+
+        $oldFiles = File::where('created_at', '<', $ago)->get(['id', 'path']);
 
         if ($oldFiles->isEmpty()) {
+            $this->info('Nothing to delete, exit.');
             return 0;
         }
 
@@ -48,6 +47,8 @@ class DeleteOldSharedFiles extends Command
         }
 
         $oldFiles->toQuery()->delete();
+
+        $this->info('Done.');
 
         return 0;
     }
