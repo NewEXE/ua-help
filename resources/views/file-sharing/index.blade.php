@@ -35,10 +35,10 @@
     </tr>
 @foreach($files as $file)
     <tr>
-        <td>{{ $file['name'] }}</td>
-        <td>{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}</td>
-        <td>{{ $file['delete_at']->diffForHumans() }}</td>
-        <td><a href="{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}">Download</a></td>
+        <td>{{ $file->name }}</td>
+        <td>{{ route('file-sharing.download', ['fileSlug' => $file->slug]) }}</td>
+        <td>{{ $file->deletedAtForHumans() }}</td>
+        <td><a href="{{ route('file-sharing.download', ['fileSlug' => $file->slug]) }}">Download</a></td>
     </tr>
 @endforeach
 </table>
