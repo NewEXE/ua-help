@@ -9,11 +9,11 @@
 <p>
     Supported extensions: {{ $supportedExtensions }}.
     Max filesize: {{ $maxFilesize }} Kilobytes.
-    Files was stored for: {{ $deleteFilesEvery }}.
 </p>
 <form action="{{route('file-sharing.upload')}}" method="post" enctype="multipart/form-data">
     @csrf
-    @if (!empty($errors))
+    @if (count($errors))
+        <p><b>Errors:</b></p>
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -30,12 +30,14 @@
     <tr>
         <td>Filename</td>
         <td>Direct download link</td>
+        <td>Will be deleted at</td>
         <td></td>
     </tr>
 @foreach($files as $file)
     <tr>
         <td>{{ $file['name'] }}</td>
         <td>{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}</td>
+        <td>{{ $file['delete_at']->diffForHumans() }}</td>
         <td><a href="{{ route('file-sharing.download', ['fileSlug' => $file['slug']]) }}">Download</a></td>
     </tr>
 @endforeach

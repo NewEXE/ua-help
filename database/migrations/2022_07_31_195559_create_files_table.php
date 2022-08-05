@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('path');
+            $table->timestamp('delete_at')->nullable();
             $table->timestamps();
         });
     }

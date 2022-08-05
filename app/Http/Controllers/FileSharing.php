@@ -14,14 +14,14 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class FileSharing extends Controller
 {
     /**
-     * Files will be deleted in this interval.
-     * Use supported param of @see Carbon::sub() (value will be used as first of sub())
+     * File will have this lifetime interval, then will be deleted permanently.
+     * Use supported param of @see Carbon::add() (value will be used as first param of add())
      *
      * @var string
      * @example 1 day
      * @example 8 hours
      */
-    public const DELETE_FILES_EVERY = '1 day';
+    public const FILE_LIFETIME = '1 day';
 
     /**
      * Supported extensions.
@@ -44,8 +44,9 @@ class FileSharing extends Controller
     /**
      * Limit files count allowed in storage.
      * New file uploads over this limit will be blocked.
+     * Set "false" for disable limit.
      *
-     * @var int
+     * @var int|false
      * @example 100
      */
     private const MAX_FILES = 50;
@@ -72,17 +73,15 @@ class FileSharing extends Controller
      */
     public function index(): View
     {
-        $files = File::latest()->get(['name', 'slug']);
+        $files = File::latest()->get(['name', 'slug', 'delete_at']);
 
         $supportedExtensions = self::SUPPORTED_EXTENSIONS;
         $maxFilesize = self::MAX_FILESIZE;
-        $deleteFilesEvery = self::DELETE_FILES_EVERY;
 
         return view('file-sharing.index', compact(
             'files',
             'supportedExtensions',
             'maxFilesize',
-            'deleteFilesEvery'
         ));
     }
 
@@ -104,9 +103,12 @@ class FileSharing extends Controller
             ],
         ]);
 
-        // Validate total files limit.
-        $totalFiles = File::count();
-        abort_if($totalFiles >= self::MAX_FILES, 400, 'File limit reached.');
+        $totalFilesLimit = self::MAX_FILES;
+        if ($totalFilesLimit !== false) {
+            // Validate total files limit.
+            $totalFiles = File::count();
+            abort_if($totalFiles >= $totalFilesLimit, 400, 'File limit reached.');
+        }
 
         /** @var UploadedFile $file */
         $file = $validated['file'];
@@ -128,7 +130,8 @@ class FileSharing extends Controller
         File::create([
             'name' => $fileName,
             'slug' => $slug,
-            'path' => $filePath
+            'path' => $filePath,
+            'delete_at' => now()->add(self::FILE_LIFETIME),
         ]);
 
         return back();
