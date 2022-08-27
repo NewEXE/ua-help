@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Rules\FileSharingUpload;
 use App\Support\Str;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +32,7 @@ class FileSharing extends Controller
      * @var string
      * @example mobi,txt,pdf
      */
-    private const SUPPORTED_EXTENSIONS = 'mobi,txt,pdf';
+    private const SUPPORTED_EXTENSIONS = 'mobi,azw,epub,txt,pdf,doc,docx';
 
     /**
      * Max filesize for each file, in kilobytes.
@@ -98,8 +99,8 @@ class FileSharing extends Controller
             'file' => [
                 'required',
                 'file',
-                'mimes:'.self::SUPPORTED_EXTENSIONS,
-                'max:'.self::MAX_FILESIZE
+                'max:'.self::MAX_FILESIZE,
+                new FileSharingUpload,
             ],
         ]);
 
