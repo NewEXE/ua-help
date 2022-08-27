@@ -7,18 +7,22 @@ use Illuminate\Http\UploadedFile;
 
 class FileSharingUpload implements InvokableRule
 {
-    private const DEFAULT_MIME = 'application/octet-stream';
-
-    private const SUPPORTED_MIMES = [
+    public const SUPPORTED_MIMES = [
         'application/x-mobipocket-ebook',
+        'application/x-fictionbook+xml',
         'application/vnd.amazon.ebook',
         'application/epub+zip',
         'application/book',
         'text/plain',
         'application/pdf',
         'application/msword',
+        'text/rtf',
+        'text/html',
+        'text/xml',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     ];
+
+    private const DEFAULT_MIME = 'application/octet-stream';
 
     private const MIMES_THAT_CAN_BE_UNDETECTED = [
         'application/x-mobipocket-ebook',

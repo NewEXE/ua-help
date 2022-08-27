@@ -7,7 +7,7 @@
 
 <h1>Simple file sharing</h1>
 <p>
-    Supported extensions: {{ $supportedExtensions }}.
+    Supported extensions: {{ $supportedExtensions }}.<br />
     Max filesize: {{ $maxFilesize }} Kilobytes.
 </p>
 <form action="{{route('file-sharing.upload')}}" method="post" enctype="multipart/form-data">

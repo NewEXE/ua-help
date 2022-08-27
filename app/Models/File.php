@@ -33,11 +33,11 @@ class File extends Model
     public function deletedAtForHumans(): string
     {
         if ($this->delete_at === null) {
-            return 'never';
+            return __('never');
         }
 
         if ($this->delete_at->isPast()) {
-            return 'in few seconds';
+            return __('in few seconds');
         }
 
         return $this->delete_at->diffForHumans();

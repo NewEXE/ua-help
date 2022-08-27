@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\Mime\MimeTypes;
 
 class FileSharing extends Controller
 {
@@ -23,16 +24,6 @@ class FileSharing extends Controller
      * @example 8 hours
      */
     public const FILE_LIFETIME = '1 day';
-
-    /**
-     * Supported extensions.
-     * Use "MIME Type By File Extension" validation rule supported format.
-     * @see https://laravel.com/docs/validation#rule-mimes
-     *
-     * @var string
-     * @example mobi,txt,pdf
-     */
-    private const SUPPORTED_EXTENSIONS = 'mobi,azw,epub,txt,pdf,doc,docx';
 
     /**
      * Max filesize for each file, in kilobytes.
@@ -76,7 +67,7 @@ class FileSharing extends Controller
     {
         $files = File::latest()->get(['name', 'slug', 'delete_at']);
 
-        $supportedExtensions = self::SUPPORTED_EXTENSIONS;
+        $supportedExtensions = $this->getSupportedExtensions();
         $maxFilesize = self::MAX_FILESIZE;
 
         return view('file-sharing.index', compact(
@@ -152,5 +143,21 @@ class FileSharing extends Controller
         $file = File::whereSlug($fileSlug)->firstOrFail(['path', 'name']);
 
         return Storage::download($file->path, $file->name);
+    }
+
+    /**
+     * @return string
+     */
+    private function getSupportedExtensions(): string
+    {
+        $supportedExtensions = [];
+
+        foreach (FileSharingUpload::SUPPORTED_MIMES as $mime) {
+            $supportedExtensions = array_merge(
+                $supportedExtensions,
+                MimeTypes::getDefault()->getExtensions($mime)
+            );
+        }
+        return implode(', ', $supportedExtensions);
     }
 }
