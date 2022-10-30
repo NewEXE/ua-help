@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Support\Str;
 use Google\Client;
 use Google\Service\YouTube;
+use Google\Service\YouTube\SubscriptionListResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -35,11 +36,14 @@ class YoutubeUnsubscribeController extends Controller
     /**
      * YouTube unsubscribe main page.
      *
+     * @param Request $request
      * @return View|RedirectResponse
      */
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
         $token = session(self::ACCESS_TOKEN_KEY);
+        $pageToken = $request->query('p');
+        $nextPageToken = $prevPageToken = null;
 
         $channels = [];
         $hasAuth = false;
@@ -49,11 +53,19 @@ class YoutubeUnsubscribeController extends Controller
             $this->client->setAccessToken($token);
             $youtube = new YouTube($this->client);
 
+            $getSubscriptionOptions = [
+                'mine' => true,
+                'maxResults' => 50,
+                'order' => 'alphabetical',
+            ];
+            if ($pageToken) {
+                $getSubscriptionOptions['pageToken'] = $pageToken;
+            }
             try {
-                $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', [
-                    'mine' => true,
-                    'maxResults' => 500,
-                ]);
+                /** @var SubscriptionListResponse $subscriptions */
+                $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', $getSubscriptionOptions);
+                $nextPageToken = $subscriptions->getNextPageToken();
+                $prevPageToken = $subscriptions->getPrevPageToken();
 
                 /** @var YouTube\Subscription $subscription */
                 foreach ($subscriptions as $subscription) {
@@ -66,7 +78,7 @@ class YoutubeUnsubscribeController extends Controller
                 if (!empty($channels)) {
                     $ytChannels = $youtube->channels->listChannels('snippet', [
                         'id' => array_column($channels, 'id'),
-                        'maxResults' => 500,
+                        'maxResults' => 50,
                     ]);
                     /** @var YouTube\Channel $channelObj */
                     foreach ($ytChannels as $channelObj) {
@@ -96,7 +108,9 @@ class YoutubeUnsubscribeController extends Controller
         return view('youtube.index', [
             'path' => 'youtube/index',
             'channels' => $channels,
-            'hasAuth' => $hasAuth
+            'hasAuth' => $hasAuth,
+            'nextPageToken' => $nextPageToken,
+            'prevPageToken' => $prevPageToken,
         ]);
     }
 
