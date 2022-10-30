@@ -48,7 +48,7 @@ class YoutubeUnsubscribeController extends Controller
             $this->client->setAccessToken($token);
             $youtube = new YouTube($this->client);
 
-            $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', [
+            $subscriptions = $youtube->subscriptions->listSubscriptions('subscriberSnippet,snippet', [
                 'mine' => true,
                 'maxResults' => 500,
             ]);
@@ -56,7 +56,7 @@ class YoutubeUnsubscribeController extends Controller
             /** @var YouTube\Subscription $subscription */
             foreach ($subscriptions as $subscription) {
                 $channels[] = [
-                    'id' => $subscription->getSnippet()->getChannelId(),
+                    'id' => $subscription->getSubscriberSnippet()->getChannelId(),
                     'subscriptionId' => $subscription->getId(),
                 ];
             }
