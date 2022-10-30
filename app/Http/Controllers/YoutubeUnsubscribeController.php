@@ -86,8 +86,7 @@ class YoutubeUnsubscribeController extends Controller
                 }
             } catch (\Google\Service\Exception $exception) {
                 if ($exception->getCode() === 401) {
-                    session()->remove(self::ACCESS_TOKEN_KEY);
-                    return redirect()->refresh();
+                    return $this->deauth();
                 }
             }
 
@@ -142,12 +141,12 @@ class YoutubeUnsubscribeController extends Controller
         $subscriptionIds = $request->input('subscriptionIds');
 
         if (empty($subscriptionIds) || !is_array($subscriptionIds)) {
-            abort(400);
+            return redirect()->route(self::INDEX_PAGE_ROUTE);
         }
 
         $token = session(self::ACCESS_TOKEN_KEY);
         if (empty($token)) {
-            return redirect()->route(self::INDEX_PAGE_ROUTE);
+            return $this->deauth();
         }
 
         $this->client->setAccessToken($token);
@@ -158,12 +157,20 @@ class YoutubeUnsubscribeController extends Controller
                 $youtube->subscriptions->delete($subscriptionId);
             } catch (\Google\Service\Exception $exception) {
                 if ($exception->getCode() === 401) {
-                    session()->remove(self::ACCESS_TOKEN_KEY);
-                    return redirect()->route(self::INDEX_PAGE_ROUTE);
+                    return $this->deauth();
                 }
             }
         }
 
+        return redirect()->route(self::INDEX_PAGE_ROUTE);
+    }
+
+    /**
+     * @return RedirectResponse
+     */
+    private function deauth(): RedirectResponse
+    {
+        session()->remove(self::ACCESS_TOKEN_KEY);
         return redirect()->route(self::INDEX_PAGE_ROUTE);
     }
 }
