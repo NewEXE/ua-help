@@ -81,7 +81,7 @@ class YoutubeUnsubscribeController extends Controller
         }
 
         $this->client->fetchAccessTokenWithAuthCode($code);
-        session(self::ACCESS_TOKEN_KEY, $this->client->getAccessToken());
+        session()->put(self::ACCESS_TOKEN_KEY, $this->client->getAccessToken());
         return redirect()->route(self::INDEX_PAGE_ROUTE);
     }
 }
