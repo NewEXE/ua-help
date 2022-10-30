@@ -141,6 +141,29 @@ class YoutubeUnsubscribeController extends Controller
     {
         $subscriptionIds = $request->input('subscriptionIds');
 
-        dd($subscriptionIds);
+        if (empty($subscriptionIds) || !is_array($subscriptionIds)) {
+            abort(400);
+        }
+
+        $token = session(self::ACCESS_TOKEN_KEY);
+        if (empty($token)) {
+            return redirect()->route(self::INDEX_PAGE_ROUTE);
+        }
+
+        $this->client->setAccessToken($token);
+        $youtube = new YouTube($this->client);
+
+        foreach ($subscriptionIds as $subscriptionId) {
+            try {
+                $youtube->subscriptions->delete($subscriptionId);
+            } catch (\Google\Service\Exception $exception) {
+                if ($exception->getCode() === 401) {
+                    session()->remove(self::ACCESS_TOKEN_KEY);
+                    return redirect()->route(self::INDEX_PAGE_ROUTE);
+                }
+            }
+        }
+
+        return redirect()->route(self::INDEX_PAGE_ROUTE);
     }
 }
