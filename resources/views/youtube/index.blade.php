@@ -15,12 +15,30 @@
                     </a>
                 @endif
 
+                <form method="POST">
+                <fieldset>
+                <legend>Канали:</legend>
                 @forelse ($channels as $channel)
-                    @php dump($channel) @endphp
+                    @if (empty($channel['title']))
+                        @continue
+                    @endif
+
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="ch-{{ $channel['id'] }}"
+                            name="subscriptionIds"
+                            value="{{ $channel['subscriptionId']  }}"
+                            {{ $channel['isUa'] ? 'disabled' : 'checked' }}
+                        >
+                        <label for="ch-{{ $channel['id'] }}">{{ $channel['isUa'] ? '🇺🇦' : '' }} {{ $channel['title'] }}</label>
+                    </div>
                 @empty
                     <p>Список підписок пустий</p>
                 @endforelse
-                @php dump($ytChannels); dump($subscriptions) @endphp
+                </fieldset>
+                <button type="submit">Submit</button>
+                </form>
             </p>
         </div>
         <div class="card-footer text-muted text-center">

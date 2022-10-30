@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\Str;
 use Google\Client;
 use Google\Service\YouTube;
 use Illuminate\Http\RedirectResponse;
@@ -40,8 +41,6 @@ class YoutubeUnsubscribeController extends Controller
         $token = session(self::ACCESS_TOKEN_KEY);
 
         $channels = [];
-        $ytChannels = []; // for debug
-        $subscriptions = []; // for debug
         $hasAuth = false;
         if (!empty($token)) {
             // Get user's subscriptions, channels and combine for unsubscribe possibility
@@ -73,7 +72,12 @@ class YoutubeUnsubscribeController extends Controller
                         $channelId = $channelObj->getId();
                         foreach ($channels as &$channel) {
                             if ($channel['id'] === $channelId) {
-                                $channel['info'] = $channelObj;
+                                $channel['title'] = $channelObj->getSnippet()->getTitle();
+                                $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
+                                $channel['isUaCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ua';
+                                $channel['isUaLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'uk';
+                                $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), ['і','ї','є','.ua','ґ'], true);
+                                $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'];
                             }
                         }
                         unset($channel); // prevent side-effects
@@ -92,8 +96,6 @@ class YoutubeUnsubscribeController extends Controller
         return view('youtube.index', [
             'path' => 'youtube/index',
             'channels' => $channels,
-            'ytChannels' => $ytChannels,
-            'subscriptions' => $subscriptions,
             'hasAuth' => $hasAuth
         ]);
     }
