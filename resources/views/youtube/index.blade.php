@@ -15,8 +15,8 @@
                     </a>
                 @endif
 
-                @forelse ($channels as $channel)
-                    @php dump($channel) @endphp
+                @forelse ($subscriptions as $subscription)
+                    @php dump($subscription) @endphp
                 @empty
                     <p>Список підписок пустий</p>
                 @endforelse

@@ -37,20 +37,20 @@ class YoutubeUnsubscribeController extends Controller
      */
     public function index(): View
     {
-        $channels = [];
+        $subscriptions = [];
         $hasAuth = false;
 
         $token = session(self::ACCESS_TOKEN_KEY);
         if (!empty($token)) {
             $this->client->setAccessToken($token);
             $youtube = new YouTube($this->client);
-            $channels = $youtube->channels->listChannels('snippet', ['mine' => true]);
+            $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', ['mine' => true]);
             $hasAuth = true;
         }
 
         return view('youtube.index', [
             'path' => 'youtube/index',
-            'channels' => $channels,
+            'subscriptions' => $subscriptions,
             'hasAuth' => $hasAuth
         ]);
     }
