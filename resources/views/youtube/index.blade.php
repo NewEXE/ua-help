@@ -17,6 +17,7 @@
             @endif
 
             <form method="POST" action="{{ route(YoutubeUnsubscribeController::AUTH_UNSUBSCRIBE_ROUTE) }}">
+                @csrf
                 <fieldset>
                     <legend>Канали:</legend>
                     @forelse ($channels as $channel)
