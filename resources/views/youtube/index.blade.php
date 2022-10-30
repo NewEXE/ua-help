@@ -63,7 +63,7 @@
                             <p>Список підписок пустий</p>
                         @endforelse
                     </fieldset>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-primary">Відписатися!</button>
                 </form>
                 @if($prevPageToken || $nextPageToken)
                     <nav aria-label="Page navigation">
