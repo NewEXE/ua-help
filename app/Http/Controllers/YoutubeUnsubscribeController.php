@@ -33,9 +33,9 @@ class YoutubeUnsubscribeController extends Controller
     /**
      * YouTube unsubscribe main page.
      *
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function index(): View
+    public function index(): View|RedirectResponse
     {
         $token = session(self::ACCESS_TOKEN_KEY);
 
@@ -49,33 +49,40 @@ class YoutubeUnsubscribeController extends Controller
             $this->client->setAccessToken($token);
             $youtube = new YouTube($this->client);
 
-            $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', [
-                'mine' => true,
-                'maxResults' => 500,
-            ]);
-
-            /** @var YouTube\Subscription $subscription */
-            foreach ($subscriptions as $subscription) {
-                $channels[] = [
-                    'id' => $subscription->getSnippet()->getResourceId()->getChannelId(),
-                    'subscriptionId' => $subscription->getId(),
-                ];
-            }
-
-            if (!empty($channels)) {
-                $ytChannels = $youtube->channels->listChannels('snippet', [
-                    'id' => array_column($channels, 'id'),
+            try {
+                $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', [
+                    'mine' => true,
                     'maxResults' => 500,
                 ]);
-                /** @var YouTube\Channel $channelObj */
-                foreach ($ytChannels as $channelObj) {
-                    $channelId = $channelObj->getId();
-                    foreach ($channels as &$channel) {
-                        if ($channel['id'] === $channelId) {
-                            $channel['info'] = $channelObj;
+
+                /** @var YouTube\Subscription $subscription */
+                foreach ($subscriptions as $subscription) {
+                    $channels[] = [
+                        'id' => $subscription->getSnippet()->getResourceId()->getChannelId(),
+                        'subscriptionId' => $subscription->getId(),
+                    ];
+                }
+
+                if (!empty($channels)) {
+                    $ytChannels = $youtube->channels->listChannels('snippet', [
+                        'id' => array_column($channels, 'id'),
+                        'maxResults' => 500,
+                    ]);
+                    /** @var YouTube\Channel $channelObj */
+                    foreach ($ytChannels as $channelObj) {
+                        $channelId = $channelObj->getId();
+                        foreach ($channels as &$channel) {
+                            if ($channel['id'] === $channelId) {
+                                $channel['info'] = $channelObj;
+                            }
                         }
+                        unset($channel); // prevent side-effects
                     }
-                    unset($channel); // prevent side-effects
+                }
+            } catch (\Google\Service\Exception $exception) {
+                if ($exception->getCode() === 401) {
+                    session()->remove(self::ACCESS_TOKEN_KEY);
+                    return redirect()->refresh();
                 }
             }
 
