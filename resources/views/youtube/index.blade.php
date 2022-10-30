@@ -16,7 +16,7 @@
                 @endif
 
                 @forelse ($channels as $channel)
-                    {{ dump($channel) }}
+                    @php dump($channel) @endphp
                 @empty
                     <p>Список підписок пустий</p>
                 @endforelse
