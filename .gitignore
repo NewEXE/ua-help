@@ -1,3 +1,5 @@
+/config/youtube_client_secrets.json
+/config/client_secret.json
 /node_modules
 /public/hot
 /public/storage
