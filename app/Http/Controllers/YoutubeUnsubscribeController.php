@@ -17,7 +17,8 @@ class YoutubeUnsubscribeController extends Controller
     public const AUTH_REDIRECT_ROUTE = 'yt.auth-redirect';
     public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
-    public const ACCESS_TOKEN_KEY = 'yt_access_token';
+    private const ACCESS_TOKEN_KEY = 'yt_access_token';
+    private const UA_CHARS = ['і','ї','є','.ua','ґ'];
 
     private Client $client;
 
@@ -89,8 +90,9 @@ class YoutubeUnsubscribeController extends Controller
                                 $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
                                 $channel['isUaCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ua';
                                 $channel['isUaLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'uk';
-                                $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), ['і','ї','є','.ua','ґ'], true);
-                                $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'];
+                                $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_CHARS, true);
+                                $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_CHARS, true);
+                                $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'] || $channel['isUaTitle'];
                             }
                         }
                         unset($channel); // prevent side-effects
