@@ -30,7 +30,8 @@
                                     id="ch-{{ $channel['id'] }}"
                                     name="subscriptionIds[]"
                                     value="{{ $channel['subscriptionId']  }}"
-                                    {{ $channel['isUa'] ? 'disabled' : 'checked' }}
+                                    {{ $channel['isUa'] ? 'disabled' : '' }}
+                                    {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
                                 <label
                                     for="ch-{{ $channel['id'] }}">{{ $channel['isUa'] ? '🇺🇦' : '' }} {{ $channel['title'] }}</label>
