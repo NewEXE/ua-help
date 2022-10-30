@@ -29,7 +29,7 @@
                             <input
                                 type="checkbox"
                                 id="ch-{{ $channel['id'] }}"
-                                name="subscriptionIds"
+                                name="subscriptionIds[]"
                                 value="{{ $channel['subscriptionId']  }}"
                                 {{ $channel['isUa'] ? 'disabled' : 'checked' }}
                             >
