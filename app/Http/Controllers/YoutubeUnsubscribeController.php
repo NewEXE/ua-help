@@ -17,8 +17,8 @@ class YoutubeUnsubscribeController extends Controller
     public const AUTH_REDIRECT_ROUTE = 'yt.auth-redirect';
     public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
+    public const SETTING_WITH_UA = 'withUa';
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
-    private const SETTING_WITH_UA = 'withUa';
 
     private const UA_CHARS = ['і','ї','є','ґ','.ua'];
     private const RU_CHARS = ['ы','ё','ъ','.ru'];

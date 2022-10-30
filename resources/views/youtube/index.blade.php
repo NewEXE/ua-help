@@ -24,7 +24,7 @@
                                 id="withUa"
                                 name="withUa"
                                 value="1"
-                                {{ $withUa ? 'checked' : '' }}
+                                {{ session(YoutubeUnsubscribeController::SETTING_WITH_UA) ? 'checked' : '' }}
                             >
                             <label for="withUa">Показати українські канали?</label>
                             <button type="submit" class="btn btn-outline-success btn-sm">Зберегти</button>
