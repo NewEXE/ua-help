@@ -14,7 +14,7 @@
                     <a href="{{ route(YoutubeUnsubscribeController::AUTH_ROUTE) }}" class="btn btn-outline-primary">
                         <i class="bi bi-youtube"></i> Авторизуватись
                     </a>
-            @else
+                @else
                 <form method="POST" action="{{ route(YoutubeUnsubscribeController::AUTH_UNSUBSCRIBE_ROUTE) }}">
                     @csrf
                     <fieldset>
@@ -49,25 +49,26 @@
                     <button type="submit" class="btn btn-primary">Відписатися!</button>
                 </form>
                 @if($prevPageToken || $nextPageToken)
+                    <br />
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link"
-                                                     href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE) }}">На
-                                    першу</a></li>
-                            @if($prevPageToken)
-                                <li class="page-item"><a class="page-link"
-                                                         href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo;
-                                        Назад</a></li>
-                            @endif
-                            @if($nextPageToken)
-                                <li class="page-item"><a class="page-link"
-                                                         href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $nextPageToken]) }}">Вперед
-                                        &raquo;</a></li>
-                            @endif
+                            <li class="page-item">
+                                <a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE) }}">На першу</a>
+                            </li>
+                            <li class="page-item {{ $prevPageToken ? '' : 'disabled' }}">
+                                @if($prevPageToken)
+                                <a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo;Назад</a>
+                                @endif
+                            </li>
+                            <li class="page-item {{ $prevPageToken ? '' : 'disabled' }}">
+                                @if($nextPageToken)
+                                <a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $nextPageToken]) }}">Вперед&raquo;</a>
+                                @endif
+                            </li>
                         </ul>
                     </nav>
                     @endif
-                    @endif
+                @endif
                     </p>
         </div>
         <div class="card-footer text-muted text-center">
