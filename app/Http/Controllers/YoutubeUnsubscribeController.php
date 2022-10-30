@@ -17,7 +17,7 @@ class YoutubeUnsubscribeController extends Controller
     public const AUTH_REDIRECT_ROUTE = 'yt.auth-redirect';
     public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
-    public const SETTING_WITH_UA = 'withUa';
+    public const SETTING_ENABLE_UA_UNCHECK = 'enableUaUncheck';
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
 
     private const UA_CHARS = ['і','ї','є','ґ','.ua'];
@@ -49,11 +49,11 @@ class YoutubeUnsubscribeController extends Controller
         $pageToken = $request->query('p');
         $nextPageToken = $prevPageToken = null;
 
-        if (session()->has(self::SETTING_WITH_UA)) {
-            $withUa = session(self::SETTING_WITH_UA);
+        $enableUaUncheck = (bool) $request->query('enableUaUncheck');
+        if ($enableUaUncheck) {
+            session()->put(self::SETTING_ENABLE_UA_UNCHECK, true);
         } else {
-            $withUa = (bool) $request->query('withUa');
-            session()->put(self::SETTING_WITH_UA, $withUa);
+            $enableUaUncheck = session(self::SETTING_ENABLE_UA_UNCHECK, false);
         }
 
         $channels = [];
@@ -106,10 +106,6 @@ class YoutubeUnsubscribeController extends Controller
                                 $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_CHARS, true);
                                 $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'] || $channel['isUaTitle'];
 
-                                if ($channel['isUa'] && !$withUa) {
-                                    unset($channels[$k]);
-                                }
-
                                 $channel['isRuCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ru';
                                 $channel['isRuLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'ru';
                                 $channel['isRuDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::RU_CHARS, true);
@@ -129,12 +125,13 @@ class YoutubeUnsubscribeController extends Controller
             $hasAuth = true;
         }
 
-        dump($channels);
+        //dump($channels);
 
         return view('youtube.index', [
             'path' => 'youtube/index',
             'channels' => $channels,
             'hasAuth' => $hasAuth,
+            'enableUaUncheck' => $enableUaUncheck,
             'nextPageToken' => $nextPageToken,
             'prevPageToken' => $prevPageToken,
         ]);

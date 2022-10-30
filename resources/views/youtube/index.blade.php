@@ -14,19 +14,19 @@
                     <a href="{{ route(YoutubeUnsubscribeController::AUTH_ROUTE) }}" class="btn btn-outline-primary">
                         <i class="bi bi-youtube"></i> Авторизуватись
                     </a>
-                @else
+            @else
                 <form method="GET" action="">
                     <fieldset>
                         <legend>Налаштування:</legend>
                         <div>
                             <input
                                 type="checkbox"
-                                id="withUa"
-                                name="withUa"
+                                id="enableUaUncheck"
+                                name="{{ YoutubeUnsubscribeController::SETTING_ENABLE_UA_UNCHECK }}"
                                 value="1"
-                                {{ session(YoutubeUnsubscribeController::SETTING_WITH_UA) ? 'checked' : '' }}
+                                {{ $enableUaUncheck ? 'checked' : '' }}
                             >
-                            <label for="withUa">Показати українські канали?</label>
+                            <label for="enableUaUncheck">Дозволити відписку від українських каналів?</label>
                             <button type="submit" class="btn btn-outline-success btn-sm">Зберегти</button>
                         </div>
                     </fieldset>
@@ -47,11 +47,15 @@
                                     id="ch-{{ $channel['id'] }}"
                                     name="subscriptionIds[]"
                                     value="{{ $channel['subscriptionId']  }}"
-                                    {{ $channel['isUa'] ? 'disabled' : '' }}
+                                    {{ $channel['isUa'] && !$enableUaUncheck ? 'disabled' : '' }}
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
                                 <label for="ch-{{ $channel['id'] }}">
-                                    @if($channel['isUa'])@elseif($channel['isRu']) 💩 @else ❔ @endif
+                                    @if($channel['isUa'])@elseif($channel['isRu'])
+                                        💩
+                                    @else
+                                        ❔
+                                    @endif
                                     {{ $channel['title'] }}
                                 </label>
                             </div>
@@ -60,22 +64,28 @@
                         @endforelse
                     </fieldset>
                     <button type="submit">Submit</button>
-                    </form>
-                    @if($prevPageToken || $nextPageToken)
+                </form>
+                @if($prevPageToken || $nextPageToken)
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE) }}">На першу</a></li>
+                            <li class="page-item"><a class="page-link"
+                                                     href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE) }}">На
+                                    першу</a></li>
                             @if($prevPageToken)
-                                <li class="page-item"><a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo; Назад</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo;
+                                        Назад</a></li>
                             @endif
                             @if($nextPageToken)
-                                <li class="page-item"><a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $nextPageToken]) }}">Вперед &raquo;</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $nextPageToken]) }}">Вперед
+                                        &raquo;</a></li>
                             @endif
                         </ul>
                     </nav>
                     @endif
-                @endif
-            </p>
+                    @endif
+                    </p>
         </div>
         <div class="card-footer text-muted text-center">
         </div>
