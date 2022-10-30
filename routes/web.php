@@ -44,6 +44,8 @@ Route::group([
         ->name(YoutubeUnsubscribeController::AUTH_ROUTE);
     Route::get('/yt/auth-redirect', [YoutubeUnsubscribeController::class, 'authRedirect'])
         ->name(YoutubeUnsubscribeController::AUTH_REDIRECT_ROUTE);
+    Route::post('/yt/unsubscribe', [YoutubeUnsubscribeController::class, 'unsubscribe'])
+        ->name(YoutubeUnsubscribeController::AUTH_UNSUBSCRIBE_ROUTE);
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');

@@ -14,6 +14,7 @@ class YoutubeUnsubscribeController extends Controller
     public const INDEX_PAGE_ROUTE = 'yt.index';
     public const AUTH_ROUTE = 'yt.auth';
     public const AUTH_REDIRECT_ROUTE = 'yt.auth-redirect';
+    public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
     public const ACCESS_TOKEN_KEY = 'yt_access_token';
 
@@ -128,5 +129,18 @@ class YoutubeUnsubscribeController extends Controller
         $this->client->fetchAccessTokenWithAuthCode($code);
         session()->put(self::ACCESS_TOKEN_KEY, $this->client->getAccessToken());
         return redirect()->route(self::INDEX_PAGE_ROUTE);
+    }
+
+    /**
+     * Unsubscribe from YouTube channels.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function unsubscribe(Request $request): RedirectResponse
+    {
+        $subscriptionIds = $request->input('subscriptionIds');
+
+        dd($subscriptionIds);
     }
 }
