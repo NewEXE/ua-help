@@ -88,7 +88,7 @@ class YoutubeUnsubscribeController extends Controller
                     /** @var YouTube\Channel $channelObj */
                     foreach ($ytChannels as $channelObj) {
                         $channelId = $channelObj->getId();
-                        foreach ($channels as $k => &$channel) {
+                        foreach ($channels as &$channel) {
                             if ($channel['id'] === $channelId) {
                                 $channel['title'] = $channelObj->getSnippet()->getTitle();
                                 $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
@@ -118,8 +118,6 @@ class YoutubeUnsubscribeController extends Controller
 
             $hasAuth = true;
         }
-
-        //dump($channels);
 
         return view('youtube.index', [
             'path' => 'youtube/index',
