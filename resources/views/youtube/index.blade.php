@@ -20,9 +20,7 @@
                     <fieldset>
                         <legend>Канали:</legend>
                         @forelse ($channels as $channel)
-                            @php dump(@$channel['obj']) @endphp
-
-                            @if (empty($channel['title']))
+                            @if (empty($channel['isProcessed']))
                                 @continue
                             @endif
 
@@ -36,12 +34,15 @@
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
                                 <label for="ch-{{ $channel['id'] }}">
-                                    @if($channel['isUa'])@elseif($channel['isRu'])
+                                    @if($channel['isRu'])
                                         💩
-                                    @else
+                                    @elseif($channel['isUnknown'])
                                         ❓
                                     @endif
                                     <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">{{ $channel['title'] }}</span>
+                                    @if($channel['isUnknown'])
+                                        <span class="font-italic">[{{ $channel['country'] ?? '?' }}/{{ $channel['lang'] ?? '?' }}]</span>
+                                    @endif
                                 </label>
                             </div>
                         @empty

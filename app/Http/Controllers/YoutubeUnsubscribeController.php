@@ -19,8 +19,8 @@ class YoutubeUnsubscribeController extends Controller
 
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
 
-    private const UA_CHARS = ['і','ї','є','ґ','.ua'];
-    private const RU_CHARS = ['ы','ё','ъ','.ru'];
+    private const UA_SUBSTRINGS = ['і','ї','є','ґ','.ua','ukraine'];
+    private const RU_SUBSTRINGS = ['ы','ё','ъ','.ru','russia',];
 
     private Client $client;
 
@@ -87,24 +87,9 @@ class YoutubeUnsubscribeController extends Controller
                     ]);
                     /** @var YouTube\Channel $channelObj */
                     foreach ($ytChannels as $channelObj) {
-                        $channelId = $channelObj->getId();
                         foreach ($channels as &$channel) {
-                            if ($channel['id'] === $channelId) {
-                                $channel['title'] = $channelObj->getSnippet()->getTitle();
-                                $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
-                                $channel['obj'] = $channelObj; // for debug
-
-                                $channel['isUaCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ua';
-                                $channel['isUaLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'uk';
-                                $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_CHARS, true);
-                                $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_CHARS, true);
-                                $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'] || $channel['isUaTitle'];
-
-                                $channel['isRuCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ru';
-                                $channel['isRuLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'ru';
-                                $channel['isRuDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::RU_CHARS, true);
-                                $channel['isRuTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::RU_CHARS, true);
-                                $channel['isRu'] = ($channel['isRuCountry'] || $channel['isRuLang']) || (!$channel['isUa'] && ($channel['isRuDesc'] || $channel['isRuTitle']));
+                            if ($channel['id'] === $channelObj->getId()) {
+                                $this->processChannel($channel, $channelObj);
                             }
                         }
                         unset($channel); // prevent side-effects
@@ -201,5 +186,70 @@ class YoutubeUnsubscribeController extends Controller
     {
         session()->remove(self::ACCESS_TOKEN_KEY);
         return redirect()->route(self::INDEX_PAGE_ROUTE);
+    }
+
+    private function processChannel(array &$channel, YouTube\Channel $channelObj): void
+    {
+        static $ua = 'ua';
+        static $uaLang = 'uk';
+
+        static $ru = 'ru';
+        static $ruLang = 'ru';
+
+        $channel['isProcessed'] = true;
+
+        $channel['isUa'] = $channel['isRu'] = $channel['isUnknown'] = false;
+
+        $channel['title'] = $channelObj->getSnippet()->getTitle();
+        $channel['country'] = $channelObj->getSnippet()->getCountry();
+        $channel['lang'] = $channelObj->getSnippet()->getDefaultLanguage();
+        $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
+        $channel['obj'] = $channelObj; // for debug
+
+        $country = Str::lower($channelObj->getSnippet()->getCountry());
+        $lang = Str::lower($channelObj->getSnippet()->getDefaultLanguage());
+
+        $channel['isUaCountry'] = $country === $ua;
+        $channel['isUaLang'] = $lang === $uaLang;
+
+        if ($channel['isUaCountry'] || $channel['isUaLang']) {
+            $channel['isUa'] = true;
+            return;
+        }
+
+        $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_SUBSTRINGS, true);
+        $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_SUBSTRINGS, true);
+
+        if ($channel['isUaTitle'] || $channel['isUaDesc']) {
+            $channel['isUa'] = true;
+            return;
+        }
+
+        $channel['isRuCountry'] = $country === $ru;
+        $channel['isRuLang'] = $lang === $ruLang;
+
+        if (!$channel['isRuCountry'] && empty($lang)) {
+            $channel['isUnknown'] = true;
+            return;
+        }
+
+        if (!$channel['isRuCountry'] && !$channel['isRuLang']) {
+            $channel['isUnknown'] = true;
+            return;
+        }
+
+        if ($channel['isRuCountry'] || $channel['isRuLang']) {
+            $channel['isRu'] = true;
+            return;
+        }
+
+
+        $channel['isRuDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::RU_SUBSTRINGS, true);
+        $channel['isRuTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::RU_SUBSTRINGS, true);
+        $channel['isRu'] = $channel['isRuDesc'] || $channel['isRuTitle'];
+
+        if (!$channel['isRu']) {
+            $channel['isUnknown'] = true;
+        }
     }
 }
