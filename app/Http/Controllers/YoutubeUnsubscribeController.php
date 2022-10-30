@@ -40,6 +40,7 @@ class YoutubeUnsubscribeController extends Controller
         $token = session(self::ACCESS_TOKEN_KEY);
 
         $channels = [];
+        $ytChannels = []; // for debug
         $hasAuth = false;
         if (!empty($token)) {
             // Get user's subscriptions, channels and combine for unsubscribe possibility
@@ -83,6 +84,7 @@ class YoutubeUnsubscribeController extends Controller
         return view('youtube.index', [
             'path' => 'youtube/index',
             'channels' => $channels,
+            'ytChannels' => $ytChannels,
             'hasAuth' => $hasAuth
         ]);
     }

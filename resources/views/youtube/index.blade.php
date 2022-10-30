@@ -20,6 +20,7 @@
                 @empty
                     <p>Список підписок пустий</p>
                 @endforelse
+                @php dump($ytChannels) @endphp
             </p>
         </div>
         <div class="card-footer text-muted text-center">
