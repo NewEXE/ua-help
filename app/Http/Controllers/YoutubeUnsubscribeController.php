@@ -54,7 +54,7 @@ class YoutubeUnsubscribeController extends Controller
             session()->put(self::SETTING_ENABLE_UA_UNCHECK, true);
         } else {
             $enableUaUncheck = session(self::SETTING_ENABLE_UA_UNCHECK, false);
-            session()->put(self::SETTING_ENABLE_UA_UNCHECK, false);
+            session()->put(self::SETTING_ENABLE_UA_UNCHECK, $enableUaUncheck);
         }
 
         $channels = [];
