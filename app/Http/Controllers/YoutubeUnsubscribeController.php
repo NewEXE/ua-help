@@ -95,6 +95,7 @@ class YoutubeUnsubscribeController extends Controller
                                 $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_CHARS, true);
                                 $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_CHARS, true);
                                 $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'] || $channel['isUaTitle'];
+                                $channel['obj'] = $channelObj;
                             }
                         }
                         unset($channel); // prevent side-effects
