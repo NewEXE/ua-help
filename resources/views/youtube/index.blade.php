@@ -15,24 +15,6 @@
                         <i class="bi bi-youtube"></i> Авторизуватись
                     </a>
             @else
-                <form method="GET" action="">
-                    <fieldset>
-                        <legend>Налаштування:</legend>
-                        <div>
-                            <input type='hidden' value='false' name="{{ YoutubeUnsubscribeController::SETTING_ENABLE_UA_UNCHECK }}">
-                            <input
-                                type="checkbox"
-                                id="enableUaUncheck"
-                                name="{{ YoutubeUnsubscribeController::SETTING_ENABLE_UA_UNCHECK }}"
-                                value="true"
-                                {{ $enableUaUncheck ? 'checked' : '' }}
-                            >
-                            <label for="enableUaUncheck">Дозволити відписку від українських каналів?</label>
-                            <button type="submit" class="btn btn-outline-success btn-sm">Зберегти</button>
-                        </div>
-                    </fieldset>
-                </form>
-
                 <form method="POST" action="{{ route(YoutubeUnsubscribeController::AUTH_UNSUBSCRIBE_ROUTE) }}">
                     @csrf
                     <fieldset>
@@ -57,7 +39,7 @@
                                     @else
                                         ❔
                                     @endif
-                                    {{ $channel['title'] }}
+                                    <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">{{ $channel['title'] }}</span>
                                 </label>
                             </div>
                         @empty

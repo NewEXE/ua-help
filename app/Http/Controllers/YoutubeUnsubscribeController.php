@@ -17,7 +17,6 @@ class YoutubeUnsubscribeController extends Controller
     public const AUTH_REDIRECT_ROUTE = 'yt.auth-redirect';
     public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
-    public const SETTING_ENABLE_UA_UNCHECK = 'enableUaUncheck';
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
 
     private const UA_CHARS = ['і','ї','є','ґ','.ua'];
@@ -49,14 +48,7 @@ class YoutubeUnsubscribeController extends Controller
         $pageToken = $request->query('p');
         $nextPageToken = $prevPageToken = null;
 
-        $enableUaUncheck = $request->query('enableUaUncheck');
-        if ($enableUaUncheck === 'true') {
-            session()->put(self::SETTING_ENABLE_UA_UNCHECK, true);
-        } elseif ($enableUaUncheck === 'false') {
-            session()->put(self::SETTING_ENABLE_UA_UNCHECK, false);
-        } else {
-            $enableUaUncheck = session(self::SETTING_ENABLE_UA_UNCHECK, false);
-        }
+        $enableUaUncheck = false;
 
         $channels = [];
         $hasAuth = false;
