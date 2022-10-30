@@ -19,6 +19,7 @@ class YoutubeUnsubscribeController extends Controller
 
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
     private const UA_CHARS = ['і','ї','є','.ua','ґ'];
+    private const RU_CHARS = ['ы','ё', 'ъ'];
 
     private Client $client;
 
@@ -88,6 +89,7 @@ class YoutubeUnsubscribeController extends Controller
                             if ($channel['id'] === $channelId) {
                                 $channel['title'] = $channelObj->getSnippet()->getTitle();
                                 $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
+
                                 $channel['isUaCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ua';
                                 $channel['isUaLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'uk';
                                 $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_CHARS, true);
@@ -106,6 +108,8 @@ class YoutubeUnsubscribeController extends Controller
 
             $hasAuth = true;
         }
+
+        dump($channels);
 
         return view('youtube.index', [
             'path' => 'youtube/index',
