@@ -33,8 +33,10 @@
                                     {{ $channel['isUa'] ? 'disabled' : '' }}
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
-                                <label
-                                    for="ch-{{ $channel['id'] }}">{{ $channel['isUa'] ? '🇺🇦' : '' }} {{ $channel['title'] }}</label>
+                                <label for="ch-{{ $channel['id'] }}">
+                                    {{ $channel['isUa'] ? '🇺🇦' : '' }}{{ $channel['isRu'] ? '💩' : '' }}
+                                    {{ $channel['title'] }}
+                                </label>
                             </div>
                         @empty
                             <p>Список підписок пустий</p>
