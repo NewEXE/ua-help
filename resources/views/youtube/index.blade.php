@@ -60,7 +60,7 @@
                                 <a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo;Назад</a>
                                 @endif
                             </li>
-                            <li class="page-item {{ $prevPageToken ? '' : 'disabled' }}">
+                            <li class="page-item {{ $nextPageToken ? '' : 'disabled' }}">
                                 @if($nextPageToken)
                                 <a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $nextPageToken]) }}">Вперед&raquo;</a>
                                 @endif
