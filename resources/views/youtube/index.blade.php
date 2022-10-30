@@ -47,7 +47,7 @@
                                     id="ch-{{ $channel['id'] }}"
                                     name="subscriptionIds[]"
                                     value="{{ $channel['subscriptionId']  }}"
-                                    {{ $channel['isUa'] && !$enableUaUncheck ? 'disabled' : '' }}
+                                    {{ ($channel['isUa'] && !$enableUaUncheck) ? 'disabled' : '' }}
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
                                 <label for="ch-{{ $channel['id'] }}">
