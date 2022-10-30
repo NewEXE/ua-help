@@ -66,11 +66,11 @@ class YoutubeUnsubscribeController extends Controller
                     'maxResults' => 500,
                 ]);
                 /** @var YouTube\Channel $channel */
-                foreach ($ytChannels as $ch) {
-                    $channelId = $ch->getId();
+                foreach ($ytChannels as $channelObj) {
+                    $channelId = $channelObj->getId();
                     foreach ($channels as &$channel) {
                         if ($channel['id'] === $channelId) {
-                            $channel['info'] = $channel;
+                            $channel['info'] = $channelObj;
                         }
                     }
                     unset($channel); // prevent side-effects
