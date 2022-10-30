@@ -15,6 +15,23 @@
                         <i class="bi bi-youtube"></i> Авторизуватись
                     </a>
                 @else
+                <form method="GET" action="">
+                    <fieldset>
+                        <legend>Налаштування:</legend>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="withUa"
+                                name="withUa"
+                                value="1"
+                                {{ $withUa ? 'checked' : '' }}
+                            >
+                            <label for="withUa">Показати українські канали?</label>
+                            <button type="submit" class="btn btn-outline-success btn-sm">Зберегти</button>
+                        </div>
+                    </fieldset>
+                </form>
+
                 <form method="POST" action="{{ route(YoutubeUnsubscribeController::AUTH_UNSUBSCRIBE_ROUTE) }}">
                     @csrf
                     <fieldset>

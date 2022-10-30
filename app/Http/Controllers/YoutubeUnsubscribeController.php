@@ -18,6 +18,7 @@ class YoutubeUnsubscribeController extends Controller
     public const AUTH_UNSUBSCRIBE_ROUTE = 'yt.unsubscribe';
 
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
+    private const SETTING_WITH_UA = 'withUa';
 
     private const UA_CHARS = ['і','ї','є','ґ','.ua'];
     private const RU_CHARS = ['ы','ё','ъ','.ru'];
@@ -47,6 +48,13 @@ class YoutubeUnsubscribeController extends Controller
         $token = session(self::ACCESS_TOKEN_KEY);
         $pageToken = $request->query('p');
         $nextPageToken = $prevPageToken = null;
+
+        if (session()->has(self::SETTING_WITH_UA)) {
+            $withUa = session(self::SETTING_WITH_UA);
+        } else {
+            $withUa = (bool) $request->query('withUa');
+            session()->put(self::SETTING_WITH_UA, $withUa);
+        }
 
         $channels = [];
         $hasAuth = false;
@@ -86,7 +94,7 @@ class YoutubeUnsubscribeController extends Controller
                     /** @var YouTube\Channel $channelObj */
                     foreach ($ytChannels as $channelObj) {
                         $channelId = $channelObj->getId();
-                        foreach ($channels as &$channel) {
+                        foreach ($channels as $k => &$channel) {
                             if ($channel['id'] === $channelId) {
                                 $channel['title'] = $channelObj->getSnippet()->getTitle();
                                 $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
@@ -97,6 +105,10 @@ class YoutubeUnsubscribeController extends Controller
                                 $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_CHARS, true);
                                 $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_CHARS, true);
                                 $channel['isUa'] = $channel['isUaCountry'] || $channel['isUaLang'] || $channel['isUaDesc'] || $channel['isUaTitle'];
+
+                                if ($channel['isUa'] && !$withUa) {
+                                    unset($channels[$k]);
+                                }
 
                                 $channel['isRuCountry'] = Str::lower($channelObj->getSnippet()->getCountry()) === 'ru';
                                 $channel['isRuLang'] = Str::lower($channelObj->getSnippet()->getDefaultLanguage()) === 'ru';
