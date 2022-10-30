@@ -38,6 +38,7 @@ Route::group([
     Route::get('/ddos/select-device', [DdosWizard::class, 'selectDevice'])->name('ddos.select-device');
     Route::get('/ddos/software/{device}', [DdosWizard::class, 'software'])->name('ddos.software');
 
+    /* YouTube unsubscribe from non-ukrainian channels */
     Route::get('/yt', [YoutubeUnsubscribeController::class, 'index'])
         ->name(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE);
     Route::get('/yt/auth', [YoutubeUnsubscribeController::class, 'auth'])
