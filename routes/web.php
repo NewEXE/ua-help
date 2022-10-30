@@ -5,6 +5,7 @@ use App\Http\Controllers\FileSharing;
 use App\Http\Controllers\SwitchLocaleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ViewFileController;
+use App\Http\Controllers\YoutubeUnsubscribeController;
 use App\Http\Middleware\LocaleManager;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('locale/{locale}', SwitchLocaleController::class)->name('locale.switch');
 
 Route::group([
+    // Cover routes with locale prefix (/ua, /en etc)
     'prefix' => LocaleManager::routePrefixFromRequest(),
 ], static function () {
     /* Pages */
@@ -35,6 +37,13 @@ Route::group([
     Route::get('/ddos/intro', [DdosWizard::class, 'intro'])->name('ddos.intro');
     Route::get('/ddos/select-device', [DdosWizard::class, 'selectDevice'])->name('ddos.select-device');
     Route::get('/ddos/software/{device}', [DdosWizard::class, 'software'])->name('ddos.software');
+
+    Route::get('/yt', [YoutubeUnsubscribeController::class, 'index'])
+        ->name(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE);
+    Route::get('/yt/auth', [YoutubeUnsubscribeController::class, 'auth'])
+        ->name(YoutubeUnsubscribeController::AUTH_ROUTE);
+    Route::get('/yt/auth-redirect', [YoutubeUnsubscribeController::class, 'authRedirect'])
+        ->name(YoutubeUnsubscribeController::AUTH_REDIRECT_ROUTE);
 });
 
 Route::get('/view-file', ViewFileController::class)->name('view.file');
