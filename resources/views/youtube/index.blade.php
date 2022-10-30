@@ -37,7 +37,7 @@
                                     @if($channel['isUa'])@elseif($channel['isRu'])
                                         💩
                                     @else
-                                        ❔
+                                        ❓
                                     @endif
                                     <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">{{ $channel['title'] }}</span>
                                 </label>
