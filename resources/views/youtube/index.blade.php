@@ -44,6 +44,7 @@
                     @if($prevPageToken || $nextPageToken)
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE) }}">На першу</a></li>
                             @if($prevPageToken)
                                 <li class="page-item"><a class="page-link" href="{{ route(YoutubeUnsubscribeController::INDEX_PAGE_ROUTE, ['p' => $prevPageToken]) }}">&laquo; Назад</a></li>
                             @endif
