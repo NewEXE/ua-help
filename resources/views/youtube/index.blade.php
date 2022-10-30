@@ -34,7 +34,7 @@
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >
                                 <label for="ch-{{ $channel['id'] }}">
-                                    {{ $channel['isUa'] ? '🇺🇦' : '' }}{{ $channel['isRu'] ? '💩' : '' }}
+                                    @if($channel['isUa'])@elseif($channel['isRu']) 💩 @else ❔ @endif
                                     {{ $channel['title'] }}
                                 </label>
                             </div>
