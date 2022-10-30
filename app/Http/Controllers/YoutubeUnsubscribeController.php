@@ -37,20 +37,52 @@ class YoutubeUnsubscribeController extends Controller
      */
     public function index(): View
     {
-        $subscriptions = [];
-        $hasAuth = false;
-
         $token = session(self::ACCESS_TOKEN_KEY);
+
+        $channels = [];
+        $hasAuth = false;
         if (!empty($token)) {
+            // Get user's subscriptions, channels and combine for unsubscribe possibility
+
             $this->client->setAccessToken($token);
             $youtube = new YouTube($this->client);
-            $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', ['mine' => true]);
+
+            $subscriptions = $youtube->subscriptions->listSubscriptions('snippet', [
+                'mine' => true,
+                'maxResults' => 500,
+            ]);
+
+            /** @var YouTube\Subscription $subscription */
+            foreach ($subscriptions as $subscription) {
+                $channels[] = [
+                    'id' => $subscription->getSnippet()->getChannelId(),
+                    'subscriptionId' => $subscription->getId(),
+                ];
+            }
+
+            if (!empty($channels)) {
+                $ytChannels = $youtube->channels->listChannels('snippet', [
+                    'id' => array_column($channels, 'id'),
+                    'maxResults' => 500,
+                ]);
+                /** @var YouTube\Channel $channel */
+                foreach ($ytChannels as $ch) {
+                    $channelId = $ch->getId();
+                    foreach ($channels as &$channel) {
+                        if ($channel['id'] === $channelId) {
+                            $channel['info'] = $channel;
+                        }
+                    }
+                    unset($channel); // prevent side-effects
+                }
+            }
+
             $hasAuth = true;
         }
 
         return view('youtube.index', [
             'path' => 'youtube/index',
-            'subscriptions' => $subscriptions,
+            'channels' => $channels,
             'hasAuth' => $hasAuth
         ]);
     }
