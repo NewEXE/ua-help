@@ -49,12 +49,13 @@ class YoutubeUnsubscribeController extends Controller
         $pageToken = $request->query('p');
         $nextPageToken = $prevPageToken = null;
 
-        $enableUaUncheck = (bool) $request->query('enableUaUncheck');
-        if ($enableUaUncheck) {
+        $enableUaUncheck = $request->query('enableUaUncheck');
+        if ($enableUaUncheck === 'true') {
             session()->put(self::SETTING_ENABLE_UA_UNCHECK, true);
+        } elseif ($enableUaUncheck === 'false') {
+            session()->put(self::SETTING_ENABLE_UA_UNCHECK, false);
         } else {
             $enableUaUncheck = session(self::SETTING_ENABLE_UA_UNCHECK, false);
-            session()->put(self::SETTING_ENABLE_UA_UNCHECK, $enableUaUncheck);
         }
 
         $channels = [];

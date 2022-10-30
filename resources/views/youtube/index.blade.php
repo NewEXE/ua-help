@@ -19,11 +19,12 @@
                     <fieldset>
                         <legend>Налаштування:</legend>
                         <div>
+                            <input type='hidden' value='false' name="{{ YoutubeUnsubscribeController::SETTING_ENABLE_UA_UNCHECK }}">
                             <input
                                 type="checkbox"
                                 id="enableUaUncheck"
                                 name="{{ YoutubeUnsubscribeController::SETTING_ENABLE_UA_UNCHECK }}"
-                                value="1"
+                                value="true"
                                 {{ $enableUaUncheck ? 'checked' : '' }}
                             >
                             <label for="enableUaUncheck">Дозволити відписку від українських каналів?</label>
