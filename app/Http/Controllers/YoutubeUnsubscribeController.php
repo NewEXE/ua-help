@@ -20,7 +20,7 @@ class YoutubeUnsubscribeController extends Controller
     private const ACCESS_TOKEN_KEY = 'yt_access_token';
 
     private const UA_SUBSTRINGS = ['і','ї','є','ґ','.ua','ukraine'];
-    private const RU_SUBSTRINGS = ['ы','ё','ъ','.ru','russia',];
+    private const RU_SUBSTRINGS = ['ы','ё','ъ','.ru','russia','vk.com'];
 
     private Client $client;
 
@@ -176,7 +176,7 @@ class YoutubeUnsubscribeController extends Controller
             }
         }
 
-        return redirect()->route(self::INDEX_PAGE_ROUTE);
+        return redirect()->back();
     }
 
     /**
