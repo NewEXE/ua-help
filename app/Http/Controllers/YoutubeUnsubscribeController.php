@@ -32,7 +32,7 @@ class YoutubeUnsubscribeController extends Controller
 
         $this->client = new Client();
         $this->client->setAuthConfig(config_path('youtube_client_secrets.json'));
-        $this->client->addScope(YouTube::YOUTUBE_FORCE_SSL);
+        $this->client->addScope(YouTube::YOUTUBE);
         $this->client->setRedirectUri(route(self::AUTH_REDIRECT_ROUTE));
 
         parent::__construct();
