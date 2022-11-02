@@ -29,7 +29,7 @@
                                     type="checkbox"
                                     id="ch-{{ $channel['id'] }}"
                                     name="subscriptionIds[]"
-                                    value="{{ $channel['subscriptionId']  }}"
+                                    value="{{ $channel['subscriptionId'] }}"
                                     {{ ($channel['isUa'] && !$enableUaUncheck) ? 'disabled' : '' }}
                                     {{ $channel['isRu'] ? 'checked' : '' }}
                                 >

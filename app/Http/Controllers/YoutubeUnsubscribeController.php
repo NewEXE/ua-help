@@ -7,8 +7,10 @@ use Google\Client;
 use Google\Service\YouTube;
 use Google\Service\YouTube\SubscriptionListResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class YoutubeUnsubscribeController extends Controller
 {
@@ -30,7 +32,7 @@ class YoutubeUnsubscribeController extends Controller
 
         $this->client = new Client();
         $this->client->setAuthConfig(config_path('youtube_client_secrets.json'));
-        $this->client->addScope(YouTube::YOUTUBE);
+        $this->client->addScope(YouTube::YOUTUBE_FORCE_SSL);
         $this->client->setRedirectUri(route(self::AUTH_REDIRECT_ROUTE));
 
         parent::__construct();
@@ -149,14 +151,15 @@ class YoutubeUnsubscribeController extends Controller
      *
      * @param Request $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function unsubscribe(Request $request): RedirectResponse
     {
-        $subscriptionIds = $request->input('subscriptionIds');
-
-        if (empty($subscriptionIds) || !is_array($subscriptionIds)) {
-            return redirect()->route(self::INDEX_PAGE_ROUTE);
-        }
+        $validated = Validator::make([
+            'subscriptionIds' => $request->input('subscriptionIds'),
+        ], [
+            'subscriptionIds' => ['required', 'array', 'min:1', 'max:50'],
+        ])->validate();
 
         $token = session(self::ACCESS_TOKEN_KEY);
         if (empty($token)) {
@@ -166,6 +169,9 @@ class YoutubeUnsubscribeController extends Controller
         $this->client->setAccessToken($token);
         $youtube = new YouTube($this->client);
 
+        $subscriptionIds = $validated['subscriptionIds'];
+
+        // TODO make "async" calls via Guzzle
         foreach ($subscriptionIds as $subscriptionId) {
             try {
                 $youtube->subscriptions->delete($subscriptionId);
@@ -176,7 +182,7 @@ class YoutubeUnsubscribeController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->back(302, [], self::INDEX_PAGE_ROUTE);
     }
 
     /**
@@ -204,8 +210,10 @@ class YoutubeUnsubscribeController extends Controller
         $channel['country'] = $channelObj->getSnippet()->getCountry();
         $channel['lang'] = $channelObj->getSnippet()->getDefaultLanguage();
         $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
-        $channel['obj'] = $channelObj; // for debug
+        $channel['channel'] = $channelObj; // for debug
 
+        $title = $channelObj->getSnippet()->getTitle();
+        $desc = $channelObj->getSnippet()->getDescription();
         $country = Str::lower($channelObj->getSnippet()->getCountry());
         $lang = Str::lower($channelObj->getSnippet()->getDefaultLanguage());
 
@@ -217,10 +225,16 @@ class YoutubeUnsubscribeController extends Controller
             return;
         }
 
-        $channel['isUaDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::UA_SUBSTRINGS, true);
-        $channel['isUaTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::UA_SUBSTRINGS, true);
+        $channel['isUaTitle'] = Str::contains($title, self::UA_SUBSTRINGS, true);
 
-        if ($channel['isUaTitle'] || $channel['isUaDesc']) {
+        if ($channel['isUaTitle']) {
+            $channel['isUa'] = true;
+            return;
+        }
+
+        $channel['isUaDesc'] = Str::contains($desc, self::UA_SUBSTRINGS, true);
+
+        if ($channel['isUaDesc']) {
             $channel['isUa'] = true;
             return;
         }
@@ -244,9 +258,11 @@ class YoutubeUnsubscribeController extends Controller
         }
 
 
-        $channel['isRuDesc'] = Str::contains($channelObj->getSnippet()->getDescription(), self::RU_SUBSTRINGS, true);
-        $channel['isRuTitle'] = Str::contains($channelObj->getSnippet()->getTitle(), self::RU_SUBSTRINGS, true);
-        $channel['isRu'] = $channel['isRuDesc'] || $channel['isRuTitle'];
+        if (empty($country)) {
+            $channel['isRuDesc'] = Str::contains($desc, self::RU_SUBSTRINGS, true);
+            $channel['isRuTitle'] = Str::contains($title, self::RU_SUBSTRINGS, true);
+            $channel['isRu'] = $channel['isRuDesc'] || $channel['isRuTitle'];
+        }
 
         if (!$channel['isRu']) {
             $channel['isUnknown'] = true;
