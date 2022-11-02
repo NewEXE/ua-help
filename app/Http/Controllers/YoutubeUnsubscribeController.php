@@ -252,6 +252,11 @@ class YoutubeUnsubscribeController extends Controller
             return;
         }
 
+        if (!empty($country) && !$channel['isRuCountry']) {
+            $channel['isUnknown'] = true;
+            return;
+        }
+
         if ($channel['isRuCountry'] || $channel['isRuLang']) {
             $channel['isRu'] = true;
             return;
