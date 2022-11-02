@@ -40,9 +40,7 @@
                                         ❓
                                     @endif
                                     <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">{{ $channel['title'] }}</span>
-                                    @if($channel['isUnknown'])
-                                        <span class="font-italic">[{{ $channel['country'] ?? '?' }}/{{ $channel['lang'] ?? '?' }}]</span>
-                                    @endif
+                                    <span class="text-muted small">[{{ $channel['country'] ?? '?' }}/{{ $channel['lang'] ?? '?' }}]</span>
                                 </label>
                             </div>
                         @empty
