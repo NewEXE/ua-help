@@ -20,6 +20,7 @@ class FileSharingUpload implements InvokableRule
         'text/html',
         'text/xml',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/x-bittorrent',
     ];
 
     private const DEFAULT_MIME = 'application/octet-stream';
