@@ -21,7 +21,7 @@ class FileSharingUpload implements InvokableRule
         'text/xml',
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/x-bittorrent',
-        'image/x-png',
+        'image/png',
         'image/jpeg',
     ];
 
