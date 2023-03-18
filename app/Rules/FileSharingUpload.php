@@ -23,6 +23,9 @@ class FileSharingUpload implements InvokableRule
         'application/x-bittorrent',
         'image/png',
         'image/jpeg',
+        'application/zip',
+        'application/x-7z-compressed',
+        'application/gzip',
     ];
 
     private const DEFAULT_MIME = 'application/octet-stream';
