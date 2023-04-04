@@ -158,6 +158,8 @@ class FileSharing extends Controller
                 MimeTypes::getDefault()->getExtensions($mime)
             );
         }
+        sort($supportedExtensions);
+
         return implode(', ', $supportedExtensions);
     }
 }
