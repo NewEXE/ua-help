@@ -28,6 +28,11 @@ class FileSharingUpload implements InvokableRule
         'application/gzip',
         'audio/mpeg',
         'video/mpeg',
+        'image/heif',
+        'image/heif-sequence',
+        'image/heic',
+        'image/heic-sequence',
+        'image/avif',
     ];
 
     private const DEFAULT_MIME = 'application/octet-stream';
