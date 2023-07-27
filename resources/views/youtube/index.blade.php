@@ -39,7 +39,9 @@
                                     @elseif($channel['isUnknown'])
                                         ❓
                                     @endif
-                                    <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">{{ $channel['title'] }}</span>
+                                    <span class="{{ $channel['isUa'] ? 'text-muted' : '' }}">
+                                        <a href="{{ $channel['link'] }}" target="_blank">{{ $channel['title'] }}</a>
+                                    </span>
                                     <span class="text-muted small">[{{ $channel['country'] ?? '?' }}/{{ $channel['lang'] ?? '?' }}]</span>
                                 </label>
                             </div>

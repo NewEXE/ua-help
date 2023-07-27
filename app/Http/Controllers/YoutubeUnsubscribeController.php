@@ -210,6 +210,7 @@ class YoutubeUnsubscribeController extends Controller
         $channel['country'] = $channelObj->getSnippet()->getCountry();
         $channel['lang'] = $channelObj->getSnippet()->getDefaultLanguage();
         $channel['avatarUrl'] = $channelObj->getSnippet()->getThumbnails()->getDefault()->getUrl();
+        $channel['link'] = 'https://www.youtube.com/channel/'.$channelObj->getId();
         $channel['channel'] = $channelObj; // for debug
 
         $title = $channelObj->getSnippet()->getTitle();
