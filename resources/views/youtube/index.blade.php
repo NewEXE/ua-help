@@ -2,6 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        {{-- remove "External link" icon --}}
+        a[target="_blank"]:after {
+            content: none !important;
+            margin: 0 !important;
+        }
+    </style>
     <div class="card">
         <div class="card-header text-center">
 
@@ -25,6 +32,7 @@
                             @endif
 
                             <div>
+                                <img src="{{ $channel['avatarUrl'] }}" height="44px" width="44px" alt="logo">
                                 <input
                                     type="checkbox"
                                     id="ch-{{ $channel['id'] }}"
