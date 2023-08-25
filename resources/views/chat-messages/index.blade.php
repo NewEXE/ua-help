@@ -23,9 +23,6 @@
 </form>
 <br />
 <table border="1">
-    <tr>
-        <td>Текст</td>
-    </tr>
     @foreach($chatMessages as $message)
         <tr>
             <td>{{ $message->content }}</td>
