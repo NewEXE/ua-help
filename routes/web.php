@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatMessages;
 use App\Http\Controllers\DdosWizard;
 use App\Http\Controllers\FileSharing;
 use App\Http\Controllers\SwitchLocaleController;
@@ -55,3 +56,7 @@ Route::get('/view-file', ViewFileController::class)->name('view.file');
 Route::get('/f', [FileSharing::class, 'index'])->name('file-sharing.index');
 Route::post('/f/upload', [FileSharing::class, 'upload'])->name('file-sharing.upload');
 Route::get('/f/{fileSlug}', [FileSharing::class, 'download'])->name('file-sharing.download');
+
+/* Chat messages */
+Route::get('/k', [ChatMessages::class, 'index'])->name('chat-messages.index');
+Route::post('/k/create', [ChatMessages::class, 'create'])->name('chat-messages.create');
