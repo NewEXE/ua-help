@@ -58,5 +58,5 @@ Route::post('/f/upload', [FileSharing::class, 'upload'])->name('file-sharing.upl
 Route::get('/f/{fileSlug}', [FileSharing::class, 'download'])->name('file-sharing.download');
 
 /* Chat messages */
-Route::get('/k', [ChatMessages::class, 'index'])->name('chat-messages.index');
-Route::post('/k/create', [ChatMessages::class, 'create'])->name('chat-messages.create');
+// Route::get('/k', [ChatMessages::class, 'index'])->name('chat-messages.index');
+// Route::post('/k/create', [ChatMessages::class, 'create'])->name('chat-messages.create');
